@@ -13,11 +13,13 @@
     <form action="handle_login.php" method="post">
 
 
-        <label for="email">Email:<span1>*</span1></label>
-        <input type="text" placeholder="Enter email" name="email" id="email" required>
+        <label for="login">Email:<span1>* <br><label style="color: darkred">
+                    <?php echo $errors['login'] ?? ''; ?> </label></span1>  </label>
+        <input type="text" placeholder="Enter email" name="login" required>
 
-        <label for="psw">Password:<span1>*</span1></label>
-        <input type="password" placeholder="Enter password" name="psw" id="psw" required>
+        <label for="psw">Password:<span1>* <br><label style="color: darkred">
+                    <?php echo $errors['psw'] ?? ''; ?> </label></span1></span1></label>
+        <input type="password" placeholder="Enter password" name="psw" required>
 
 
         <div class="btn">

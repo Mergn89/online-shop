@@ -1,18 +1,18 @@
 
 <div class="body">
     <div class="product_img">
-        <img src="https://static.wixstatic.com/media/1e47b2_3d945b9c0e9643719a8659871818e5f1.jpg/v1/fill/w_580,h_420,q_85,usm_0.66_1.00_0.01/1e47b2_3d945b9c0e9643719a8659871818e5f1.jpg" alt="">
+        <img src="https://c.dns-shop.ru/thumb/st1/fit/500/500/53b59a22a6b67baba9aa87f0003daaa4/2e500f9d78b98f9a80d9e0d6db6142ca82821d99cf73dd7d1a3b771f4e079e2f.jpg.webp" alt="">
     </div>
     <div class="product_info">
         <div class="seller_info">
 
         </div>
         <div class="product_title">I'm product</div>
-        <div class="product_model">SKU: 21354654
+        <div class="product_model">15.6" Ноутбук Lenovo IdeaPad 1 15IGL7 серый
         </div>
         <div class="product_price">$230.00
         </div>
-        <div class="product_descr">I'm a product description. I'm a great place to add more details about your product such as sizing, material, care </div>
+        <div class="product_descr">1920x1080, IPS, Intel Celeron N4020, ядра: 2 х 1.1 ГГц, RAM 4 ГБ, SSD 128 ГБ, Intel UHD Graphics 600, Windows 11 Home Single Language </div>
         <div class="product_color">Color: Black</div>
         <div class="product_color">someone@something.com</div>
         <div class="product_color">+92 308 1234567</div>
