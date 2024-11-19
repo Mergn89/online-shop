@@ -34,9 +34,9 @@ if (empty($errors)) {
     if($data === false) {
         $errors['login'] = 'Пароль или логин неверный';
     } else {
-        $hashDb = $data['password'];
+        $hashData = $data['password'];
 
-        if(password_verify($password, $hashDb)) {
+        if(password_verify($password, $hashData)) {
 //            setcookie('user_id', $data['id']);
             session_start();
             $_SESSION['user_id'] = $data['id'];

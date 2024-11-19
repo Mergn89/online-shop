@@ -11,6 +11,7 @@ function validate(): array
 
     if (isset($_POST['name'])) {
         $name = $_POST['name'];
+
         if (empty($name)) {
             $errors['name'] = 'Имя не должно быть пустым';
         } elseif (strlen($name) < 4) {
@@ -24,15 +25,28 @@ function validate(): array
 
     if (isset($_POST['email'])) {
         $email = $_POST['email'];
+
         if (empty($email)) {
             $errors['email'] = 'Поле email не должно быть пустым';
         } elseif (strlen($email) < 5) {
             $errors['email'] = 'Email должен содержать не менее 5 символов';
         } elseif (!preg_match('#^([\w]+\.?)+(?<!\.)@(?!\.)[a-zа-я0-9ё\.-]+\.?[a-zа-яё]{2,}$#ui', $email)){
             $errors['email'] = 'Недопустимый формат email';
+        } else {
+            $pdo = new PDO("pgsql:host=postgres; port=5432; dbname=mydb", 'user', 'pass');
+
+            $stmt = $pdo->prepare("SELECT * FROM  users WHERE email = :email");
+
+            $stmt->execute(['email' => $email]);
+
+            $userData = $stmt->fetchAll();
+
+            if (!empty($userData)) {
+                $errors['email'] = 'Такой пользователь уже существует';
+            }
         }
     } else {
-        $errors['email'] = 'Поле email должно быть заполнено';
+        $errors = 'Поле должно быть заполнено';
     }
 
     if (isset($_POST['psw'])) {
@@ -49,11 +63,12 @@ function validate(): array
         if (empty($passwordRep)) {
             $errors['psw-repeat'] = 'Поле не должно быть пустым';
         }
-        if ($passwordRep !== $password) {
+        elseif ($passwordRep !== $password) {
             $errors['psw-repeat'] = 'Пароли не совпадают';
         }
     } return $errors;
 }
+
 
 $errors = validate();
 
@@ -72,9 +87,9 @@ if(empty($errors)) {
     $stmt->execute(['name' => $name, 'email' => $email, 'password' => $hash]);
 
     header("location: /get_login.php");
-//    $stmt = $pdo->prepare("SELECT * FROM  users WHERE email = :email");
-//    $stmt->execute(['email' => $email]);
-//    print_r($stmt->fetch());
+
+
+    //    print_r($stmt->fetch());
 
 }
 
@@ -83,15 +98,5 @@ require_once './get_registration.php';
 
 
 
-//Array ( [id] => 5 [0] => 5 [name] => Jack [1] => Jack [email] => jack@mail.com [2] => jack@mail.com [password] => 123 [3] => 123 )
-//$arr = [
-//    [id] => 5,
-//    [0] => 5,
-//    [name] => jack,
-//    [1] => jack,
-//    [email] => jack@mail.com,
-//    [2] => jack@mail.com,
-//    [password] => 123,
-//    [3] => 123
-//];
+
 
