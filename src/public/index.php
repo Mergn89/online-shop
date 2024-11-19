@@ -4,4 +4,7 @@
 //} catch(Exception $e) {
 //    echo $e->getMessage();
 //}
-print_r($_SESSION('user_id'));
+if (!isset($_COOKIE['user_id'])) {
+    header("location: /get_login.php");
+}
+?>

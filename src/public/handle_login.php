@@ -37,7 +37,7 @@ if (empty($errors)) {
         $hashData = $data['password'];
 
         if(password_verify($password, $hashData)) {
-//            setcookie('user_id', $data['id']);
+            setcookie('user_id', $data['id']);
             session_start();
             $_SESSION['user_id'] = $data['id'];
             header("location: /catalog.php");

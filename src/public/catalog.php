@@ -1,17 +1,15 @@
-
 <?php
+
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("location: /login.php");
+    header("location: /get_login.php");
 }
 
 $pdo = new PDO("pgsql:host=postgres; port=5432; dbname=mydb", 'user', 'pass');
 $stmt = $pdo->query("SELECT * FROM products");
 
 $products = $stmt->fetchAll();
-
 ?>
-
 
 
 
@@ -19,19 +17,19 @@ $products = $stmt->fetchAll();
     <h1>Catalog </h1>
 </div>
 <div class="body">
-
+    <?php foreach ($products as $product):?>
     <div class="product_img">
-        <img src="https://c.dns-shop.ru/thumb/st1/fit/500/500/53b59a22a6b67baba9aa87f0003daaa4/2e500f9d78b98f9a80d9e0d6db6142ca82821d99cf73dd7d1a3b771f4e079e2f.jpg.webp" alt="">
+        <img src="<?php echo $product['image_link'];?>" alt="">
     </div>
     <div class="product_info">
         <div class="seller_info">
 
         </div>
-        <div class="product_title">LENOVO</div>
+        <div class="product_title"><?php echo $product['name']; ?></div>
 
-        <div class="product_price"> $230.00
+        <div class="product_price"> <?php echo '$'.$product['price']; ?>
         </div>
-        <div class="product_descr">1920x1080, IPS, Intel Celeron N4020, ядра: 2 х 1.1 ГГц, RAM 4 ГБ, SSD 128 ГБ, Intel UHD Graphics 600, Windows 11 Home Single Language </div>
+        <div class="product_descr"><?php echo $product['description']; ?> </div>
         <!--<div class="product_color">Color: Black</div>-->
         <div class="product_color">dns@dns.com</div>
         <!--<div class="product_color">+92 308 1234567</div>-->
@@ -39,15 +37,21 @@ $products = $stmt->fetchAll();
             <input type="number">
         </div>
         <div class="add_to_cart">Add to cart</div>
-    </div>
+        <br>
+        <br>
+        <br>
+    </div><?php endforeach;?>
 </div>
 
 <style>
-    h1 {
-        font-size: 2.2rem;
+    h1
+    {
+        font-size: 2.5rem;
         margin-top: 80px;
-        text-align: center;
+        text-align: -webkit-center;
+        color: chocolate;
     }
+
     body
     {
         background-color: #fff;
@@ -67,14 +71,12 @@ $products = $stmt->fetchAll();
 
     }
 
-
-
     .product_img{
         width: 580px;
     }
 
     .product_img img{
-        width: 100%;
+        width: 85%;
     }
 
 
