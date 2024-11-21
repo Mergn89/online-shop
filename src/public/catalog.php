@@ -2,7 +2,7 @@
 
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header("location: /get_login.php");
+    header("location: /login");
 }
 
 $pdo = new PDO("pgsql:host=postgres; port=5432; dbname=mydb", 'user', 'pass');
@@ -16,9 +16,21 @@ $products = $stmt->fetchAll();
 <div class="title">
     <h1>Catalog </h1>
 </div>
+
+<!--<form class="d-flex">
+    <button class="btn btn-outline-dark" type="submit">
+        <i class="bi-cart-fill me-1"></i>
+        Корзина
+        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+    </button>
+</form>-->
+
 <div class="body">
     <?php foreach ($products as $product):?>
     <div class="product_img">
+        <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
+            <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
+        </button>-->
         <img src="<?php echo $product['image_link'];?>" alt="">
     </div>
     <div class="product_info">
@@ -36,10 +48,17 @@ $products = $stmt->fetchAll();
         <div class="product_quantity">Quantity:<br>
             <input type="number">
         </div>
-        <div class="add_to_cart">Add to cart</div>
+
+        <!--<div class="add_heart">
+            <i class="fa fa-heart" aria-hidden="true"></i> like
+        </div>-->
+
+        <!--<div class="add_to_cart"><button>Add to cart</button> </div>-->
+        <!--<div class="add_to_favorites"><button>+ favorites</button> </div>-->
         <br>
         <br>
         <br>
+
     </div><?php endforeach;?>
 </div>
 
@@ -49,12 +68,12 @@ $products = $stmt->fetchAll();
         font-size: 2.5rem;
         margin-top: 80px;
         text-align: -webkit-center;
-        color: chocolate;
+        color: black;
     }
 
     body
     {
-        background-color: #fff;
+        background-color: mediumslateblue;
         font-family: Helvetica Neue, sans-serif;
         margin: 0;
         padding: 0;
@@ -103,28 +122,42 @@ $products = $stmt->fetchAll();
         font-size: 1.4rem;
     }
     .product_descr{
-        color: #615F5F;
+        color: saddlebrown;
         padding: 10px;
     }
     .product_color{
-        color: #878686;
+        color: lightyellow;
         padding: 10px;
     }
 
     .add_to_cart{
+       button{
         width: 100%;
         padding: 12px 0;
         background-color: #BF9860;
         text-align: center;
-        color: white;
+        color: darkred;
         cursor: pointer;
+    }
     }
     .add_to_cart:hover{
         background-color: #d8b88a;
 
     }
+    .add_to_favorites{
+        button{
+            width: 75%;
+            padding: 12px 0;
+            background-color: #BF9860;
+            text-align: center;
+            color: darkred;
+            cursor: pointer;
+        }
+    }
+
+
     .product_quantity {
-        color: #878686;
+        color: lightyellow;
         padding: 10px;}
 
     .product_quantity input[type="number"]{
@@ -155,5 +188,7 @@ $products = $stmt->fetchAll();
             text-align: center;
         }
     }
+
+
 </style>
 

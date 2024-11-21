@@ -10,7 +10,7 @@
     <div class="header-form">
         <span>CREATE AN ACCOUNT</span>
     </div>
-    <form action="handle_registration.php" method="post">
+    <form action="/registration" method="post">
 
         <label for="name"><b>Name</b></label> <br>
         <label style="color: brown">

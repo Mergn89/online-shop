@@ -1,24 +1,24 @@
 <?php
 
-function loginValidate(): array
+function loginValidate(array $post): array
 {
     $errors = [];
 
-    if (isset($_POST['login'])) {
-        $login = $_POST['login'];
+    if (isset($post['login'])) {
+        $login = $post['login'];
     } else {
         $errors['login'] = 'Логин или пароль неверный';
     }
 
-    if (isset($_POST['psw'])) {
-        $password = $_POST['psw'];
+    if (isset($post['psw'])) {
+        $password = $post['psw'];
     } else {
         $errors['psw'] = 'Логин или пароль неверный';
     }
     return $errors;
 }
 
-$errors = loginValidate();
+$errors = loginValidate($_POST);
 
 if (empty($errors)) {
     $login = $_POST['login'];
@@ -40,7 +40,7 @@ if (empty($errors)) {
             setcookie('user_id', $data['id']);
             session_start();
             $_SESSION['user_id'] = $data['id'];
-            header("location: /catalog.php");
+            header("location: /catalog");
         } else {
             $errors['login'] = 'Пароль или логин неверный';
         }

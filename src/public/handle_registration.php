@@ -5,12 +5,12 @@
 //$password = $_POST['psw'];
 //$passwordRep = $_POST['psw-repeat'];
 
-function validate(): array
+function registrationValidate(array $post): array
 {
     $errors = [];
 
-    if (isset($_POST['name'])) {
-        $name = $_POST['name'];
+    if (isset($post['name'])) {
+        $name = $post['name'];
 
         if (empty($name)) {
             $errors['name'] = 'Имя не должно быть пустым';
@@ -23,8 +23,8 @@ function validate(): array
         $errors['name'] = 'Поле name должно быть заполнено';
     }
 
-    if (isset($_POST['email'])) {
-        $email = $_POST['email'];
+    if (isset($post['email'])) {
+        $email = $post['email'];
 
         if (empty($email)) {
             $errors['email'] = 'Поле email не должно быть пустым';
@@ -49,8 +49,8 @@ function validate(): array
         $errors = 'Поле должно быть заполнено';
     }
 
-    if (isset($_POST['psw'])) {
-        $password = $_POST['psw'];
+    if (isset($post['psw'])) {
+        $password = $post['psw'];
         if (empty($password)) {
             $errors['psw'] = 'Поле должно быть заполнено';
         } elseif (strlen($password) < 5) {
@@ -58,8 +58,8 @@ function validate(): array
 
         }
     }
-    if (isset($_POST['psw-repeat'])) {
-        $passwordRep = $_POST['psw-repeat'];
+    if (isset($post['psw-repeat'])) {
+        $passwordRep = $post['psw-repeat'];
         if (empty($passwordRep)) {
             $errors['psw-repeat'] = 'Поле не должно быть пустым';
         }
@@ -70,7 +70,7 @@ function validate(): array
 }
 
 
-$errors = validate();
+$errors = registrationValidate($_POST);
 
 if(empty($errors)) {
     $name = $_POST['name'];
@@ -86,14 +86,14 @@ if(empty($errors)) {
 
     $stmt->execute(['name' => $name, 'email' => $email, 'password' => $hash]);
 
-    header("location: /get_login.php");
+    header("location: /login");
 
 
     //    print_r($stmt->fetch());
 
 }
 
-require_once './get_registration.php';
+require_once "get_registration.php";
 
 
 
