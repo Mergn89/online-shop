@@ -19,7 +19,6 @@ function productValidate(array $post): array
             $errors['product_id'] = 'Неправильный id продукта';
 
         } else {
-
             $pdo = new PDO("pgsql:host=postgres; port=5432; dbname=mydb", 'user', 'pass');
             $stmt = $pdo->query("SELECT * FROM products WHERE id = '$productId'");
             $res = $stmt->fetch();

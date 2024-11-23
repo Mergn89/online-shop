@@ -56,6 +56,33 @@ if ($requestUri === '/registration') {
             break;
     }
 
+} elseif ($requestUri === "/cart") {
+    switch ($requestMethod) {
+        case 'GET':
+            require_once "./cart.php";
+            break;
+//        case 'POST':
+//            require_once "./handle_registration.php";
+//            break;
+        default:
+            echo "$requestMethod не поддерживается адресом $requestUri";
+            break;
+    }
+
+} elseif ($requestUri === "/logout") {
+    switch ($requestMethod) {
+        case 'GET':
+            require_once "./logout.php";
+            break;
+//        case 'POST':
+//            require_once "./handle_registration.php";
+//            break;
+        default:
+            echo "$requestMethod не поддерживается адресом $requestUri";
+            break;
+    }
+
+
 } else {
     http_response_code(404);
     require_once './404.php';

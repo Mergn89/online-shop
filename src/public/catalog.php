@@ -17,13 +17,12 @@ $products = $stmt->fetchAll();
     <h1>Catalog </h1>
 </div>
 
-<!--<form class="d-flex">
-    <button class="btn btn-outline-dark" type="submit">
-        <i class="bi-cart-fill me-1"></i>
-        Корзина
-        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-    </button>
-</form>-->
+<a href="/logout"><button class="btn" type="submit">LOGOUT</button> </a>
+
+<br>
+<br>
+<a href="/cart"><button class="btn" type="submit">CART</button> </a>
+
 
 <div class="body">
     <?php foreach ($products as $product):?>
@@ -73,7 +72,7 @@ $products = $stmt->fetchAll();
 
     body
     {
-        background-color: mediumslateblue;
+        background-color: rosybrown;
         font-family: Helvetica Neue, sans-serif;
         margin: 0;
         padding: 0;
@@ -89,7 +88,9 @@ $products = $stmt->fetchAll();
         margin-top: 60px;
 
     }
+    .a{
 
+    }
     .product_img{
         width: 580px;
     }
@@ -154,7 +155,6 @@ $products = $stmt->fetchAll();
             cursor: pointer;
         }
     }
-
 
     .product_quantity {
         color: lightyellow;

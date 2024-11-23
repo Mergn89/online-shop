@@ -11,7 +11,6 @@ function registrationValidate(array $post): array
 
     if (isset($post['name'])) {
         $name = $post['name'];
-
         if (empty($name)) {
             $errors['name'] = 'Имя не должно быть пустым';
         } elseif (strlen($name) < 4) {
@@ -25,7 +24,6 @@ function registrationValidate(array $post): array
 
     if (isset($post['email'])) {
         $email = $post['email'];
-
         if (empty($email)) {
             $errors['email'] = 'Поле email не должно быть пустым';
         } elseif (strlen($email) < 5) {
@@ -36,7 +34,6 @@ function registrationValidate(array $post): array
             $pdo = new PDO("pgsql:host=postgres; port=5432; dbname=mydb", 'user', 'pass');
 
             $stmt = $pdo->prepare("SELECT * FROM  users WHERE email = :email");
-
             $stmt->execute(['email' => $email]);
 
             $userData = $stmt->fetchAll();
@@ -55,9 +52,9 @@ function registrationValidate(array $post): array
             $errors['psw'] = 'Поле должно быть заполнено';
         } elseif (strlen($password) < 5) {
             $errors['psw'] = 'Пароль должен содержать не менее 5 символов';
-
         }
     }
+
     if (isset($post['psw-repeat'])) {
         $passwordRep = $post['psw-repeat'];
         if (empty($passwordRep)) {
