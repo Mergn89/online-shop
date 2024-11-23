@@ -9,7 +9,28 @@ if (!isset($_SESSION['user_id'])) {
 
 $pdo = new PDO("pgsql:host=postgres; port=5432; dbname=mydb", 'user', 'pass');
 
-$stmt = $pdo->prepare("SELECT product_id, amount FROM user_products WHERE user_id = :user_id");
+$stmt = $pdo->prepare("SELECT products.id AS product_id,
+                                    products.name AS product_name,
+                                    products.description AS product_description,
+                                    products.price AS product_price,
+                                    products.image_link AS product_image_link,
+                                    user_products.amount AS user_products_amount 
+                                    FROM user_products INNER JOIN products ON products.id = user_products.product_id WHERE user_id = :user_id"
+                     );
+//$stmt = $this->pdo->prepare("SELECT
+//            products.id as product_id,
+//            products.name as product_name,
+//            products.image as product_image,
+//            products.price as product_price,
+//            user_products.amount as user_products_amount
+//            FROM user_products INNER JOIN products ON products.id = user_products.product_id  WHERE user_id = :user_id"
+//            );
+
+$stmt->execute(['user_id' => $userId]);
+$products = $stmt->fetchAll();
+
+
+/*$stmt = $pdo->prepare("SELECT product_id, amount FROM user_products WHERE user_id = :user_id");
 $stmt->execute(['user_id' => $userId]);
 
 $allUserProducts = $stmt->fetchAll();// возвращает примерно массив => $arr = [['product_id'] => 1, ['amount' => 5],['product_id'] => 2, ['amount'] => 6]];
@@ -34,7 +55,8 @@ foreach ($allUserProducts as $product) {
 }
 
 //print_r($products['amount']);
-//die;
+//die; */
+
 
 ?>
 
@@ -60,23 +82,22 @@ foreach ($allUserProducts as $product) {
             <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
                 <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
             </button>-->
-            <img src="<?php echo $product['image_link'];?>" alt="">
+            <img src="<?php echo $product['product_image_link'];?>" alt="">
         </div>
         <div class="product_info">
         <div class="seller_info">
 
         </div>
-        <div class="product_title"><?php echo $product['name']; ?> &nbsp; &nbsp; &nbsp;&nbsp;
-            <?php //echo $userProducts['amount']; ?>
-        <?php ?></div>
+        <div class="product_title"><?php echo $product['product_name']; ?> </div>
 
-        <div class="product_price"> <?php echo '$'.$product['price']; ?>
+        <div class="product_price"> <?php echo '$'.$product['product_price']; ?>
         </div>
-        <div class="product_descr"><?php echo $product['description']; ?> </div>
+        <div class="product_descr"><?php echo $product['product_description']; ?> </div>
         <!--<div class="product_color">Color: Black</div>-->
         <div class="product_color">dns@dns.com</div>
         <!--<div class="product_color">+92 308 1234567</div>-->
-        <div class="product_quantity">Quantity:<br>
+        <div class="product_quantity">Quantity: <?php echo ' '.$product['user_products_amount'];?>
+            || Total &nbsp; <?php echo '$'.$product['user_products_amount']*$product['product_price'];?><br>
             <input type="number">
         </div>
 
