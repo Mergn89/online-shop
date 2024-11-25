@@ -17,18 +17,15 @@ $stmt = $pdo->prepare("SELECT products.id AS product_id,
                                     user_products.amount AS user_products_amount 
                                     FROM user_products INNER JOIN products ON products.id = user_products.product_id WHERE user_id = :user_id"
                      );
-//$stmt = $this->pdo->prepare("SELECT
-//            products.id as product_id,
-//            products.name as product_name,
-//            products.image as product_image,
-//            products.price as product_price,
-//            user_products.amount as user_products_amount
-//            FROM user_products INNER JOIN products ON products.id = user_products.product_id  WHERE user_id = :user_id"
-//            );
-
 $stmt->execute(['user_id' => $userId]);
-$products = $stmt->fetchAll();
+$userProducts = $stmt->fetchAll();
 
+$allPrice = 0;
+foreach ($userProducts as $product) {
+
+    $total = $product['user_products_amount']*$product['product_price'];
+    $allPrice += $total;
+}
 
 /*$stmt = $pdo->prepare("SELECT product_id, amount FROM user_products WHERE user_id = :user_id");
 $stmt->execute(['user_id' => $userId]);
@@ -60,13 +57,17 @@ foreach ($allUserProducts as $product) {
 
 ?>
 
-
-
-<div class="title">
+<br>
+<br>
+<a href="/logout"><button class="btn" type="submit">LOGOUT</button> </a>
+<div  class="title" >
     <h1>Cart </h1>
+
+</div>
+<div style="color: limegreen" class="total">
+        <h2>  <?php echo 'Total cart: ' . '$' . $allPrice;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
 </div>
 
-<a href="/logout"><button class="btn" type="submit">LOGOUT</button> </a>
 
 <!--<form class="d-flex">
     <button class="btn btn-outline-dark" type="submit">
@@ -77,7 +78,8 @@ foreach ($allUserProducts as $product) {
 </form>-->
 
 <div class="body">
-    <?php foreach ($products as $product):?>
+
+    <?php foreach ($userProducts as $product):?>
         <div class="product_img">
             <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
                 <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
@@ -97,7 +99,7 @@ foreach ($allUserProducts as $product) {
         <div class="product_color">dns@dns.com</div>
         <!--<div class="product_color">+92 308 1234567</div>-->
         <div class="product_quantity">Quantity: <?php echo ' '.$product['user_products_amount'];?>
-            || Total &nbsp; <?php echo '$'.$product['user_products_amount']*$product['product_price'];?><br>
+            || Total &nbsp; <?php $total = $product['user_products_amount']*$product['product_price']; echo '$'.$total; ?><br>
             <input type="number">
         </div>
 
@@ -122,6 +124,9 @@ foreach ($allUserProducts as $product) {
         margin-top: 80px;
         text-align: -webkit-center;
         color: black;
+    }
+    .total{
+        text-align: right;
     }
 
     body

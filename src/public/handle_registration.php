@@ -35,7 +35,6 @@ function registrationValidate(array $post): array
 
             $stmt = $pdo->prepare("SELECT * FROM  users WHERE email = :email");
             $stmt->execute(['email' => $email]);
-
             $userData = $stmt->fetchAll();
 
             if (!empty($userData)) {
@@ -53,6 +52,8 @@ function registrationValidate(array $post): array
         } elseif (strlen($password) < 5) {
             $errors['psw'] = 'Пароль должен содержать не менее 5 символов';
         }
+    } else {
+        $errors['psw'] = 'Пожалуйста, заполните поле';
     }
 
     if (isset($post['psw-repeat'])) {
