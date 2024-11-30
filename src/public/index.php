@@ -1,4 +1,7 @@
 <?php
+require_once './../Controller/UserController.php';
+require_once './../Controller/ProductController.php';
+require_once './../Controller/CartController.php';
 
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD']; //GET; POST;
@@ -7,10 +10,12 @@ $requestMethod = $_SERVER['REQUEST_METHOD']; //GET; POST;
 if ($requestUri === '/registration') {
     switch($requestMethod) {
         case 'GET':
-            require_once "./get_registration.php";
+            $userController = new UserController();
+            $userController->getRegistrationForm();
             break;
         case 'POST':
-            require_once "./handle_registration.php";
+            $userController = new UserController();
+            $userController->registrate();
             break;
         default:
             echo "$requestMethod не поддерживается адресом $requestUri";
@@ -20,10 +25,12 @@ if ($requestUri === '/registration') {
 } elseif ($requestUri === "/login") {
     switch ($requestMethod) {
         case 'GET':
-            require_once "./get_login.php";
+            $userController = new UserController();
+            $userController->getLoginForm();
             break;
         case 'POST':
-            require_once "./handle_login.php";
+            $userController = new UserController();
+            $userController->login();
             break;
         default:
             echo "$requestMethod не поддерживается адресом $requestUri";
@@ -33,7 +40,8 @@ if ($requestUri === '/registration') {
 } elseif ($requestUri === "/catalog") {
     switch ($requestMethod) {
         case 'GET':
-            require_once "./catalog.php";
+            $productController = new ProductController();
+            $productController->getCatalog();
             break;
 //        case 'POST':
 //            require_once "./handle_registration.php";
@@ -46,10 +54,12 @@ if ($requestUri === '/registration') {
 } elseif ($requestUri === "/add-product") {
     switch ($requestMethod) {
         case 'GET':
-            require_once "./get_add_product.php";
+            $productController = new ProductController();
+            $productController->getAddProductForm();
             break;
         case 'POST':
-            require_once "./handle_add_product.php";
+            $productController = new ProductController();
+            $productController->getAddProduct();
             break;
         default:
             echo "$requestMethod не поддерживается адресом $requestUri";
@@ -59,8 +69,13 @@ if ($requestUri === '/registration') {
 } elseif ($requestUri === "/cart") {
     switch ($requestMethod) {
         case 'GET':
-            require_once "./cart.php";
+            $cartController = new CartController();
+            $cartController->getCart();
             break;
+        case 'POST':
+//            $cartController = new CartController();
+//            $cartController->getCart();
+//            break;
 //        case 'POST':
 //            require_once "./handle_registration.php";
 //            break;
@@ -83,9 +98,19 @@ if ($requestUri === '/registration') {
     }
 
 
+} elseif ($requestUri === "/cart-test") {
+    switch ($requestMethod) {
+        case 'GET':
+            require_once "./cart_test.php";
+            break;
+
+        default:
+            echo "$requestMethod не поддерживается адресом $requestUri";
+            break;
+    }
 } else {
     http_response_code(404);
-    require_once './404.php';
+    require_once './../View/404.php';
 }
 
 

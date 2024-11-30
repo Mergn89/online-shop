@@ -1,50 +1,47 @@
-<?php
 
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("location: /login");
-}
+<br>
+<br>
+<a href="/logout"><button class="btn" type="submit">LOGOUT</button> </a>
+<div  class="title" >
+    <h1>Cart </h1>
 
-$pdo = new PDO("pgsql:host=postgres; port=5432; dbname=mydb", 'user', 'pass');
-$stmt = $pdo->query("SELECT * FROM products");
-
-$products = $stmt->fetchAll();
-?>
-
-
-
-<div class="title">
-    <h1>Catalog </h1>
+</div>
+<div style="color: limegreen" class="total">
+        <h2>  <?php echo 'Total cart: ' . '$' . $allPrice;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
 </div>
 
-<a href="/logout"><button class="btn" type="submit">LOGOUT</button> </a>
 
-<br>
-<br>
-<a href="/cart"><button class="btn" type="submit">CART</button> </a>
-
+<!--<form class="d-flex">
+    <button class="btn btn-outline-dark" type="submit">
+        <i class="bi-cart-fill me-1"></i>
+        Корзина
+        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+    </button>
+</form>-->
 
 <div class="body">
-    <?php foreach ($products as $product):?>
-    <div class="product_img">
-        <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
-            <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
-        </button>-->
-        <img src="<?php echo $product['image_link'];?>" alt="">
-    </div>
-    <div class="product_info">
+
+    <?php foreach ($userProducts as $product):?>
+        <div class="product_img">
+            <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
+                <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
+            </button>-->
+            <img src="<?php echo $product['product_image_link'];?>" alt="">
+        </div>
+        <div class="product_info">
         <div class="seller_info">
 
         </div>
-        <div class="product_title"><?php echo $product['name']; ?></div>
+        <div class="product_title"><?php echo $product['product_name']; ?> </div>
 
-        <div class="product_price"> <?php echo '$'.$product['price']; ?>
+        <div class="product_price"> <?php echo '$'.$product['product_price']; ?>
         </div>
-        <div class="product_descr"><?php echo $product['description']; ?> </div>
+        <div class="product_descr"><?php echo $product['product_description']; ?> </div>
         <!--<div class="product_color">Color: Black</div>-->
         <div class="product_color">dns@dns.com</div>
         <!--<div class="product_color">+92 308 1234567</div>-->
-        <div class="product_quantity">Quantity:<br>
+        <div class="product_quantity">Quantity: <?php echo ' '.$product['user_products_amount'];?>
+            || Total &nbsp; <?php $total = $product['user_products_amount']*$product['product_price']; echo '$'.$total; ?><br>
             <input type="number">
         </div>
 
@@ -58,7 +55,8 @@ $products = $stmt->fetchAll();
         <br>
         <br>
 
-    </div><?php endforeach;?>
+        </div><?php endforeach;?>
+
 </div>
 
 <style>
@@ -68,6 +66,9 @@ $products = $stmt->fetchAll();
         margin-top: 80px;
         text-align: -webkit-center;
         color: black;
+    }
+    .total{
+        text-align: right;
     }
 
     body
@@ -88,9 +89,7 @@ $products = $stmt->fetchAll();
         margin-top: 60px;
 
     }
-    .a{
 
-    }
     .product_img{
         width: 580px;
     }
@@ -132,14 +131,14 @@ $products = $stmt->fetchAll();
     }
 
     .add_to_cart{
-       button{
-        width: 100%;
-        padding: 12px 0;
-        background-color: #BF9860;
-        text-align: center;
-        color: darkred;
-        cursor: pointer;
-    }
+        button{
+            width: 100%;
+            padding: 12px 0;
+            background-color: #BF9860;
+            text-align: center;
+            color: darkred;
+            cursor: pointer;
+        }
     }
     .add_to_cart:hover{
         background-color: #d8b88a;
@@ -155,6 +154,7 @@ $products = $stmt->fetchAll();
             cursor: pointer;
         }
     }
+
 
     .product_quantity {
         color: lightyellow;
@@ -191,4 +191,3 @@ $products = $stmt->fetchAll();
 
 
 </style>
-
