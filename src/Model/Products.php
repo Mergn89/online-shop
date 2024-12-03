@@ -6,8 +6,7 @@ class Products
     {
         $pdo = new PDO("pgsql:host=postgres; port=5432; dbname=mydb", 'user', 'pass');
         $stmt = $pdo->query("SELECT * FROM products");
-        $products = $stmt->fetchAll();
-        return $products;
+        return $stmt->fetchAll();
     }
 
     public function getByProductId(int $productId): array|false
@@ -15,8 +14,7 @@ class Products
         $pdo = new PDO("pgsql:host=postgres; port=5432; dbname=mydb", 'user', 'pass');
         $stmt = $pdo->prepare("SELECT * FROM products WHERE id = :product_id");
         $stmt->execute(['product_id' => $productId]);
-        $res = $stmt->fetch();
-        return $res;
+        return $stmt->fetch();
     }
 
 

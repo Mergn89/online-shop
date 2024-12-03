@@ -7,8 +7,7 @@ class UserProduct
         $pdo = new PDO("pgsql:host=postgres; port=5432; dbname=mydb", 'user', 'pass');
         $stmt = $pdo->prepare("SELECT amount FROM user_products WHERE user_id = :user_id and product_id = :product_id");
         $stmt->execute(['user_id' => $userId, 'product_id' => $productId]);
-        $dataUserProducts = $stmt->fetch();
-        return $dataUserProducts;
+        return$stmt->fetch();
     }
 
     public function addProductInUserProducts(int $userId, int $productId, int $amount): void
@@ -39,8 +38,24 @@ class UserProduct
                                     FROM user_products INNER JOIN products ON products.id = user_products.product_id WHERE user_id = :user_id"
         );
         $stmt->execute(['user_id' => $userId]);
-        $userProducts = $stmt->fetchAll();
-        return $userProducts;
+        return$stmt->fetchAll();
+    }
+
+    public function getProductsByUserId(int $userId): array
+    {
+        $pdo = new PDO("pgsql:host=postgres; port=5432; dbname=mydb", 'user', 'pass');
+        $stmt = $pdo->prepare("SELECT * FROM user_products JOIN products ON user_products.product_id = products.id WHERE user_id = :user_id");
+        $stmt->execute(['user_id' => $userId]);
+        return $stmt->fetchAll();
+
+    }
+
+    public function deleteProductByUserId(int $userId):void
+    {
+        $pdo = new PDO("pgsql:host=postgres; port=5432; dbname=mydb", 'user', 'pass');
+        $stmt = $pdo->prepare("DELETE FROM user_products WHERE user_id = :user_id");
+        $stmt->execute(['user_id' => $userId]);
+
     }
 
 

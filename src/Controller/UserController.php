@@ -4,13 +4,13 @@ require_once './../Model/User.php';
 
 class UserController
 {
-    public function getRegistrationForm()
+    public function getRegistrationForm():void
     {
         require_once './../View/registrate.php';
 
     }
 
-    public function registrate()
+    public function registrate():void
     {
         $errors = $this->registrateValidation($_POST);
 
@@ -89,13 +89,13 @@ class UserController
         return $errors;
     }
 
-    public function getLoginForm()
+    public function getLoginForm():void
     {
         require_once './../View/login.php';
 
     }
 
-    public function login()
+    public function login():void
     {
         $errors = $this->loginValidate($_POST);
 
@@ -142,6 +142,16 @@ class UserController
             $errors['psw'] = 'Логин или пароль неверный';
         }
         return $errors;
+    }
+
+    public function logout():void
+    {
+        session_start();
+        session_unset();
+        session_destroy();
+
+        header ("Location: ./login");
+
     }
 
 }

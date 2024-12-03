@@ -41,7 +41,7 @@ class ProductController
             if ($dataUserProducts === false) {
                 $dataUserProduct->addProductInUserProducts($userId, $productId, $amount);
 
-             $add = 'Add to cart successfully';
+                $add = 'Add to cart successfully';
 //                } else {
 //                    $add = 'Add to cart NOT successfully';
 //                }
@@ -51,7 +51,7 @@ class ProductController
                 $dataUserProduct->updateAmountInUserProducts($sumAmount, $userId, $productId);
 
  //               if ($amountUpdate) {
-                    $add = 'User products updated successfully';
+                $add = 'User products updated successfully';
 //                } else {
 //                    $add = 'User products update NOT successfully';
             }

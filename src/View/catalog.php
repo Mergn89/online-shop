@@ -4,10 +4,9 @@
 ?>
 
 
-
-<div class="title">
+<div class="title" xmlns="http://www.w3.org/1999/html">
     <h1>Catalog </h1>
-</div>
+
 
 <a href="/logout"><button class="btn" type="submit">LOGOUT</button> </a>
 
@@ -44,15 +43,15 @@
             <i class="fa fa-heart" aria-hidden="true"></i> like
         </div>-->
 
-        <!--<div class="add_to_cart"><button>Add to cart</button> </div>-->
-        <!--<div class="add_to_favorites"><button>+ favorites</button> </div>-->
+        <span> <button>Add to cart</button>  <button>Delete from cart</button> </span>
+        <div class="add_to_favorites"><button>+ favorites</button> </div>
         <br>
         <br>
         <br>
 
     </div><?php endforeach;?>
 </div>
-
+</div>
 <style>
     h1
     {
@@ -69,6 +68,16 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+    }
+    .{
+        button{
+            width: 50%;
+            padding: 12px 0;
+            background-color: #BF9860;
+            text-align: center;
+            color: darkred;
+            cursor: pointer;
+        }
     }
 
     .body{
@@ -123,24 +132,25 @@
         padding: 10px;
     }
 
-    .add_to_cart{
+    span{
        button{
-        width: 100%;
-        padding: 12px 0;
+           white-space: nowrap;
+        width: 50%;
+        padding: 3px 0;
         background-color: #BF9860;
         text-align: center;
         color: darkred;
-        cursor: pointer;
+           cursor: pointer;
     }
     }
-    .add_to_cart:hover{
+    /*.add_to_cart:hover{
         background-color: #d8b88a;
 
-    }
+    }*/
     .add_to_favorites{
         button{
-            width: 75%;
-            padding: 12px 0;
+            width: 50%;
+            padding: 2px 0;
             background-color: #BF9860;
             text-align: center;
             color: darkred;

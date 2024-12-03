@@ -8,6 +8,7 @@
 </div>
 <div style="color: limegreen" class="total">
         <h2>  <?php echo 'Total cart: ' . '$' . $allPrice;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+    <a href="/order"><button class="btn" type="submit">PLACE AN ORDER</button> </a>
 </div>
 
 
@@ -51,6 +52,7 @@
 
         <!--<div class="add_to_cart"><button>Add to cart</button> </div>-->
         <!--<div class="add_to_favorites"><button>+ favorites</button> </div>-->
+
         <br>
         <br>
         <br>

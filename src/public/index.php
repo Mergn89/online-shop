@@ -2,6 +2,7 @@
 require_once './../Controller/UserController.php';
 require_once './../Controller/ProductController.php';
 require_once './../Controller/CartController.php';
+require_once './../Controller/OrderController.php';
 
 $requestUri = $_SERVER['REQUEST_URI'];
 $requestMethod = $_SERVER['REQUEST_METHOD']; //GET; POST;
@@ -87,11 +88,27 @@ if ($requestUri === '/registration') {
 } elseif ($requestUri === "/logout") {
     switch ($requestMethod) {
         case 'GET':
-            require_once "./logout.php";
+            $userController = new UserController();
+            $userController->logout();
             break;
 //        case 'POST':
 //            require_once "./handle_registration.php";
 //            break;
+        default:
+            echo "$requestMethod не поддерживается адресом $requestUri";
+            break;
+    }
+
+} elseif ($requestUri === "/order") {
+    switch ($requestMethod) {
+        case 'GET':
+            $orderController = new OrderController();
+            $orderController->getOrderForm();
+            break;
+        case 'POST':
+            $orderController = new OrderController();
+            $orderController->getOrder();
+            break;
         default:
             echo "$requestMethod не поддерживается адресом $requestUri";
             break;
