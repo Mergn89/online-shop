@@ -33,7 +33,7 @@
                     <?php $count = 0;?>
                     <?php foreach ($res as $product): $count++;?>
                     <?php endforeach;?>
-                    <b><?php echo $count?></b>
+                    <b><?php echo $count ?>qty</b>
         </span>
             </h2>
             <?php $totalPrice = 0;?>

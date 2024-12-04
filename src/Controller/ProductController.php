@@ -19,7 +19,7 @@ class ProductController
         if (!isset($_SESSION['user_id'])) {
             header("location: /login");
         }
-        $this->products->getProducts();
+        $products = $this->products->getProducts();
 
         require_once "./../View/catalog.php";
     }

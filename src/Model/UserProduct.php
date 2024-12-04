@@ -30,7 +30,7 @@ class UserProduct
 
     }
 
-    public function getUserProductsByUserId(int $userId): array|false
+/*    public function getUserProductsByUserId(int $userId): array|false
     {
 
         $stmt = $this->pdo->connectToDatabase()->prepare("SELECT products.id AS product_id,
@@ -44,10 +44,11 @@ class UserProduct
         $stmt->execute(['user_id' => $userId]);
         return $stmt->fetchAll();
     }
-
+*/
     public function getProductsByUserId(int $userId): array
     {
-        $stmt = $this->pdo->connectToDatabase()->prepare("SELECT * FROM user_products JOIN products ON user_products.product_id = products.id WHERE user_id = :user_id");
+        $stmt = $this->pdo->connectToDatabase()->prepare("SELECT * FROM user_products 
+                                                                JOIN products ON user_products.product_id = products.id WHERE user_id = :user_id");
         $stmt->execute(['user_id' => $userId]);
         return $stmt->fetchAll();
 

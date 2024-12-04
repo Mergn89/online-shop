@@ -27,22 +27,22 @@
             <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
                 <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
             </button>-->
-            <img src="<?php echo $product['product_image_link'];?>" alt="">
+            <img src="<?php echo $product['image_link'];?>" alt="">
         </div>
         <div class="product_info">
         <div class="seller_info">
 
         </div>
-        <div class="product_title"><?php echo $product['product_name']; ?> </div>
+        <div class="product_title"><?php echo $product['name']; ?> </div>
 
-        <div class="product_price"> <?php echo '$'.$product['product_price']; ?>
+        <div class="product_price"> <?php echo '$'.$product['price']; ?>
         </div>
-        <div class="product_descr"><?php echo $product['product_description']; ?> </div>
+        <div class="product_descr"><?php echo $product['description']; ?> </div>
         <!--<div class="product_color">Color: Black</div>-->
         <div class="product_color">dns@dns.com</div>
         <!--<div class="product_color">+92 308 1234567</div>-->
-        <div class="product_quantity">Quantity: <?php echo ' '.$product['user_products_amount'];?>
-            || Total &nbsp; <?php $total = $product['user_products_amount']*$product['product_price']; echo '$'.$total; ?><br>
+        <div class="product_quantity">Quantity: <?php echo ' '.$product['amount'];?>
+            || Total &nbsp; <?php $total = $product['amount']*$product['price']; echo '$'.$total; ?><br>
             <input type="number">
         </div>
 

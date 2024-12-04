@@ -17,11 +17,13 @@ class CartController
         } else {
             $userId = $_SESSION['user_id'];
 
-            $userProducts = $this->userProduct->getUserProductsByUserId($userId);
+            $userProducts = $this->userProduct->getProductsByUserId($userId);
+            //getUserProductsByUserId($userId);
 
             $allPrice = 0;
             foreach ($userProducts as $product) {
-                $total = $product['user_products_amount']*$product['product_price'];
+                $total = $product['amount']*$product['price'];
+            //    $total = $product['user_products_amount']*$product['product_price'];
                 $allPrice += $total;
             }
         }
