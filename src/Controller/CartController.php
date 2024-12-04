@@ -3,6 +3,12 @@ require_once './../Model/UserProduct.php';
 
 class CartController
 {
+    private UserProduct $userProduct;
+    public function __construct()
+    {
+        $this->userProduct = new UserProduct();
+
+    }
     public function getCart():void
     {
         session_start();
@@ -11,8 +17,7 @@ class CartController
         } else {
             $userId = $_SESSION['user_id'];
 
-            $dataUserProducts = new UserProduct();
-            $userProducts = $dataUserProducts->getUserProductsByUserId($userId);
+            $userProducts = $this->userProduct->getUserProductsByUserId($userId);
 
             $allPrice = 0;
             foreach ($userProducts as $product) {

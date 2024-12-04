@@ -4,6 +4,14 @@ require_once './../Model/UserProduct.php';
 
 class ProductController
 {
+    private Products $products;
+    private UserProduct $userProduct;
+
+    public function __construct()
+    {
+        $this->products = new Products();
+        $this->userProduct = new UserProduct();
+    }
 
     public function getCatalog():void
     {
@@ -11,17 +19,14 @@ class ProductController
         if (!isset($_SESSION['user_id'])) {
             header("location: /login");
         }
-        $product = new Products();
-        $products = $product->getProducts();
+        $this->products->getProducts();
 
         require_once "./../View/catalog.php";
-
     }
 
     public function getAddProductForm():void
     {
         require_once './../View/addProduct.php';
-
     }
     public function getAddProduct():void
     {
@@ -33,31 +38,19 @@ class ProductController
             //session_start(); сессия уже запущена выше
             $userId = $_SESSION['user_id'];
 
-            $dataUserProduct = new UserProduct();
-            $dataUserProducts = $dataUserProduct->getAmountByUserProducts($userId, $productId);
-//print_r($dataUserProducts);
-//die;
+            $dataUserProducts = $this->userProduct->getAmountByUserProducts($userId, $productId);
 
             if ($dataUserProducts === false) {
-                $dataUserProduct->addProductInUserProducts($userId, $productId, $amount);
-
+                $this->userProduct->addProductInUserProducts($userId, $productId, $amount);
                 $add = 'Add to cart successfully';
-//                } else {
-//                    $add = 'Add to cart NOT successfully';
-//                }
             } else {
                 $sumAmount = $dataUserProducts['amount'] + $amount;
 
-                $dataUserProduct->updateAmountInUserProducts($sumAmount, $userId, $productId);
-
- //               if ($amountUpdate) {
+                $this->userProduct->updateAmountInUserProducts($sumAmount, $userId, $productId);
                 $add = 'User products updated successfully';
-//                } else {
-//                    $add = 'User products update NOT successfully';
             }
         }
         require_once './../View/addProduct.php';
-
     }
 
     public function productValidate(array $post): array
@@ -80,8 +73,7 @@ class ProductController
                 $errors['product_id'] = 'Неправильный id продукта';
 
             } else {
-                $dataProduct = new Products();
-                $res = $dataProduct->getByProductId($productId);
+                $res = $this->products->getByProductId($productId);
                 if ($res === false) {
                     $errors['product_id'] = 'Продукт не существует';
                 }
@@ -101,7 +93,7 @@ class ProductController
             $errors['amount'] = 'Поле должно быть заполнено';
         }
         return $errors;
-
     }
+
 
 }

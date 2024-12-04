@@ -5,6 +5,16 @@ require_once './../Model/OrderProduct.php';
 
 class OrderController
 {
+    private Order $order;
+    private OrderProduct $orderProduct;
+    private UserProduct $userProduct;
+    public function __construct()
+    {
+        $this->order = new Order();
+        $this->orderProduct = new OrderProduct();
+        $this->userProduct = new UserProduct();
+
+    }
     public function getOrderForm(): void
     {
         session_start();
@@ -13,8 +23,7 @@ class OrderController
         if (!isset($_SESSION['user_id'])) {
             header('Location: /login');
         }
-        $userProduct = new UserProduct();
-        $res = $userProduct->getProductsByUserId($userId);
+        $res = $this->userProduct->getProductsByUserId($userId);
 
         require_once "./../View/order.php";
     }
@@ -30,17 +39,14 @@ class OrderController
             $address = $_POST['address'];
             $phone = $_POST['phone'];
 
-            $order = new Order();
-            $order->createOrder($userId, $contactName, $address, $phone);
+            $this->order->createOrder($userId, $contactName, $address, $phone);
 
-            $orderUser = $order->getOrderByUserId($userId);
+            $orderUser = $this->order->getOrderByUserId($userId);
 
-            $userProduct = new UserProduct();
-            $orderProduct = new OrderProduct();
-            foreach ($userProduct->getProductsByUserId($userId) as $product) {
-                $orderProduct->addProductInOrder($orderUser['id'], $product['product_id'], $product['amount'], $product['price']);
+            foreach ($this->userProduct->getProductsByUserId($userId) as $product) {
+                $this->orderProduct->addProductInOrder($orderUser['id'], $product['product_id'], $product['amount'], $product['price']);
             }
-            $userProduct->deleteProductByUserId($userId);
+            $this->userProduct->deleteProductByUserId($userId);
             header('Location: /order');
 
         } else {

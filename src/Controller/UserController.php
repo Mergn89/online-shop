@@ -4,6 +4,13 @@ require_once './../Model/User.php';
 
 class UserController
 {
+    private User $user;
+
+    public function __construct()
+    {
+        $this->user = new User();
+    }
+
     public function getRegistrationForm():void
     {
         require_once './../View/registrate.php';
@@ -22,10 +29,9 @@ class UserController
 
             $hash = password_hash($password, PASSWORD_DEFAULT);
 
-            $user = new User();
-            $user->create($name,$email,$hash);
+            $this->user->create($name,$email,$hash);
             header("location: /login");
-            //    print_r($stmt->fetch());
+
         }
         require_once "./../View/registrate.php";
     }
@@ -56,8 +62,7 @@ class UserController
             } elseif (!preg_match('#^([\w]+\.?)+(?<!\.)@(?!\.)[a-zа-я0-9ё\.-]+\.?[a-zа-яё]{2,}$#ui', $email)) {
                 $errors['email'] = 'Недопустимый формат email';
             } else {
-                $user = new User();
-                $userData = $user->getByEmail($email);
+                $this->user->getByEmail($email);
 
                 if (!empty($userData)) {
                     $errors['email'] = 'Такой пользователь уже существует';
@@ -92,7 +97,6 @@ class UserController
     public function getLoginForm():void
     {
         require_once './../View/login.php';
-
     }
 
     public function login():void
@@ -103,8 +107,7 @@ class UserController
             $login = $_POST['login'];
             $password = $_POST['psw'];
 
-            $user = new User();
-            $data = $user->getByEmail($login);
+            $data = $this->user->getByEmail($login);
 
             if($data === false) {
                 $errors['login'] = 'Пароль или логин неверный';
@@ -123,7 +126,6 @@ class UserController
             require_once './../View/login.php';
         }
          //print_r($_SESSION('user_id'));
-
     }
 
     function loginValidate(array $post): array
@@ -149,9 +151,7 @@ class UserController
         session_start();
         session_unset();
         session_destroy();
-
         header ("Location: ./login");
-
     }
 
 }

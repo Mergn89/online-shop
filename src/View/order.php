@@ -39,12 +39,12 @@
             <?php $totalPrice = 0;?>
             <?php foreach ($res as $product):?>
                 <?php //$allPrice = 2;?>
-                <p><a href="#"><?php echo $product['name'] . " шт.: " . $product['amount'];?>
-                    </a> <span class="price"><?php $allPrice = $product['price'] * $product['amount'];echo $allPrice . " руб"?></span></p>
+                <p><a href="#"><?php echo $product['name'] . " pcs.: " . $product['amount'];?>
+                    </a> <span class="price"><?php $allPrice = $product['price'] * $product['amount'];echo $allPrice . "$"?></span></p>
                 <hr>
                 <?php $totalPrice += $allPrice?>
             <?php endforeach;?>
-            <p>Всего к оплате <span class="price" style="color:black"><b><?php echo $totalPrice . " руб"?></b></span></p>
+            <p>Всего к оплате <span class="price" style="color:black"><b><?php echo $totalPrice . "$"?></b></span></p>
         </div>
     </div>
 </div>
