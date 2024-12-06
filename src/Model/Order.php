@@ -9,11 +9,11 @@ class Order
     {
         $this->pdo = new Database;
     }
-    public function createOrder(int $userId, string $contactName, string $address, int $phone): void
+    public function createOrder(int $userId, string $contactName, string $address, int $phone, int $total): void
     {
-        $stmt = $this->pdo->connectToDatabase()->prepare("INSERT INTO orders (user_id, contact_name, address, phone)
-                                                 VALUES (:user_id, :contact_name, :address, :phone)");
-        $stmt->execute(['user_id' => $userId, 'contact_name' => $contactName, 'address' => $address, 'phone' => $phone]);
+        $stmt = $this->pdo->connectToDatabase()->prepare("INSERT INTO orders (user_id, contact_name, address, phone, total)
+                                                 VALUES (:user_id, :contact_name, :address, :phone, :total)");
+        $stmt->execute(['user_id' => $userId, 'contact_name' => $contactName, 'address' => $address, 'phone' => $phone, 'total' => $total]);
 
     }
 

@@ -1,8 +1,5 @@
 <?php
-//require_once './../Controller/CartController.php';
-//require_once './../Controller/OrderController.php';
-//require_once './../Controller/ProductController.php';
-//require_once './../Controller/UserController.php';
+
 class App
 {
     public function run(): void

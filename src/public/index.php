@@ -1,5 +1,5 @@
 <?php
-require_once './App.php';
+require_once './../Core/App.php';
 require_once './../Controller/UserController.php';
 require_once './../Controller/ProductController.php';
 require_once './../Controller/CartController.php';
