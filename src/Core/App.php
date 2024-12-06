@@ -89,6 +89,7 @@ class App
             } else {
                 echo "$method не поддерживается $uri";
             }
+
         } else {
             http_response_code(404);
             require_once './../View/404.php';

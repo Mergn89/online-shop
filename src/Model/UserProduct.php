@@ -1,31 +1,24 @@
 <?php
 require_once './../Model/Database.php';
-class UserProduct
+class UserProduct extends Database
 {
-    private Database $pdo;
-
-    public function __construct()
-    {
-        $this->pdo = new Database;
-    }
-
     public function getAmountByUserProducts(int $userId, int $productId): array|false
     {
-        $stmt = $this->pdo->connectToDatabase()->prepare("SELECT amount FROM user_products WHERE user_id = :user_id and product_id = :product_id");
+        $stmt = $this->connectToDatabase()->prepare("SELECT amount FROM user_products WHERE user_id = :user_id and product_id = :product_id");
         $stmt->execute(['user_id' => $userId, 'product_id' => $productId]);
         return $stmt->fetch();
     }
 
     public function addProductInUserProducts(int $userId, int $productId, int $amount): void
     {
-        $stmt = $this->pdo->connectToDatabase()->prepare("INSERT INTO user_products (user_id, product_id, amount) VALUES (:user_id, :product_id, :amount)");
+        $stmt = $this->connectToDatabase()->prepare("INSERT INTO user_products (user_id, product_id, amount) VALUES (:user_id, :product_id, :amount)");
         $stmt->execute(['user_id' => $userId, 'product_id' => $productId, 'amount' => $amount]);
 
     }
 
     public function updateAmountInUserProducts(int $sumAmount, int $userId, int $productId): void
     {
-        $stmt = $this->pdo->connectToDatabase()->prepare("UPDATE user_products SET amount = :amount WHERE user_id = :user_id AND product_id = :product_id");
+        $stmt = $this->connectToDatabase()->prepare("UPDATE user_products SET amount = :amount WHERE user_id = :user_id AND product_id = :product_id");
         $stmt->execute(['amount' => $sumAmount, 'user_id' => $userId, 'product_id' => $productId]);
 
     }
@@ -47,7 +40,7 @@ class UserProduct
 */
     public function getProductsByUserId(int $userId): array
     {
-        $stmt = $this->pdo->connectToDatabase()->prepare("SELECT * FROM user_products 
+        $stmt = $this->connectToDatabase()->prepare("SELECT * FROM user_products 
                                                                 JOIN products ON user_products.product_id = products.id WHERE user_id = :user_id");
         $stmt->execute(['user_id' => $userId]);
         return $stmt->fetchAll();
@@ -56,7 +49,7 @@ class UserProduct
 
     public function deleteProductByUserId(int $userId):void
     {
-        $stmt = $this->pdo->connectToDatabase()->prepare("DELETE FROM user_products WHERE user_id = :user_id");
+        $stmt = $this->connectToDatabase()->prepare("DELETE FROM user_products WHERE user_id = :user_id");
         $stmt->execute(['user_id' => $userId]);
 
     }
