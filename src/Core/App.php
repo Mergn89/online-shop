@@ -2,136 +2,98 @@
 
 class App
 {
+    private array $routes = [
+        '/registration' => [
+            'GET' => [
+                'class' => 'UserController',
+                'method' => 'getRegistrationForm'
+            ],
+            'POST' => [
+                'class' => 'UserController',
+                'method' => 'registrate'
+            ]
+        ],
+        '/login' => [
+            'GET' => [
+                'class' => 'UserController',
+                'method' => 'getLoginForm'
+            ],
+            'POST' => [
+                'class' => 'UserController',
+                'method' => 'login'
+            ]
+        ],
+        '/catalog' => [
+            'GET' => [
+                'class' => 'ProductController',
+                'method' => 'getCatalog'
+            ],
+        ],
+        '/add-product' => [
+            'GET' => [
+                'class' => 'ProductController',
+                'method' => 'getAddProductForm'
+            ],
+            'POST' => [
+                'class' => 'ProductController',
+                'method' => 'addProduct'
+            ]
+        ],
+        '/cart' => [
+            'GET' => [
+                'class' => 'CartController',
+                'method' => 'getCart'
+            ],
+        ],
+        '/logout' => [
+            'GET' => [
+                'class' => 'UserController',
+                'method' => 'logout'
+            ],
+        ],
+        '/order' => [
+            'GET' => [
+                'class' => 'OrderController',
+                'method' => 'getOrderForm'
+            ],
+            'POST' => [
+                'class' => 'OrderController',
+                'method' => 'order'
+            ]
+        ],
+        '/cart-test' => [
+            'GET' => [
+                'class' => 'UserController',
+                'method' => 'getLoginForm'
+            ],
+        ],
+
+    ];
+
     public function run(): void
     {
-        $requestUri = $_SERVER['REQUEST_URI'];
-        $requestMethod = $_SERVER['REQUEST_METHOD']; //GET; POST;
+        $uri = $_SERVER['REQUEST_URI'];
+        $method = $_SERVER['REQUEST_METHOD']; //GET; POST;
 
 
-        if ($requestUri === '/registration') {
-            switch($requestMethod) {
-                case 'GET':
-                    $userController = new UserController();
-                    $userController->getRegistrationForm();
-                    break;
-                case 'POST':
-                    $userController = new UserController();
-                    $userController->registrate();
-                    break;
-                default:
-                    echo "$requestMethod не поддерживается адресом $requestUri";
-                    break;
-            }
+        if (array_key_exists($uri, $this->routes)) {
+            $methods = $this->routes[$uri];
+            if (array_key_exists($method, $methods)) {
 
-        } elseif ($requestUri === "/login") {
-            switch ($requestMethod) {
-                case 'GET':
-                    $userController = new UserController();
-                    $userController->getLoginForm();
-                    break;
-                case 'POST':
-                    $userController = new UserController();
-                    $userController->login();
-                    break;
-                default:
-                    echo "$requestMethod не поддерживается адресом $requestUri";
-                    break;
-            }
+                $handler = $methods[$method];
+                $class = $handler['class'];
+                $method = $handler['method'];
+                $obj = new $class();
+                $obj->$method();
 
-        } elseif ($requestUri === "/catalog") {
-            switch ($requestMethod) {
-                case 'GET':
-                    $productController = new ProductController();
-                    $productController->getCatalog();
-                    break;
-//        case 'POST':
-//            require_once "./handle_registration.php";
-//            break;
-                default:
-                    echo "$requestMethod не поддерживается адресом $requestUri";
-                    break;
-            }
-
-        } elseif ($requestUri === "/add-product") {
-            switch ($requestMethod) {
-                case 'GET':
-                    $productController = new ProductController();
-                    $productController->getAddProductForm();
-                    break;
-                case 'POST':
-                    $productController = new ProductController();
-                    $productController->getAddProduct();
-                    break;
-                default:
-                    echo "$requestMethod не поддерживается адресом $requestUri";
-                    break;
-            }
-
-        } elseif ($requestUri === "/cart") {
-            switch ($requestMethod) {
-                case 'GET':
-                    $cartController = new CartController();
-                    $cartController->getCart();
-                    break;
-                case 'POST':
-//            $cartController = new CartController();
-//            $cartController->getCart();
-//            break;
-//        case 'POST':
-//            require_once "./handle_registration.php";
-//            break;
-                default:
-                    echo "$requestMethod не поддерживается адресом $requestUri";
-                    break;
-            }
-
-        } elseif ($requestUri === "/logout") {
-            switch ($requestMethod) {
-                case 'GET':
-                    $userController = new UserController();
-                    $userController->logout();
-                    break;
-//        case 'POST':
-//            require_once "./handle_registration.php";
-//            break;
-                default:
-                    echo "$requestMethod не поддерживается адресом $requestUri";
-                    break;
-            }
-
-        } elseif ($requestUri === "/order") {
-            switch ($requestMethod) {
-                case 'GET':
-                    $orderController = new OrderController();
-                    $orderController->getOrderForm();
-                    break;
-                case 'POST':
-                    $orderController = new OrderController();
-                    $orderController->getOrder();
-                    break;
-                default:
-                    echo "$requestMethod не поддерживается адресом $requestUri";
-                    break;
-            }
-
-
-        } elseif ($requestUri === "/cart-test") {
-            switch ($requestMethod) {
-                case 'GET':
-                    require_once "./cart_test.php";
-                    break;
-
-                default:
-                    echo "$requestMethod не поддерживается адресом $requestUri";
-                    break;
+            } else {
+                echo "$method не поддерживается $uri";
             }
         } else {
             http_response_code(404);
             require_once './../View/404.php';
         }
 
-
     }
-
 
 }

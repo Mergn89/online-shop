@@ -28,7 +28,7 @@ class ProductController
     {
         require_once './../View/addProduct.php';
     }
-    public function getAddProduct():void
+    public function addProduct():void
     {
         $errors = $this->productValidate($_POST);
 
