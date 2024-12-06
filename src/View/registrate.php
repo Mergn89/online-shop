@@ -46,8 +46,6 @@
         </div>
     </form>
 </div>
-</body>
-</html>
 
 <style>
     body {font-family: Arial,sans-serif;

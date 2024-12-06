@@ -1,72 +1,16 @@
-<?php
 
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("location: /login");
-} else {
-    $userId = $_SESSION['user_id'];
-}
-
-$pdo = new PDO("pgsql:host=postgres; port=5432; dbname=mydb", 'user', 'pass');
-
-$stmt = $pdo->prepare("SELECT products.id AS product_id,
-                                    products.name AS product_name,
-                                    products.description AS product_description,
-                                    products.price AS product_price,
-                                    products.image_link AS product_image_link,
-                                    user_products.amount AS user_products_amount 
-                                    FROM user_products INNER JOIN products ON products.id = user_products.product_id WHERE user_id = :user_id"
-                     );
-//$stmt = $this->pdo->prepare("SELECT
-//            products.id as product_id,
-//            products.name as product_name,
-//            products.image as product_image,
-//            products.price as product_price,
-//            user_products.amount as user_products_amount
-//            FROM user_products INNER JOIN products ON products.id = user_products.product_id  WHERE user_id = :user_id"
-//            );
-
-$stmt->execute(['user_id' => $userId]);
-$products = $stmt->fetchAll();
-
-
-/*$stmt = $pdo->prepare("SELECT product_id, amount FROM user_products WHERE user_id = :user_id");
-$stmt->execute(['user_id' => $userId]);
-
-$allUserProducts = $stmt->fetchAll();// возвращает примерно массив => $arr = [['product_id'] => 1, ['amount' => 5],['product_id'] => 2, ['amount'] => 6]];
-
-
-//print_r($allUserProducts[0]['amount']);
-//die;
-
-$products = [];
-
-foreach ($allUserProducts as $product) {
-    $productUserId = $product['product_id'];
-
-    $stmt = $pdo->prepare("SELECT * FROM products WHERE id = :product_id");
-    $stmt->execute(['product_id' => $productUserId]);
-
-//    $stmt = $pdo->prepare("SELECT * FROM user_products");
-//    $stmt->execute(['amount' => $productUserAmount]);
-
-    $products[] = $stmt->fetch();
-
-}
-
-//print_r($products['amount']);
-//die; */
-
-
-?>
-
-
-
-<div class="title">
+<br>
+<br>
+<a href="/logout"><button class="btn" type="submit">LOGOUT</button> </a>
+<div  class="title" >
     <h1>Cart </h1>
+
+</div>
+<div style="color: limegreen" class="total">
+        <h2>  <?php echo 'Total cart: ' . '$' . $allPrice;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+    <a href="/order"><button class="btn" type="submit">PLACE AN ORDER</button> </a>
 </div>
 
-<a href="/logout"><button class="btn" type="submit">LOGOUT</button> </a>
 
 <!--<form class="d-flex">
     <button class="btn btn-outline-dark" type="submit">
@@ -77,27 +21,28 @@ foreach ($allUserProducts as $product) {
 </form>-->
 
 <div class="body">
-    <?php foreach ($products as $product):?>
+
+    <?php foreach ($userProducts as $product):?>
         <div class="product_img">
             <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
                 <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
             </button>-->
-            <img src="<?php echo $product['product_image_link'];?>" alt="">
+            <img src="<?php echo $product['image_link'];?>" alt="">
         </div>
         <div class="product_info">
         <div class="seller_info">
 
         </div>
-        <div class="product_title"><?php echo $product['product_name']; ?> </div>
+        <div class="product_title"><?php echo $product['name']; ?> </div>
 
-        <div class="product_price"> <?php echo '$'.$product['product_price']; ?>
+        <div class="product_price"> <?php echo '$'.$product['price']; ?>
         </div>
-        <div class="product_descr"><?php echo $product['product_description']; ?> </div>
+        <div class="product_descr"><?php echo $product['description']; ?> </div>
         <!--<div class="product_color">Color: Black</div>-->
         <div class="product_color">dns@dns.com</div>
         <!--<div class="product_color">+92 308 1234567</div>-->
-        <div class="product_quantity">Quantity: <?php echo ' '.$product['user_products_amount'];?>
-            || Total &nbsp; <?php echo '$'.$product['user_products_amount']*$product['product_price'];?><br>
+        <div class="product_quantity">Quantity: <?php echo ' '.$product['amount'];?>
+            || Total &nbsp; <?php $total = $product['amount']*$product['price']; echo '$'.$total; ?><br>
             <input type="number">
         </div>
 
@@ -107,6 +52,7 @@ foreach ($allUserProducts as $product) {
 
         <!--<div class="add_to_cart"><button>Add to cart</button> </div>-->
         <!--<div class="add_to_favorites"><button>+ favorites</button> </div>-->
+
         <br>
         <br>
         <br>
@@ -122,6 +68,9 @@ foreach ($allUserProducts as $product) {
         margin-top: 80px;
         text-align: -webkit-center;
         color: black;
+    }
+    .total{
+        text-align: right;
     }
 
     body

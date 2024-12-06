@@ -1,30 +1,34 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>login</title>
+    <title>add product</title>
 
 </head>
 <body>
 <div class="form">
     <div class="header-form">
-        <span>LOGIN TO ACCOUNT</span>
+        <span>ADD PRODUCT</span>
     </div>
-    <form action="/login" method="post">
+    <form action="/add-product" method="post">
 
 
-        <label for="login">Email:<span1>* <br><label style="color: darkred">
-                    <?php echo $errors['login'] ?? ''; ?> </label></span1>  </label>
-        <input type="text" placeholder="Enter email" name="login" required>
+        <label for="product-id">ProductId: <br><label style="color: darkred">
+                <?php echo $errors['product_id'] ?? ''; ?>
+                <?php echo $add ?? ''; ?></label>
 
-        <label for="psw">Password:<span1>* <br><label style="color: darkred">
-                    <?php echo $errors['psw'] ?? ''; ?> </label></span1></span1></label>
-        <input type="password" placeholder="Enter password" name="psw" required>
+            <input type="text" placeholder="Enter product-id" name="product_id" required>
+
+            <label for="amount">Amount:<span1> <br><label style="color: darkred">
+                        <?php echo $errors['amount'] ?? ''; ?>
+                    </label></span1></span1></label>
+            <input type="text" placeholder="Enter amount" name="amount" required>
 
 
-        <div class="btn">
-            <button class="btn">login</button>
-        </div>
+            <div class="btn">
+                <button class="btn">add</button>
+            </div>
     </form>
 </div>
 </body>
@@ -37,21 +41,21 @@
         margin: auto;}
     .form{padding: 0px 30px 0px 30px;
         display: block;
-        background-color: #f9fcfc;
+        background-color: darkseagreen;
         margin: auto;
         width: 320px;
 
-        border: 1px solid #cfdede;}
+        border: 1px solid sandybrown;}
     label{font-size: 12px;
         font-weight: 700;
-        color: #333333}
+        color: black}
     input{outline: none;
 
         margin-top: 15px;
         padding: 10px 130px 10px 11px;
         margin-bottom: 20px;}
     span{color: white;
-        background-color: #01b3b3;
+        background-color: sandybrown;
         padding: 10px 8px;}
     .header-form{margin-bottom: 34px;}
     button{margin-top:20px;
@@ -65,8 +69,8 @@
         padding: 16px 95px 16px 65px;
         border-radius: 5px;
         font-size: 16px;
-        background-color: #01bdbd;}
-    button:hover{border: 1px solid #0f7878;}
+        background-color: sandybrown;}
+    button:hover{border: 1px solid sandybrown;}
     span1{color: #01b3b3;}
 
 </style>
