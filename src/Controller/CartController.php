@@ -20,14 +20,25 @@ class CartController
             $userProducts = $this->userProduct->getProductsByUserId($userId);
             //getUserProductsByUserId($userId);
 
-            $allPrice = 0;
-            foreach ($userProducts as $product) {
-                $total = $product['amount']*$product['price'];
-            //    $total = $product['user_products_amount']*$product['product_price'];
-                $allPrice += $total;
-            }
+            $allPrice = $this->totalOrder();
+
         }
         require_once './../View/cart.php';
+    }
+
+    public function totalOrder(): int
+    {
+        $userId = $_SESSION['user_id'];
+
+        $userProducts = $this->userProduct->getProductsByUserId($userId);
+
+        $allPrice = 0;
+        foreach ($userProducts as $product) {
+            $total = $product['amount']*$product['price'];
+
+            $allPrice += $total;
+        }
+        return $allPrice;
     }
 
 }

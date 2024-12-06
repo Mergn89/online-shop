@@ -2,18 +2,22 @@
 require_once './../Model/Order.php';
 require_once './../Model/UserProduct.php';
 require_once './../Model/OrderProduct.php';
+require_once './../Controller/CartController.php';
 
 class OrderController
 {
     private Order $order;
     private OrderProduct $orderProduct;
     private UserProduct $userProduct;
+
+    private CartController $cartController;
+
     public function __construct()
     {
         $this->order = new Order();
         $this->orderProduct = new OrderProduct();
         $this->userProduct = new UserProduct();
-
+        $this->cartController = new CartController();
     }
     public function getOrderForm(): void
     {
@@ -38,8 +42,9 @@ class OrderController
             $contactName = $_POST['contact_name'];
             $address = $_POST['address'];
             $phone = $_POST['phone'];
+            $total = $this->cartController->totalOrder();
 
-            $this->order->createOrder($userId, $contactName, $address, $phone);
+            $this->order->createOrder($userId, $contactName, $address, $phone, $total);
 
             $orderUser = $this->order->getOrderByUserId($userId);
 
