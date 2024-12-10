@@ -9,7 +9,6 @@ class OrderController
     private Order $order;
     private OrderProduct $orderProduct;
     private UserProduct $userProduct;
-
     private CartController $cartController;
 
     public function __construct()
@@ -22,19 +21,20 @@ class OrderController
     public function getOrderForm(): void
     {
         session_start();
-        $userId = $_SESSION['user_id'];
-
         if (!isset($_SESSION['user_id'])) {
             header('Location: /login');
+        } else {
+            $userId = $_SESSION['user_id'];
+            $res = $this->userProduct->getProductsByUserId($userId);
+            require_once "./../View/order.php";
         }
-        $res = $this->userProduct->getProductsByUserId($userId);
 
-        require_once "./../View/order.php";
     }
 
-    public function getOrder(): void
+    public function order(): void
     {
         $errors = $this->validateOrder($_POST);
+
 
         if (empty($errors)) {
             session_start();
@@ -43,6 +43,7 @@ class OrderController
             $address = $_POST['address'];
             $phone = $_POST['phone'];
             $total = $this->cartController->totalOrder();
+
 
             $this->order->createOrder($userId, $contactName, $address, $phone, $total);
 
@@ -95,6 +96,7 @@ class OrderController
         } else {
             $errors ['phone'] = "Поле phone должно быть заполнено";
         }
+
         return $errors;
     }
 
