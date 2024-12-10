@@ -1,6 +1,7 @@
 <?php
-require_once './../Model/Database.php';
-class UserProduct extends Database
+namespace Model;
+
+class UserProduct extends Model
 {
     public function getAmountByUserProducts(int $userId, int $productId): array|false
     {
@@ -41,7 +42,7 @@ class UserProduct extends Database
     public function getProductsByUserId(int $userId): array
     {
         $stmt = $this->connectToDatabase()->prepare("SELECT * FROM user_products 
-                                                                JOIN products ON user_products.product_id = products.id WHERE user_id = :user_id");
+                                                           JOIN products ON user_products.product_id = products.id WHERE user_id = :user_id");
         $stmt->execute(['user_id' => $userId]);
         return $stmt->fetchAll();
 

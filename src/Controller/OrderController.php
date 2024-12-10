@@ -1,8 +1,14 @@
 <?php
-require_once './../Model/Order.php';
-require_once './../Model/UserProduct.php';
-require_once './../Model/OrderProduct.php';
-require_once './../Controller/CartController.php';
+namespace Controller;
+use Model\Order;
+use Model\OrderProduct;
+use Model\UserProduct;
+use Model\Products;
+
+//require_once './../Model/Order.php';
+//require_once './../Model/UserProduct.php';
+//require_once './../Model/OrderProduct.php';
+//require_once './../Controller/CartController.php';
 
 class OrderController
 {
@@ -10,6 +16,7 @@ class OrderController
     private OrderProduct $orderProduct;
     private UserProduct $userProduct;
     private CartController $cartController;
+    private Products $products;
 
     public function __construct()
     {
@@ -17,6 +24,7 @@ class OrderController
         $this->orderProduct = new OrderProduct();
         $this->userProduct = new UserProduct();
         $this->cartController = new CartController();
+        $this->products = new Products();
     }
     public function getOrderForm(): void
     {
@@ -98,6 +106,83 @@ class OrderController
         }
 
         return $errors;
+    }
+
+    public function getOrdersForm(): void
+    {
+        session_start();
+
+        if (!isset($_SESSION['user_id'])) {
+            header("location: /login");
+        } else {
+            $userId = $_SESSION['user_id'];
+            $orders = $this->order->getAllByUserId($userId);
+
+            /*
+              $orders = [
+                [
+                    'id' => 1,
+                    'user_id' => 23,
+                    'contact_name' => 'Alex',
+                    'address' => 'Moscow',
+                    'total' => 2300
+
+                ],
+                [
+                    'id' => 1,
+                    'user_id' => 23,
+                    'contact_name' => 'Alex',
+                    'address' => 'Moscow'
+                    'total' => 1200
+                    ....
+                ]
+
+            ];*/
+
+            foreach ($orders as &$order) {
+                $orderProducts = $this->orderProduct->getByOrderId($order['id']);
+                /*$orderProducts = [
+                    [
+                        'id' => 1,
+                        'order_id' => 1,
+                        'product_id' => 2,
+                        'amount' => 5,
+                        'order_price' => 120
+                    ],
+                    [
+                        'id' => 2,
+                        'order_id' => 3,
+                        'product_id' => 1,
+                        'amount' => 3,
+                        'order_price' => 200
+                    ],
+
+                ];*/
+                $productIds = [];
+                foreach ($orderProducts as $orderProduct){
+                    $productIds[] = $orderProduct['product_id'];
+                }
+
+                $products = $this->products->getAllByIds($productIds);
+//print_r($products);die;
+                foreach ($orderProducts as $orderProduct){
+                    foreach ($products as &$product) {
+                        //print_r($orderProduct['product_id']);die;
+
+                        if($product['id'] === $orderProduct['product_id']) {
+                            $products['order_amount'] = $orderProduct['amount'];
+                            $products['order_price'] = $orderProduct['order_price'];
+                        }
+                    }
+                    unset($product);
+                }
+                $order['products'] = $products;
+                //print_r($products); die;
+            }
+            unset($order);
+
+        }
+           require_once "./../View/orders.php";
     }
 
 

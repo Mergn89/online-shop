@@ -1,72 +1,78 @@
 <?php
-
+namespace Core;
 class App
 {
     private array $routes = [
         '/registration' => [
             'GET' => [
-                'class' => 'UserController',
+                'class' => 'Controller\UserController',
                 'method' => 'getRegistrationForm'
             ],
             'POST' => [
-                'class' => 'UserController',
+                'class' => 'Controller\UserController',
                 'method' => 'registrate'
             ]
         ],
         '/login' => [
             'GET' => [
-                'class' => 'UserController',
+                'class' => 'Controller\UserController',
                 'method' => 'getLoginForm'
             ],
             'POST' => [
-                'class' => 'UserController',
+                'class' => 'Controller\UserController',
                 'method' => 'login'
             ]
         ],
         '/catalog' => [
             'GET' => [
-                'class' => 'ProductController',
+                'class' => 'Controller\ProductController',
                 'method' => 'getCatalog'
             ],
         ],
         '/add-product' => [
             'GET' => [
-                'class' => 'ProductController',
+                'class' => 'Controller\ProductController',
                 'method' => 'getAddProductForm'
             ],
             'POST' => [
-                'class' => 'ProductController',
+                'class' => 'Controller\ProductController',
                 'method' => 'addProduct'
             ]
         ],
         '/cart' => [
             'GET' => [
-                'class' => 'CartController',
+                'class' => 'Controller\CartController',
                 'method' => 'getCart'
             ],
         ],
         '/logout' => [
             'GET' => [
-                'class' => 'UserController',
+                'class' => 'Controller\UserController',
                 'method' => 'logout'
             ],
         ],
         '/order' => [
             'GET' => [
-                'class' => 'OrderController',
+                'class' => 'Controller\OrderController',
                 'method' => 'getOrderForm'
             ],
             'POST' => [
-                'class' => 'OrderController',
+                'class' => 'Controller\OrderController',
                 'method' => 'order'
             ]
         ],
-        '/cart-test' => [
+        '/orders' => [
             'GET' => [
-                'class' => 'UserController',
-                'method' => 'getLoginForm'
+                'class' => 'Controller\OrderController',
+                'method' => 'getOrdersForm'
             ],
         ],
+//        '/cart-test' => [
+//            'GET' => [
+//                'class' => 'UserController',
+//                'method' => 'getLoginForm'
+//            ],
+//        ],
 
     ];
 

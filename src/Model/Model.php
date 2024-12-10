@@ -1,6 +1,7 @@
 <?php
-
-class Database
+namespace Model;
+use PDO;
+class Model
 {
     private PDO $pdo;
     public function __construct(){

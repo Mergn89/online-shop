@@ -1,6 +1,7 @@
 <?php
-require_once './../Model/Database.php';
-class User extends Database
+namespace Model;
+
+class User extends Model
 {
      public function create(string $name, string $email,string $password): void
     {
