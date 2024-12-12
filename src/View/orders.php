@@ -6,22 +6,25 @@
                 <span class="price" style="color:black">
           <i class="fa fa-shopping-cart"></i>
                     <?php $count = 0;?>
-                    <?php //foreach ($orders as $product): $count++;?>
-                    <?php //endforeach;?>
+                    <?php foreach ($products as $product): $count++;?>
+                    <?php endforeach;?>
                     <b><?php echo $count ?>qty</b>
         </span>
             </h2>
             <?php //$totalPrice = 0;?>
-            <?php foreach ($orders as $order):?>
+
                 <?php //$allPrice = 2;?>
-                <p><a href="#"><?php echo $order['name'] . "  pcs. : " .$order['amount'];?>
-                    </a> <span class="price"><?php $allPrice = $order['order_price'] * $order['amount'];echo $allPrice . "$"?></span></p>
+            <?php foreach ($products as $product):?>
+                <p><a href="#"><?php echo $product['name'] . "  pcs. : " .$product['order_amount'];?>
+                    </a> <span class="price"><?php $allPrice = $product['order_price'] * $product['order_amount'];echo $allPrice . "$"?></span></p>
                 <hr>
                 <?php //$totalPrice += $allPrice?>
             <?php endforeach;?>
+
             <p>Total  <span class="price" style="color:black"><b><?php  //foreach ($orders as $product): ?>
+                        <?php foreach ($orders as $order):?>
                             <?php echo $order['total'] . "$"?>
-                        <?php //endforeach;?></b></span></p>
+                        <?php endforeach;?></b></span></p>
         </div>
         <br>
         <br>

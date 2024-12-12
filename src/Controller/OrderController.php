@@ -129,7 +129,7 @@ class OrderController
 
                 ],
                 [
-                    'id' => 1,
+                    'id' => 2,
                     'user_id' => 23,
                     'contact_name' => 'Alex',
                     'address' => 'Moscow'
@@ -163,24 +163,33 @@ class OrderController
                     $productIds[] = $orderProduct['product_id'];
                 }
 
-                $products = $this->products->getAllByIds($productIds);
+                if(count($productIds) > 0) {
+                    $products = $this->products->getAllByIds($productIds);
 //print_r($products);die;
-                foreach ($orderProducts as $orderProduct){
-                    foreach ($products as &$product) {
-                        //print_r($orderProduct['product_id']);die;
-
-                        if($product['id'] === $orderProduct['product_id']) {
-                            $products['order_amount'] = $orderProduct['amount'];
-                            $products['order_price'] = $orderProduct['order_price'];
+                    foreach ($orderProducts as $orderProduct){
+                        foreach ($products as &$product) {
+//                        echo '<pre>';
+//                        print_r($products);
+//                        echo '</pre>';
+//                        echo '<pre>';
+//                        print_r($orderProducts);
+//                        echo '</pre>';
+//                        die;
+                            if ($product['id'] === $orderProduct['product_id']) {
+                                $product['order_amount'] = $orderProduct['amount'];
+                                $product['order_price'] = $orderProduct['order_price'];
+                            }
                         }
+                        unset($product);
                     }
-                    unset($product);
+                } else {
+                    print_r('У Вас нет заказов');
                 }
+//            $order['products'] = $products;
+//                print_r($products); die;
                 $order['products'] = $products;
-                //print_r($products); die;
             }
-            unset($order);
-
+             unset($order);
         }
            require_once "./../View/orders.php";
     }
