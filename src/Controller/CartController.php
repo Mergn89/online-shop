@@ -1,5 +1,7 @@
 <?php
-require_once './../Model/UserProduct.php';
+namespace Controller;
+use Model\UserProduct;
+//require_once './../Model/UserProduct.php';
 
 class CartController
 {

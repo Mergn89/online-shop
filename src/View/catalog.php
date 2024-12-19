@@ -43,6 +43,39 @@
             <i class="fa fa-heart" aria-hidden="true"></i> like
         </div>-->
 
+        <!DOCTYPE html>
+        <html lang="ru">
+        <head>
+            <meta charset="UTF-8">
+            <title>add product</title>
+
+        </head>
+        <body>
+        <div class="form">
+            <div class="header-form">
+                <span></span>
+            </div>
+            <form action="/add_product" method="post">
+
+                    <input type="hidden" placeholder="Enter product-id" value="<?php echo $product['id'] ?? '';?>" name="product_id" required>
+
+                    <label for="amount">Amount:<span1> <br><label style="color: darkred">
+                                <?php echo $errors['amount'] ?? ''; ?>
+                                <?php //echo $add ?? ''; ?>
+                            </label></span1></span1></label>
+                    <input type="text" placeholder="Enter amount" name="amount" required>
+
+                    <div class="btn">
+                        <button class="btn">add</button>
+                    </div>
+            </form>
+        </div>
+        </body>
+        </html>
+
+
+
+
         <span> <button>Add to cart</button>  <button>Delete from cart</button> </span>
         <div class="add_to_favorites"><button>+ favorites</button> </div>
         <br>
