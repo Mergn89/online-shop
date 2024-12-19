@@ -1,6 +1,6 @@
 <?php
 namespace Model;
-class Products extends Model
+class Product extends Model
 {
     public function getProducts(): array
     {
@@ -15,7 +15,7 @@ class Products extends Model
         return $stmt->fetch();
     }
 
-     public function getAllByIds(array $productIds): array
+    public function getAllByIds(array $productIds): array
     {
         $productId = '?' . str_repeat(', ?', count($productIds) - 1); //преобразывает массив  в строку
 

@@ -125,7 +125,7 @@ class UserController
             }
             require_once './../View/login.php';
         }
-         //print_r($_SESSION('user_id'));
+        //print_r($_SESSION('user_id'));
     }
 
     function loginValidate(array $post): array

@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 
-use Model\Products;
+use Model\Product;
 use Model\UserProduct;
 
 //require_once './../Model/Products.php';
@@ -9,12 +9,12 @@ use Model\UserProduct;
 
 class ProductController
 {
-    private Products $products;
+    private Product $products;
     private UserProduct $userProduct;
 
     public function __construct()
     {
-        $this->products = new Products();
+        $this->products = new Product();
         $this->userProduct = new UserProduct();
     }
 

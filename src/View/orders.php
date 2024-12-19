@@ -15,7 +15,7 @@
 
                 <?php //$allPrice = 2;?>
             <?php foreach ($products as $product):?>
-                <p><a href="#"><?php echo $product['name'] . "  pcs. : " .$product['order_amount'];?>
+                <p><a href="#"><?php echo $product['title'] . "  pcs. : " .$product['order_amount'];?>
                     </a> <span class="price"><?php $allPrice = $product['order_price'] * $product['order_amount'];echo $allPrice . "$"?></span></p>
                 <hr>
                 <?php //$totalPrice += $allPrice?>

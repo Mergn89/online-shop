@@ -31,15 +31,15 @@
                 <span class="price" style="color:black">
           <i class="fa fa-shopping-cart"></i>
                     <?php $count = 0;?>
-                    <?php foreach ($res as $product): $count++;?>
+                    <?php foreach ($userProducts as $product): $count++;?>
                     <?php endforeach;?>
                     <b><?php echo $count ?>qty</b>
         </span>
             </h2>
             <?php $totalPrice = 0;?>
-            <?php foreach ($res as $product):?>
+            <?php foreach ($userProducts as $product):?>
                 <?php //$allPrice = 2;?>
-                <p><a href="#"><?php echo $product['name'] . " pcs.: " . $product['amount'];?>
+                <p><a href="#"><?php echo $product['title'] . " pcs.: " . $product['amount'];?>
                     </a> <span class="price"><?php $allPrice = $product['price'] * $product['amount'];echo $allPrice . "$"?></span></p>
                 <hr>
                 <?php $totalPrice += $allPrice?>

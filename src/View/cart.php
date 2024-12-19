@@ -7,7 +7,8 @@
 
 </div>
 <div style="color: limegreen" class="total">
-        <h2>  <?php echo 'Total cart: ' . '$' . $allPrice;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
+    <h2>  <?php if (count($productIds) > 0) {echo 'Total cart: ' . '$' . $allPrice;}?>
+        <?php //echo 'Total cart: ' . '$' . $allPrice;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
     <a href="/order"><button class="btn" type="submit">PLACE AN ORDER</button> </a>
 </div>
 
@@ -21,8 +22,8 @@
 </form>-->
 
 <div class="body">
-
-    <?php foreach ($userProducts as $product):?>
+    <?php if(count($productIds) > 0):
+     foreach ($products as $product):?>
         <div class="product_img">
             <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
                 <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
@@ -33,7 +34,7 @@
         <div class="seller_info">
 
         </div>
-        <div class="product_title"><?php echo $product['name']; ?> </div>
+        <div class="product_title"><?php echo $product['title']; ?> </div>
 
         <div class="product_price"> <?php echo '$'.$product['price']; ?>
         </div>
@@ -57,7 +58,7 @@
         <br>
         <br>
 
-        </div><?php endforeach;?>
+        </div><?php endforeach;?>  <?php endif?>
 
 </div>
 
