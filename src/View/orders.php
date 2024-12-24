@@ -3,27 +3,28 @@
 
         <div class="container">
             <h2>Your order
+                <?php $count = 0;?>
+                <?php foreach ($products as $product): //$count++;?>
                 <span class="price" style="color:black">
           <i class="fa fa-shopping-cart"></i>
-                    <?php $count = 0;?>
-                    <?php foreach ($products as $product): $count++;?>
-                    <?php endforeach;?>
-                    <b><?php echo $count ?>qty</b>
+
+                    <?php //endforeach;?>
+                    <b><?php //echo $count ?>qty</b>
         </span>
             </h2>
             <?php //$totalPrice = 0;?>
 
                 <?php //$allPrice = 2;?>
-            <?php foreach ($products as $product):?>
+            <?php //foreach ($products as $product):?>
                 <p><a href="#"><?php echo $product['title'] . "  pcs. : " .$product['order_amount'];?>
                     </a> <span class="price"><?php $allPrice = $product['order_price'] * $product['order_amount'];echo $allPrice . "$"?></span></p>
                 <hr>
                 <?php //$totalPrice += $allPrice?>
-            <?php endforeach;?>
+            <?php //endforeach;?>
 
             <p>Total  <span class="price" style="color:black"><b><?php  //foreach ($orders as $product): ?>
-                        <?php foreach ($orders as $order):?>
-                            <?php echo $order['total'] . "$"?>
+                        <?php //foreach ($orders as $order):?>
+                            <?php //echo $order['total'] . "$"?>
                         <?php endforeach;?></b></span></p>
         </div>
         <br>

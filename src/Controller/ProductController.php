@@ -43,13 +43,14 @@ class ProductController
             //session_start(); сессия уже запущена выше
             $userId = $_SESSION['user_id'];
 
-            $dataUserProducts = $this->userProduct->getAmountByUserProducts($userId, $productId);
+            $dataUserProducts = $this->userProduct->getAmountByUserIdAndProductId($userId, $productId);
+            //print_r($dataUserProducts); die;
 
-            if ($dataUserProducts === false) {
+            if (!$dataUserProducts) {
                 $this->userProduct->addProductInUserProducts($userId, $productId, $amount);
                 $add = 'Add to cart successfully';
             } else {
-                $sumAmount = $dataUserProducts['amount'] + $amount;
+                $sumAmount = $dataUserProducts->getAmount() + $amount;
 
                 $this->userProduct->updateAmountInUserProducts($sumAmount, $userId, $productId);
                 $add = 'User products updated successfully';
@@ -78,8 +79,8 @@ class ProductController
                 $errors['product_id'] = 'Неправильный id продукта';
 
             } else {
-                $res = $this->products->getByProductId($productId);
-                if ($res === false) {
+                $product = $this->products->getOneById($productId);
+                if (!$product) {
                     $errors['product_id'] = 'Продукт не существует';
                 }
             }

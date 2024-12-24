@@ -62,9 +62,9 @@ class UserController
             } elseif (!preg_match('#^([\w]+\.?)+(?<!\.)@(?!\.)[a-zа-я0-9ё\.-]+\.?[a-zа-яё]{2,}$#ui', $email)) {
                 $errors['email'] = 'Недопустимый формат email';
             } else {
-                $this->user->getByEmail($email);
+                $user = $this->user->getByEmail($email);
 
-                if (!empty($userData)) {
+                if ($user) {
                     $errors['email'] = 'Такой пользователь уже существует';
                 }
             }
@@ -107,17 +107,17 @@ class UserController
             $login = $_POST['login'];
             $password = $_POST['psw'];
 
-            $data = $this->user->getByEmail($login);
+            $user = $this->user->getByEmail($login);
 
-            if($data === false) {
+            if(!$user) {
                 $errors['login'] = 'Пароль или логин неверный';
             } else {
-                $hashData = $data['password'];
+                $hashData = $user->getPassword();
 
                 if(password_verify($password, $hashData)) {
                     //setcookie('user_id', $data['id']);
                     session_start();
-                    $_SESSION['user_id'] = $data['id'];
+                    $_SESSION['user_id'] = $user->getId();
                     header("location: /catalog");
                 } else {
                     $errors['login'] = 'Пароль или логин неверный';

@@ -7,7 +7,9 @@
 
 </div>
 <div style="color: limegreen" class="total">
-    <h2>  <?php if (count($productIds) > 0) {echo 'Total cart: ' . '$' . $allPrice;}?>
+    <h2>  <?php  if (count($productIds) > 0): ?>
+        <?php echo 'Total cart: ' . '$' . $allPrice;?>
+        <?php endif?>
         <?php //echo 'Total cart: ' . '$' . $allPrice;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
     <a href="/order"><button class="btn" type="submit">PLACE AN ORDER</button> </a>
 </div>
@@ -22,28 +24,28 @@
 </form>-->
 
 <div class="body">
-    <?php if(count($productIds) > 0):
-     foreach ($products as $product):?>
+    <?php //if(count($productIds) > 0):
+     foreach ($userProducts as $product):?>
         <div class="product_img">
             <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
                 <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
             </button>-->
-            <img src="<?php echo $product['image_link'];?>" alt="">
+            <img src="<?php echo $product->getImageLink();?>" alt="">
         </div>
         <div class="product_info">
         <div class="seller_info">
 
         </div>
-        <div class="product_title"><?php echo $product['title']; ?> </div>
+        <div class="product_title"><?php echo $product->getTitle(); ?> </div>
 
-        <div class="product_price"> <?php echo '$'.$product['price']; ?>
+        <div class="product_price"> <?php echo '$'.$product->getPrice(); ?>
         </div>
-        <div class="product_descr"><?php echo $product['description']; ?> </div>
+        <div class="product_descr"><?php echo $product->getDescription(); ?> </div>
         <!--<div class="product_color">Color: Black</div>-->
         <div class="product_color">dns@dns.com</div>
         <!--<div class="product_color">+92 308 1234567</div>-->
-        <div class="product_quantity">Quantity: <?php echo ' '.$product['amount'];?>
-            || Total &nbsp; <?php $total = $product['amount']*$product['price']; echo '$'.$total; ?><br>
+        <div class="product_quantity">Quantity: <?php echo ' '.$product->getAmount();?>
+            || Total &nbsp; <?php //$total = $product['amount']*$product['price']; echo '$'.$total; ?><br>
             <input type="number">
         </div>
 
@@ -58,7 +60,7 @@
         <br>
         <br>
 
-        </div><?php endforeach;?>  <?php endif?>
+        </div><?php endforeach;?>  <?php // endif?>
 
 </div>
 

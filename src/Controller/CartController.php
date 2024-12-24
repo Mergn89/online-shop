@@ -8,6 +8,8 @@ class CartController
 {
     private UserProduct $userProduct;
     private Product $product;
+
+
     public function __construct()
     {
         $this->userProduct = new UserProduct();
@@ -24,36 +26,48 @@ class CartController
             $userId = $_SESSION['user_id'];
 
             $allUserProducts = $this->userProduct->getProductsByUserId($userId);
+            if(!empty($allUserProducts)) {
+                //$allPrice = $this->totalPrice();
 
-            //$allPrice = $this->totalPrice();
+                $productIds = [];
 
-            $productIds = [];
+                foreach ($allUserProducts as $userProduct) {
+                    $productIds[] = $userProduct->getProductId(); // $productIds[] = [[0] => 1, [1] =>2]; собираем id продуктов пользователя
+                }
+                //$productId = implode(',' , $productIds);
 
-            foreach ($allUserProducts as $userProduct) {
-                $productIds[] = $userProduct['product_id']; // $productIds[] = [[0] => 1, [1] =>2]; собираем id продуктов пользователя
-            }
+                //$productId = '?' . str_repeat(', ?', count($productIds) - 1); //преобразывает массив  в строку
+                //var_dump($productId); die;
+                //if (count($productIds) > 0) {
 
-            if (count($productIds) > 0) {
+//                foreach ($productIds as &$productId){
+//                    $productId = (string)$productId;
+//                }
+                //var_dump($productIds);die;
 
-                $userProducts = $this->product->getAllByIds($productIds);
+                    $userProducts = $this->product->getAllByIds($productIds);
 
-                foreach ($allUserProducts as $userProd) {
-                    $products = [];
-                    foreach ($userProducts as &$product) {
-                        if ($userProd['product_id'] === $product['id']) {
-                            $product['amount'] = $userProd['amount'];
+                    $allPrice = 0;
+                    foreach ($allUserProducts as $userProd) {
+                        //$products = [];
+                        foreach ($userProducts as $product) {
+                            if ($userProd->getProductId() === $product->getId()) {
+                                $product->setAmount($userProd->getAmount());
+                                $total = $userProd->getAmount() * $product->getPrice();
+                                $allPrice += $total;
+                            }
+                            //$products[] = $product;
                         }
-                        $products[] = $product;
                     }
-                }
+//                foreach ($userProducts as $userProduct) {
+//
+//                    $allPrice += $total;
+//                }
 
-                $allPrice = 0;
-                foreach ($userProducts as $userProduct) {
-                    $total = $userProduct['amount'] * $userProduct['price'];
-                    $allPrice += $total;
-                }
-
+                //}
             }
+
+
 
         }
 
@@ -77,7 +91,6 @@ class CartController
 //        }
 //        return $allPrice;
 //    }
-
 
 
 

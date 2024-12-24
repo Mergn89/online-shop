@@ -15,17 +15,17 @@
                 <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
                     <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
                 </button>-->
-                <img src="<?php echo $product['image_link'];?>" alt="">
+                <img src="<?php echo $product->getImageLink();?>" alt="">
             </div>
             <div class="product_info">
             <div class="seller_info">
 
             </div>
-            <div class="product_title"><?php echo $product['title']; ?></div>
+            <div class="product_title"><?php echo $product->getTitle(); ?></div>
 
-            <div class="product_price"> <?php echo '$'.$product['price']; ?>
+            <div class="product_price"> <?php echo '$'.$product->getPrice(); ?>
             </div>
-            <div class="product_descr"><?php echo $product['description']; ?> </div>
+            <div class="product_descr"><?php echo $product->getDescription(); ?> </div>
             <!--<div class="product_color">Color: Black</div>-->
             <div class="product_color">dns@dns.com</div>
             <!--<div class="product_color">+92 308 1234567</div>-->
@@ -51,7 +51,7 @@
                 </div>
                 <form action="/add-product" method="post">
 
-                    <input type="hidden" placeholder="Enter product-id" value="<?php echo $product['id'] ?? '';?>" name="product_id" required>
+                    <input type="hidden" placeholder="Enter product-id" value="<?php echo $product->getId() ?? '';?>" name="product_id" required>
 
                     <label for="amount">Amount:<span1> <br><label style="color: darkred">
                                 <?php echo $errors['amount'] ?? ''; ?>
