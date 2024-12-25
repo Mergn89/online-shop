@@ -33,7 +33,7 @@ class OrderController
             header('Location: /login');
         } else {
             $userId = $_SESSION['user_id'];
-            $res = $this->userProduct->getProductsByUserId($userId);
+            $res = $this->userProduct->getUserProductsByUserId($userId);
             //$allUserProducts = $this->userProduct->getProductsByUserId($userId);
             //$allPrice = $this->totalPrice();
             $productIds = [];
@@ -71,30 +71,25 @@ class OrderController
             $address = $_POST['address'];
             $phone = $_POST['phone'];
 
-            $allUserProducts = $this->userProduct->getProductsByUserId($userId);
+            $allUserProducts = $this->userProduct->getUserProductsByUserId($userId);
             //$allPrice = $this->totalPrice();
             if (!empty($allUserProducts)) {
             $productIds = [];
 
-            foreach ($allUserProducts as $userProduct) {
-                $productIds[] = $userProduct->getProductId(); // $productIds[] = [[0] => 1, [1] =>2]; собираем id продуктов пользователя
-            }
-
+                foreach ($allUserProducts as $userProduct) {
+                    $productIds[] = $userProduct->getProductId(); // $productIds[] = [[0] => 1, [1] =>2]; собираем id продуктов пользователя
+                }
                 $userProducts = $this->products->getAllByIds($productIds);
-                foreach ($allUserProducts as $userProd) {
-                    foreach ($userProducts as &$product) {
-                        if ($userProd['product_id'] === $product->getId()) {
-                            $product['amount'] = $userProd['amount'];
-
+                $total = 0;
+                foreach ($allUserProducts as $userProduct) {
+                    foreach ($userProducts as $product) {
+                        if ($userProduct->getProductId() === $product->getId()) {
+                            $product->setAmount($userProduct->getAmount());
+                            $allPrice = $userProduct->getAmount() * $product->getPrice();
+                            $total += $allPrice;
                         }
                     }
                 }
-                $total = 0;
-                foreach ($userProducts as $userProduct) {
-                    $allPrice = $userProduct['amount'] * $userProduct->getPrice();
-                    $total += $allPrice;
-                }
-
             }
             //$total = $this->cartController->totalPrice();
 
@@ -102,19 +97,16 @@ class OrderController
 
             $orderUser = $this->order->getOrderByUserId($userId);
 
-            foreach ($products as $product){
-                $this->orderProduct->addProductInOrder($orderUser['id'], $product['id'], $product['amount'], $product['price']);
+            foreach ($userProducts as $product){
+                $this->orderProduct->addProductInOrder($orderUser->getId(), $product->getId(), $product->getAmount(), $product->getPrice());
             }
 //            foreach ($this->userProduct->getProductsByUserId($userId) as $product) {
 //                $this->orderProduct->addProductInOrder($orderUser['id'], $product['product_id'], $product['amount'], $product['price']);
 //            }
             $this->userProduct->deleteProductByUserId($userId);
             header('Location: /orders');
-
-
         }
         require_once "./../View/order.php";
-
     }
 
     private function validateOrder(array $post): array
@@ -189,7 +181,7 @@ class OrderController
             ];*/
 
             foreach ($orders as &$order) {
-                $orderProducts = $this->orderProduct->getByOrderId($order['id']);
+                $orderProducts = $this->orderProduct->getByOrderId($order->getId());
                 /*$orderProducts = [
                     [
                         'id' => 1,
@@ -207,38 +199,31 @@ class OrderController
                     ],
 
                 ];*/
-                $productIds = [];
-                foreach ($orderProducts as $orderProduct){
-                    $productIds[] = $orderProduct['product_id'];
-                }
 
-                if(count($productIds) > 0) {
+                if(!empty($orderProducts)) {
+                    $productIds = [];
+                    foreach ($orderProducts as $orderProduct){
+                        $productIds[] = $orderProduct->getProductId();
+                    }
                     $products = $this->products->getAllByIds($productIds);
 //print_r($products);die;
                     foreach ($orderProducts as $orderProduct){
-                        foreach ($products as &$product) {
-//                        echo '<pre>';
-//                        print_r($products);
-//                        echo '</pre>';
-//                        echo '<pre>';
-//                        print_r($orderProducts);
-//                        echo '</pre>';
-//                        die;
-                            if ($product->getId() === $orderProduct['product_id']) {
-                                $product['order_amount'] = $orderProduct['amount'];
-                                $product['order_price'] = $orderProduct['order_price'];
+                        foreach ($products as $product) {
+                            if ($product->getId() === $orderProduct->getProductId()) {
+                                $product->setAmount($orderProduct->getAmount());
+                                $product->setPrice($orderProduct->getOrderPrice());
                             }
                         }
-                        unset($product);
+                        //unset($product);
                     }
                 } //else {
 //                    print_r('У Вас нет заказов');
 //                }
 //            $order['products'] = $products;
 //                print_r($products); die;
-                $order['products'] = $products;
+                //$order['products'] = $products;
             }
-            unset($order);
+            //unset($order);
         }
         require_once "./../View/orders.php";
     }

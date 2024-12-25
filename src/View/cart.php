@@ -7,9 +7,10 @@
 
 </div>
 <div style="color: limegreen" class="total">
-    <h2>  <?php  if (count($productIds) > 0): ?>
+    <h2>  <?php  if (isset($allPrice)): ?>
+
         <?php echo 'Total cart: ' . '$' . $allPrice;?>
-        <?php endif?>
+        <?php endif;?>
         <?php //echo 'Total cart: ' . '$' . $allPrice;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
     <a href="/order"><button class="btn" type="submit">PLACE AN ORDER</button> </a>
 </div>
@@ -22,10 +23,13 @@
         <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
     </button>
 </form>-->
+<?php //if(isset($errors['psw'])): ?>
+    <?php //print_r($errors['psw']);?>
+<?php //endif?>
 
 <div class="body">
-    <?php //if(count($productIds) > 0):
-     foreach ($userProducts as $product):?>
+    <?php if(isset($userProducts)): ?>
+     <?php foreach ($userProducts as $product):?>
         <div class="product_img">
             <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
                 <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
@@ -60,7 +64,7 @@
         <br>
         <br>
 
-        </div><?php endforeach;?>  <?php // endif?>
+        </div><?php endforeach;?>  <?php  endif;?>
 
 </div>
 

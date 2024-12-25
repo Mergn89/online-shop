@@ -25,7 +25,7 @@ class CartController
 
             $userId = $_SESSION['user_id'];
 
-            $allUserProducts = $this->userProduct->getProductsByUserId($userId);
+            $allUserProducts = $this->userProduct->getUserProductsByUserId($userId);
             if(!empty($allUserProducts)) {
                 //$allPrice = $this->totalPrice();
 
@@ -63,15 +63,9 @@ class CartController
 //
 //                    $allPrice += $total;
 //                }
-
                 //}
             }
-
-
-
         }
-
-
         require_once './../View/cart.php';
     }
 

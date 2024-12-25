@@ -111,7 +111,7 @@ class UserProduct extends Model
 //        return $stmt->fetchAll();
 //
 //
-    public function getProductsByUserId(int $userId): array|null
+    public function getUserProductsByUserId(int $userId): array|null
     {
         $stmt = $this->connectToDatabase()->prepare("SELECT * FROM user_products WHERE user_id = :user_id");
         $stmt->execute(['user_id' => $userId]);

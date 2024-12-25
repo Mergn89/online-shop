@@ -8,6 +8,7 @@ class Order extends Model
     private string $address;
     private int $phone;
     private int $total;
+
     public function getId(): int
     {
         return $this->id;
@@ -66,14 +67,12 @@ class Order extends Model
     {
         $order = new Order();
         $order->id = $data['id'];
-        $order->contactName = $data['contactName'];
+        $order->contactName = $data['contact_name'];
         $order->address = $data['address'];
         $order->phone = $data['phone'];
         $order->total = $data['total'];
         return $order;
     }
-
-
 
     public function createOrder(int $userId, string $contactName, string $address, int $phone, int $total): void
     {
@@ -93,12 +92,17 @@ class Order extends Model
         return $this->hydrate($data);
     }
 
-    public function getAllByUserId(int $userId): array
+    public function getAllByUserId(int $userId): array|null
     {
         $stmt = $this->connectToDatabase()->prepare("SELECT * FROM orders WHERE user_id = :user_id");
         $stmt->execute(['user_id' => $userId]);
-        return $stmt->fetchAll();
-
+        $data = $stmt->fetchAll();
+        if($data === false) {
+            return null;
+        }
+        foreach ($data as &$order) {
+            $order = $this->hydrate($order);
+        } return $data;
     }
 
 
