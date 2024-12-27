@@ -2,6 +2,8 @@
 namespace Controller;
 use Model\Product;
 use Model\UserProduct;
+use Request\AddProductRequest;
+
 //require_once './../Model/UserProduct.php';
 
 class CartController
@@ -34,12 +36,12 @@ class CartController
                 foreach ($allUserProducts as $userProduct) {
                     $productIds[] = $userProduct->getProductId(); // $productIds[] = [[0] => 1, [1] =>2]; собираем id продуктов пользователя
                 }
-                //$productId = implode(',' , $productIds);
-
-                //$productId = '?' . str_repeat(', ?', count($productIds) - 1); //преобразывает массив  в строку
-                //var_dump($productId); die;
-                //if (count($productIds) > 0) {
-
+//                $productId = implode(',' , $productIds);
+//
+//                $productId = '?' . str_repeat(', ?', count($productIds) - 1); //преобразывает массив  в строку
+//                var_dump($productId); die;
+//                if (count($productIds) > 0) {
+//
 //                foreach ($productIds as &$productId){
 //                    $productId = (string)$productId;
 //                }
@@ -68,6 +70,46 @@ class CartController
         }
         require_once './../View/cart.php';
     }
+
+
+    public function getAddProductForm():void
+    {
+        session_start();
+        if (!isset($_SESSION['user_id'])) {
+            header("location: /login");
+        }
+        require_once './../View/addProduct.php';
+    }
+    public function addProduct(AddProductRequest $request):void
+    {
+        $errors = $request->validate();
+
+        if (empty($errors)) {
+            $productId = $request->getProductId();
+            $amount = $request->getAmount();
+            session_start(); //сессия уже запущена выше
+            if(isset($_SESSION['user_id'])){
+                $userId = $_SESSION['user_id'];
+                $dataUserProducts = $this->userProduct->getAmountByUserIdAndProductId($userId, $productId);
+                //print_r($dataUserProducts); die;
+
+                if (!$dataUserProducts) {
+                    $this->userProduct->addProductInUserProducts($userId, $productId, $amount);
+                    $add = 'Add to cart successfully';
+                } else {
+                    $sumAmount = $dataUserProducts->getAmount() + $amount;
+
+                    $this->userProduct->updateAmountInUserProducts($sumAmount, $userId, $productId);
+                    $add = 'User products updated successfully';
+                }
+            }
+
+        }
+        require_once './../View/addProduct.php';
+    }
+
+
+
 
 
 

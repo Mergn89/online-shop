@@ -1,5 +1,8 @@
 <?php
 namespace Core;
+use Request\Request;
+use Request\RegistrateRequest;
+
 class App
 {
     private array $routes = [];
@@ -77,11 +80,10 @@ class App
 //
 //    ];
 
-    public function run(): void
+    public function run()
     {
         $uri = $_SERVER['REQUEST_URI'];
         $requestMethod = $_SERVER['REQUEST_METHOD']; //GET; POST;
-
 
         if (array_key_exists($uri, $this->routes)) {
             $methods = $this->routes[$uri];
@@ -90,8 +92,23 @@ class App
                 $handler = $methods[$requestMethod];
                 $class = $handler['class'];
                 $method = $handler['method'];
-                $obj = new $class();
-                $obj->$method();
+                $requestClass = $handler['request'];
+                $objClass = new $class();
+
+                if (!empty($requestClass)){
+                    $request = new $requestClass($uri, $requestMethod, $_POST);
+                } else {
+                    $request = new Request($uri, $requestMethod, $_POST);
+                }
+
+//                $request = new Request($uri, $requestMethod, $_POST);
+//
+//                if($uri === '/registrate'){
+//                    $request = new RegistrateRequest($uri, $requestMethod, $_POST);
+//
+//                } elseif ($uri === '/login') {
+//                    $request = new LoginRequest($uri, $requestMethod, $_POST);
+                $objClass->$method($request);
 
 
             } else {
@@ -105,13 +122,14 @@ class App
 
     }
 
-    public function addRoute(string $route, string $routeMethod, string $className, string $methodName): void
+    public function addRoute(string $route, string $routeMethod, string $className, string $methodName, string $requestClass = null): void
     {
         $this->routes[$route][$routeMethod] = [
             'class' => $className,
-            'method' =>  $methodName
+            'method' =>  $methodName,
+            'request' => $requestClass
         ];
-        // $his->array routes['/registration']['GET'] = [
+        // $this->array routes['/registration']['GET'] = [
         //     'class'=>'Controller\UserController',
         //     'method'=>'getRegistrationForm'
         // ];

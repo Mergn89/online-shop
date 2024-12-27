@@ -4,6 +4,7 @@ use Model\Order;
 use Model\OrderProduct;
 use Model\UserProduct;
 use Model\Product;
+use Request\OrderRequest;
 
 //require_once './../Model/Order.php';
 //require_once './../Model/UserProduct.php';
@@ -15,7 +16,6 @@ class OrderController
     private Order $order;
     private OrderProduct $orderProduct;
     private UserProduct $userProduct;
-    //private CartController $cartController;
     private Product $products;
 
     public function __construct()
@@ -23,7 +23,6 @@ class OrderController
         $this->order = new Order();
         $this->orderProduct = new OrderProduct();
         $this->userProduct = new UserProduct();
-        //$this->cartController = new CartController();
         $this->products = new Product();
     }
     public function getOrderForm(): void
@@ -57,19 +56,18 @@ class OrderController
             }
             require_once "./../View/order.php";
         }
-
     }
 
-    public function order(): void
+    public function order(OrderRequest $request): void
     {
-        $errors = $this->validateOrder($_POST);
+        $errors = $request->validate();
 
         if (empty($errors)) {
             session_start();
             $userId = $_SESSION['user_id'];
-            $contactName = $_POST['contact_name'];
-            $address = $_POST['address'];
-            $phone = $_POST['phone'];
+            $contactName = $request->getContactName();
+            $address = $request->getAddress();
+            $phone = $request->getPhone();
 
             $allUserProducts = $this->userProduct->getUserProductsByUserId($userId);
             //$allPrice = $this->totalPrice();
@@ -109,45 +107,7 @@ class OrderController
         require_once "./../View/order.php";
     }
 
-    private function validateOrder(array $post): array
-    {
-        $errors = [];
 
-        if (isset($post['contact_name'])) {
-            $contactName = ($post['contact_name']);
-            if (strlen($contactName) < 3 || strlen($contactName) > 20) {
-                $errors['contact_name'] = "Имя должно содержать не меньше 3 символов и не больше 20 символов";
-            } elseif (!preg_match("/^[a-zA-Zа-яА-Я]+$/u", $contactName)) {
-                $errors['contact_name'] = "Имя может содержать только буквы";
-            }
-        } else {
-            $errors ['contact_name'] = "Поле должно быть заполнено";
-        }
-
-        if (isset($post['address'])) {
-            $address = ($post['address']);
-            if (strlen($address) < 3 || strlen($address) > 100) {
-                $errors['address'] = "Адресс должен содержать не меньше 3 символов и не больше 100 символов";
-            } elseif (!preg_match("/^[a-zA-Zа-яА-Я0-9 ,.-]+$/u", $address)) {
-                $errors['address'] = "Адресс может содержать только буквы и цифры";
-            }
-        } else {
-            $errors ['address'] = "Поле address должно быть заполнено";
-        }
-
-        if (isset($post['phone'])) {
-            $phone = ($post['phone']);
-            if (!preg_match("/^[0-9]+$/u", $phone)) {
-                $errors['phone'] = "Номер телефона может содержать только цифры";
-            } elseif (strlen($phone) < 3 || strlen($phone) > 15) {
-                $errors['phone'] = "Номер телефона должен содержать не меньше 3 символов и не больше 15 символов";
-            }
-        } else {
-            $errors ['phone'] = "Поле phone должно быть заполнено";
-        }
-
-        return $errors;
-    }
 
     public function getOrdersForm(): void
     {
@@ -221,7 +181,7 @@ class OrderController
 //                }
 //            $order['products'] = $products;
 //                print_r($products); die;
-                //$order['products'] = $products;
+//                $order['products'] = $products;
             }
             //unset($order);
         }
