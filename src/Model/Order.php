@@ -8,6 +8,18 @@ class Order extends Model
     private string $address;
     private int $phone;
     private int $total;
+    private array $products = [];
+
+    public function setProducts(array $products): Order
+    {
+        $this->products = $products;
+        return $this;
+    }
+
+    public function getProducts(): array
+    {
+        return $this->products;
+    }
 
     public function getId(): int
     {
@@ -83,7 +95,7 @@ class Order extends Model
 
     public function getOrderByUserId(int $userId): self|null
     {
-        $stmt = $this->connectToDatabase()->prepare("SELECT * FROM orders WHERE user_id = :user_id");
+        $stmt = $this->connectToDatabase()->prepare("SELECT * FROM orders WHERE user_id = :user_id ORDER BY id DESC LIMIT 1");
         $stmt->execute(['user_id' => $userId]);
         $data = $stmt->fetch();
         if($data === false) {

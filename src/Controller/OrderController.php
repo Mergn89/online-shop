@@ -140,8 +140,12 @@ class OrderController
 
             ];*/
 
+
             foreach ($orders as &$order) {
                 $orderProducts = $this->orderProduct->getByOrderId($order->getId());
+                //if($this->orderProduct->getOrderId() === $order->getId()) {
+//print_r($orderProducts); die;
+
                 /*$orderProducts = [
                     [
                         'id' => 1,
@@ -167,6 +171,7 @@ class OrderController
                     }
                     $products = $this->products->getAllByIds($productIds);
 //print_r($products);die;
+                    $total = 0;
                     foreach ($orderProducts as $orderProduct){
                         foreach ($products as $product) {
                             if ($product->getId() === $orderProduct->getProductId()) {
@@ -175,16 +180,30 @@ class OrderController
                             }
                         }
                         //unset($product);
+//                        $price = $orderProduct->getOrderPrice();
+//                        $total += $price;
                     }
-                } //else {
+                    $allOrders = $order->setProducts($products);
+                }
+
+
+                //else {
 //                    print_r('У Вас нет заказов');
 //                }
 //            $order['products'] = $products;
 //                print_r($products); die;
 //                $order['products'] = $products;
             }
-            //unset($order);
+//            unset($order);
         }
+//                        echo '<pre>';
+//                        print_r($orders);
+//                        echo '</pre>';
+//                        echo '<pre>';
+//                        print_r($order);
+//                        echo '</pre>';
+//                        die;
+//        print_r($orders); die;
         require_once "./../View/orders.php";
     }
 

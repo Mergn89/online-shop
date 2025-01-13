@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,9 +26,7 @@
             <a class="btn btn-danger" href="" target="_blank">Log OUT</a>
         </div>
 
-        <?php //$count = 0;?>
-        <?php if (isset($orders)): ?>
-        <?php foreach ($orders as $orderProduct): ?>
+
 
         <div class="card mb-3">
             <div class="card-body">
@@ -52,30 +49,28 @@
                     <!--Table body-->
                     <tbody>
 
-
+                    <?php $count = 0;?>
+                    <?php if (isset($products)): ?>
+                    <?php foreach ($products as $product): ?>
                     <tr>
-
-                        <?php $products = $orderProduct->getProducts();?>
-                        <?php foreach ($products as $product): ?>
-                        <th scope="row"><?php echo $orderProduct->getId();?></th>
-                        <td><?php echo $product->getTitle(); ?></td>
+                        <th scope="row">1</th>
+                        <td><?php echo $product->getTitle();?></td>
                         <td>$<?php echo $product->getPrice();?></td>
-                        <td>**</td>
-                        <td><?php echo $orderProduct->getContactName();?></td>
-                        <td><?php echo $product->getAmount(); ?></td>
+                        <td>********</td>
+                        <td>************</td>
+                        <td><?php echo $product->getAmount();?></td>
                         <td> </td>
                         <td> </td>
                     </tr>
-                    <?php endforeach;?>
+
                     </tbody>
-                    Total: <?php echo '$'.$orderProduct->getTotal(); ?>
-
                     <?php endforeach;?>
-
                     <?php endif;?>
                     <!--Table body-->
                 </table>
-                <!--Table-->
+                <!--Table-->Total: <?php if (isset($total)):?>
+                                   <?php echo '$'.$total;?>
+                                   <?php endif;?>
             </div>
         </div>
         <hr class="my-4">

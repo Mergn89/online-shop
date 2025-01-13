@@ -7,7 +7,7 @@
 
 </div>
 <div style="color: limegreen" class="total">
-    <h2>  <?php  if (isset($allPrice)): ?>
+    <h2>  <?php if (isset($allPrice)): ?>
 
         <?php echo 'Total cart: ' . '$' . $allPrice;?>
         <?php endif;?>
