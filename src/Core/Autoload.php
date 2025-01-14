@@ -4,7 +4,7 @@ namespace Core;
 
 class Autoload
 {
-    public static function registrate(string $rootPath)
+    public static function registrate(string $rootPath): void
     {
         $autoload = function(string $className) use ($rootPath) {
             $path = $rootPath . str_replace('\\' , '/' , $className) . '.php';

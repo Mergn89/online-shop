@@ -121,7 +121,6 @@ class App
         }
 
     }
-
     public function addRoute(string $route, string $routeMethod, string $className, string $methodName, string $requestClass = null): void
     {
         $this->routes[$route][$routeMethod] = [

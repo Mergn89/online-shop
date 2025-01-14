@@ -7,9 +7,9 @@
 
 </div>
 <div style="color: limegreen" class="total">
-    <h2>  <?php if (isset($allPrice)): ?>
+    <h2>  <?php if (isset($total)): ?>
 
-        <?php echo 'Total cart: ' . '$' . $allPrice;?>
+        <?php echo 'Total cart: ' . '$' . $total;?>
         <?php endif;?>
         <?php //echo 'Total cart: ' . '$' . $allPrice;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
     <a href="/order"><button class="btn" type="submit">PLACE AN ORDER</button> </a>

@@ -55,8 +55,8 @@
 
                     <tr>
 
-                        <?php $products = $orderProduct->getProducts();?>
-                        <?php foreach ($products as $product): ?>
+
+                        <?php foreach ($orderProduct->getProducts() as $product): ?>
                         <th scope="row"><?php echo $orderProduct->getId();?></th>
                         <td><?php echo $product->getTitle(); ?></td>
                         <td>$<?php echo $product->getPrice();?></td>

@@ -81,10 +81,10 @@ class UserProduct extends Model
 
     }
 
-    public function updateAmountInUserProducts(int $sumAmount, int $userId, int $productId): void
+    public function updateAmountInUserProducts(int $userId, int $productId, int $sumAmount): void
     {
         $stmt = $this->connectToDatabase()->prepare("UPDATE user_products SET amount = :amount WHERE user_id = :user_id AND product_id = :product_id");
-        $stmt->execute(['amount' => $sumAmount, 'user_id' => $userId, 'product_id' => $productId]);
+        $stmt->execute(['user_id' => $userId, 'product_id' => $productId, 'amount' => $sumAmount]);
 
     }
 
