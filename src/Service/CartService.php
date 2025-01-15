@@ -22,12 +22,12 @@ class CartService
 
         if (!$dataUserProducts) {
             $this->userProduct->addProductInUserProducts($cartDTO->getUserId(), $cartDTO->getProductId(), $cartDTO->getAmount());
-            $add = 'Продукт добавлен';
+
         } else {
             $sumAmount = $dataUserProducts->getAmount() + $cartDTO->getAmount();
 
             $this->userProduct->updateAmountInUserProducts($cartDTO->getUserId(), $cartDTO->getProductId(), $sumAmount);
-            $add = 'Продукт обновлен';
+
         }
     }
 }

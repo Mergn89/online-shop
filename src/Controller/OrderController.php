@@ -17,7 +17,7 @@ class OrderController
 {
     private Order $order;
     private OrderProduct $orderProduct;
-    private UserProduct $userProduct;
+//    private UserProduct $userProduct;
     private Product $products;
     private OrderService $orderService;
 
@@ -25,7 +25,7 @@ class OrderController
     {
         $this->order = new Order();
         $this->orderProduct = new OrderProduct();
-        $this->userProduct = new UserProduct();
+//        $this->userProduct = new UserProduct();
         $this->products = new Product();
         $this->orderService = new OrderService();
     }
@@ -75,18 +75,19 @@ class OrderController
             $address = $request->getAddress();
             $phone = $request->getPhone();
 
-            $allUserProducts = $this->userProduct->getUserProductsByUserId($userId);
+//            print_r($this->orderService->getUserProducts($this->orderService->getAllUserProducts())); die;
+            $total = $this->orderService->getTotal($this->orderService->getAllUserProducts(), $this->orderService->getUserProducts($this->orderService->getAllUserProducts()));
 
-            if (!empty($allUserProducts)) {
-                $productIds = [];
-
-                foreach ($allUserProducts as $userProduct) {
-                    $productIds[] = $userProduct->getProductId(); // $productIds[] = [[0] => 1, [1] =>2]; собираем id продуктов пользователя
-                }
-                $userProducts = $this->products->getAllByIds($productIds);
-
-                $total = $this->orderService->getTotal($allUserProducts, $userProducts);
-            }
+//            if (!empty($allUserProducts)) {
+//                $productIds = [];
+//
+//                foreach ($allUserProducts as $userProduct) {
+//                    $productIds[] = $userProduct->getProductId(); // $productIds[] = [[0] => 1, [1] =>2]; собираем id продуктов пользователя
+//                }
+//                $userProducts = $this->products->getAllByIds($productIds);
+//
+//                $total = $this->orderService->getTotal($allUserProducts, $userProducts);
+//            }
             $dto = new CreateOrderDTO($userId, $contactName, $address, $phone, $total);
             $this->orderService->create($dto);
 //            $this->order->createOrder($userId, $contactName, $address, $phone, $total);
