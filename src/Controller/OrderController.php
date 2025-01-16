@@ -3,7 +3,6 @@ namespace Controller;
 use DTO\CreateOrderDTO;
 use Model\Order;
 use Model\OrderProduct;
-use Model\UserProduct;
 use Model\Product;
 use Request\OrderRequest;
 use Service\OrderService;
@@ -17,7 +16,6 @@ class OrderController
 {
     private Order $order;
     private OrderProduct $orderProduct;
-//    private UserProduct $userProduct;
     private Product $products;
     private OrderService $orderService;
 
@@ -25,7 +23,6 @@ class OrderController
     {
         $this->order = new Order();
         $this->orderProduct = new OrderProduct();
-//        $this->userProduct = new UserProduct();
         $this->products = new Product();
         $this->orderService = new OrderService();
     }
@@ -61,7 +58,6 @@ class OrderController
         } else {
             require_once "./../View/order.php";
         }
-
     }
 
     public function order(OrderRequest $request): void
@@ -75,9 +71,6 @@ class OrderController
             $address = $request->getAddress();
             $phone = $request->getPhone();
 
-//            print_r($this->orderService->getUserProducts($this->orderService->getAllUserProducts())); die;
-            $total = $this->orderService->getTotal($this->orderService->getAllUserProducts(), $this->orderService->getUserProducts($this->orderService->getAllUserProducts()));
-
 //            if (!empty($allUserProducts)) {
 //                $productIds = [];
 //
@@ -88,7 +81,7 @@ class OrderController
 //
 //                $total = $this->orderService->getTotal($allUserProducts, $userProducts);
 //            }
-            $dto = new CreateOrderDTO($userId, $contactName, $address, $phone, $total);
+            $dto = new CreateOrderDTO($userId, $contactName, $address, $phone);
             $this->orderService->create($dto);
 //            $this->order->createOrder($userId, $contactName, $address, $phone, $total);
 //
@@ -161,8 +154,7 @@ class OrderController
                         $productIds[] = $orderProduct->getProductId();
                     }
                     $products = $this->products->getAllByIds($productIds);
-//print_r($products);die;
-//                    $total = 0;
+
                     foreach ($orderProducts as $orderProduct){
                         foreach ($products as $product) {
                             if ($product->getId() === $orderProduct->getProductId()) {
@@ -171,8 +163,7 @@ class OrderController
                             }
                         }
                         //unset($product);
-//                        $price = $orderProduct->getOrderPrice();
-//                        $total += $price;
+
                     }
                     $allOrders = $order->setProducts($products);
                 }

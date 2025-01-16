@@ -7,8 +7,7 @@ class CreateOrderDTO
     public function __construct(private int $userId,
                                 private string $contactName,
                                 private string $address,
-                                private int $phone,
-                                private int $total) {
+                                private int $phone) {
 
     }
 
@@ -32,9 +31,5 @@ class CreateOrderDTO
         return $this->phone;
     }
 
-    public function getTotal(): int
-    {
-        return $this->total;
-    }
 
 }

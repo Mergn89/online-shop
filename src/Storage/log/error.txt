@@ -1,0 +1,23 @@
+16-01-2025-14-11-15\nCall to undefined method Controller\UserController::\getLoginForm()\n/var/www/html/src/Core/App.php\n11216-01-2025-14-13-21<br>Call to undefined method Controller\UserController::\getLoginForm()<br>/var/www/html/src/Core/App.php<br>11216-01-2025-14-13-39<br>Call to undefined method Controller\UserController::\getLoginForm()<br>/var/www/html/src/Core/App.php<br>11216-01-2025-14-14-20<br>Call to undefined method Controller\ProductController::\getCatalog()<br>/var/www/html/src/Core/App.php<br>11216-01-2025-15-00-59<br>Call to undefined method Controller\ProductController::\getCatalog()<br>/var/www/html/src/Core/App.php<br>11216-01-2025-15-01-31<br>Call to undefined method Controller\ProductController::\getCatalog()<br>/var/www/html/src/Core/App.php<br>11216-01-2025-15-04-37<p>error: Call to undefined method Controller\ProductController::\getCatalog()<p>file: /var/www/html/src/Core/App.php<p>line: 11216-01-2025-15-05-55error: Call to undefined method Controller\ProductController::\getCatalog()file: /var/www/html/src/Core/App.phpline: 112
+16-01-2025-15-07-49
+error: Call to undefined method Controller\ProductController::\getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 11216-01-2025-15-08-53
+error: Call to undefined method Controller\ProductController::\getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 112
+16-01-2025-15-09-35
+error: Call to undefined method Controller\ProductController::\getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 112
+
+16-01-2025-15-11-35
+error: Call to undefined method Controller\ProductController::\getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 112
+
+16-01-2025-15-17-51
+error: 
+file: /var/www/html/src/Service/OrderService.php
+line: 39
+

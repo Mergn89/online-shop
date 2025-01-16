@@ -1,14 +1,17 @@
 <?php
 
 namespace Service;
+use Model\Model;
 use Model\Order;
 use Model\OrderProduct;
 use Model\Product;
 use Model\UserProduct;
 use DTO\CreateOrderDTO;
+use mysql_xdevapi\Exception;
 
 class OrderService
 {
+    private Model $model;
     private Order $order;
     private OrderProduct $orderProduct;
     private UserProduct $userProduct;
@@ -21,33 +24,50 @@ class OrderService
         $this->orderProduct = new OrderProduct();
         $this->userProduct = new UserProduct();
         $this->products = new Product();
-
+        $this->model = new Model();
     }
 
     public function create(CreateOrderDTO $orderDTO): void
     {
-        $total = $this->getTotal($this->getAllUserProducts(), $this->getUserProducts($this->getAllUserProducts()));
+        $total = $this->getTotal($this->getAllUserProducts($orderDTO), $this->getUserProducts($this->getAllUserProducts($orderDTO)));
 
-        $this->order->createOrder($orderDTO->getUserId(), $orderDTO->getContactName(), $orderDTO->getAddress(), $orderDTO->getPhone(), $total);
+        $this->model->connectToDatabase()->beginTransaction();
+        try{
+            $this->order->createOrder($orderDTO->getUserId(), $orderDTO->getContactName(), $orderDTO->getAddress(), $orderDTO->getPhone(), $total);
 
-        $orderUser = $this->order->getOrderByUserId($orderDTO->getUserId());
+            $orderUser = $this->order->getOrderByUserId($orderDTO->getUserId());
+//            throw new \PDOException();
+            foreach ($this->getUserProducts($this->getAllUserProducts($orderDTO)) as $product) {
+                $this->orderProduct->addProductInOrder($orderUser->getId(), $product->getId(), $product->getAmount(), $product->getPrice());
+            }
+            $this->userProduct->deleteProductByUserId($orderDTO->getUserId());
 
-        foreach ($this->getUserProducts($this->getAllUserProducts()) as $product) {
-            $this->orderProduct->addProductInOrder($orderUser->getId(), $product->getId(), $product->getAmount(), $product->getPrice());
+        } catch (\PDOException $exception){
+            $this->model->connectToDatabase()->rollBack();
+            throw $exception;
+//            date_default_timezone_set('Asia/Irkutsk');
+//
+//            $path = './../Storage/log/error.txt';
+//            $message = 'error: '.$exception->getMessage();
+//            $file = 'file: '.$exception->getFile();
+//            $line = 'line: '.$exception->getLine();
+//            $data = date('d-m-Y-H-i-s');
+//
+//            file_put_contents($path, print_r($data.PHP_EOL.$message.PHP_EOL.$file.PHP_EOL.$line, true).PHP_EOL."\n", FILE_APPEND);
+//
+//            require_once './../View/500.php';
         }
-        $this->userProduct->deleteProductByUserId($orderDTO->getUserId());
-
+        $this->model->connectToDatabase()->commit();
     }
 
-    public function getAllUserProducts(): array
+    private function getAllUserProducts(CreateOrderDTO $orderDTO): array
     {
-        $userId = $_SESSION['user_id'];
-        $allUserProducts = $this->userProduct->getUserProductsByUserId($userId);
+        $allUserProducts = $this->userProduct->getUserProductsByUserId($orderDTO->getUserId());
 
         return $allUserProducts;
     }
 
-    public function getUserProducts(array $allUserProducts): array
+    private function getUserProducts(array $allUserProducts): array
     {
         $userProducts = [];
         if (!empty($allUserProducts)) {

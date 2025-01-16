@@ -108,8 +108,22 @@ class App
 //
 //                } elseif ($uri === '/login') {
 //                    $request = new LoginRequest($uri, $requestMethod, $_POST);
-                $objClass->$method($request);
+                try{
+                    $objClass->$method($request);
 
+                } catch (\Throwable $exception) {
+                    date_default_timezone_set('Asia/Irkutsk');
+
+                    $path = './../Storage/log/error.txt';
+                    $message = 'error: '.$exception->getMessage();
+                    $file = 'file: '.$exception->getFile();
+                    $line = 'line: '.$exception->getLine();
+                    $data = date('d-m-Y-H-i-s');
+
+                    file_put_contents($path, print_r($data.PHP_EOL.$message.PHP_EOL.$file.PHP_EOL.$line, true).PHP_EOL."\n", FILE_APPEND);
+
+                    require_once './../View/500.php';
+                }
 
             } else {
                 echo "$requestMethod не поддерживается $uri";
