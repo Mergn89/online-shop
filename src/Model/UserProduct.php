@@ -53,7 +53,7 @@ class UserProduct extends Model
         return $this;
     }
 
-    public function hydrate(array $data): self
+    public static function hydrate(array $data): self
     {
         $userProduct = new self();
         $userProduct->id = $data['id'];
@@ -63,27 +63,27 @@ class UserProduct extends Model
         return $userProduct;
 
     }
-    public function getAmountByUserIdAndProductId(int $userId, int $productId): self|null
+    public static function getAmountByUserIdAndProductId(int $userId, int $productId): self|null
     {
-        $stmt = $this->connectToDatabase()->prepare("SELECT * FROM user_products WHERE user_id = :user_id and product_id = :product_id");
+        $stmt = Model::connectToDatabase()->prepare("SELECT * FROM user_products WHERE user_id = :user_id and product_id = :product_id");
         $stmt->execute(['user_id' => $userId, 'product_id' => $productId]);
         $data = $stmt->fetch();
         if($data === false){
             return null;
         }
-        return $this->hydrate($data);
+        return self::hydrate($data);
     }
 
     public function addProductInUserProducts(int $userId, int $productId, int $amount): void
     {
-        $stmt = $this->connectToDatabase()->prepare("INSERT INTO user_products (user_id, product_id, amount) VALUES (:user_id, :product_id, :amount)");
+        $stmt = self::connectToDatabase()->prepare("INSERT INTO user_products (user_id, product_id, amount) VALUES (:user_id, :product_id, :amount)");
         $stmt->execute(['user_id' => $userId, 'product_id' => $productId, 'amount' => $amount]);
 
     }
 
     public function updateAmountInUserProducts(int $userId, int $productId, int $sumAmount): void
     {
-        $stmt = $this->connectToDatabase()->prepare("UPDATE user_products SET amount = :amount WHERE user_id = :user_id AND product_id = :product_id");
+        $stmt = self::connectToDatabase()->prepare("UPDATE user_products SET amount = :amount WHERE user_id = :user_id AND product_id = :product_id");
         $stmt->execute(['user_id' => $userId, 'product_id' => $productId, 'amount' => $sumAmount]);
 
     }
@@ -111,23 +111,23 @@ class UserProduct extends Model
 //        return $stmt->fetchAll();
 //
 //
-    public function getUserProductsByUserId(int $userId): array|null
+    public static function getUserProductsByUserId(int $userId): array|null
     {
-        $stmt = $this->connectToDatabase()->prepare("SELECT * FROM user_products WHERE user_id = :user_id");
+        $stmt = self::connectToDatabase()->prepare("SELECT * FROM user_products WHERE user_id = :user_id");
         $stmt->execute(['user_id' => $userId]);
         $data = $stmt->fetchAll();// возвращает примерно массив => $arr = [['product_id'] => 1, ['amount' => 5],['product_id'] => 2, ['amount'] => 6]];
         if($data === false) {
             return null;
         }
         foreach ($data as &$userProduct) {
-            $userProduct = $this->hydrate($userProduct);
+            $userProduct = self::hydrate($userProduct);
         }
         return $data;
     }
 
     public function deleteProductByUserId(int $userId):void
     {
-        $stmt = $this->connectToDatabase()->prepare("DELETE FROM user_products WHERE user_id = :user_id");
+        $stmt = self::connectToDatabase()->prepare("DELETE FROM user_products WHERE user_id = :user_id");
         $stmt->execute(['user_id' => $userId]);
 
     }

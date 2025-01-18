@@ -5,6 +5,7 @@ use Model\Order;
 use Model\OrderProduct;
 use Model\Product;
 use Request\OrderRequest;
+use Service\AuthService;
 use Service\OrderService;
 
 //require_once './../Model/Order.php';
@@ -18,6 +19,7 @@ class OrderController
     private OrderProduct $orderProduct;
     private Product $products;
     private OrderService $orderService;
+    private AuthService $authService;
 
     public function __construct()
     {
@@ -25,11 +27,12 @@ class OrderController
         $this->orderProduct = new OrderProduct();
         $this->products = new Product();
         $this->orderService = new OrderService();
+        $this->authService = new AuthService();
     }
     public function getOrderForm(): void
     {
-        session_start();
-        if (!isset($_SESSION['user_id'])) {
+//        session_start();
+        if (!$this->authService->check()) {
             header('Location: /login');
 //        } else {
 //            $userId = $_SESSION['user_id'];
@@ -65,8 +68,8 @@ class OrderController
         $errors = $request->validate();
 
         if (empty($errors)) {
-            session_start();
-            $userId = $_SESSION['user_id'];
+//            session_start();
+            $userId = $this->authService->getCurrentUser()->getId();
             $contactName = $request->getContactName();
             $address = $request->getAddress();
             $phone = $request->getPhone();
@@ -98,12 +101,11 @@ class OrderController
 
     public function getOrdersForm(): void
     {
-        session_start();
-
-        if (!isset($_SESSION['user_id'])) {
+//        session_start();
+        if (!$this->authService->check()) {
             header("location: /login");
         } else {
-            $userId = $_SESSION['user_id'];
+            $userId = $this->authService->getCurrentUser()->getId();
             $orders = $this->order->getAllByUserId($userId);
 
             /*

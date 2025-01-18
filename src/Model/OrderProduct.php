@@ -64,7 +64,7 @@ class OrderProduct extends Model
         return $this;
     }
 
-    public function hydrate(array $data): self
+    public static function hydrate(array $data): self
     {
         $orderProduct = new OrderProduct();
         $orderProduct->id = $data['id'];
@@ -77,21 +77,21 @@ class OrderProduct extends Model
 
     public function addProductInOrder(int $orderId, int $productId, int $amount, int $orderPrice): void
     {
-        $stmt = $this->connectToDatabase()->prepare("INSERT INTO order_products (order_id, product_id, amount, order_price) 
+        $stmt = Model::connectToDatabase()->prepare("INSERT INTO order_products (order_id, product_id, amount, order_price) 
                                                   VALUES (:order_id, :product_id, :amount, :order_price)");
         $stmt->execute(['order_id' => $orderId, 'product_id' => $productId, 'amount' => $amount, 'order_price' => $orderPrice]);
     }
 
-    public function getByOrderId(int $orderId): array|null
+    public static function getByOrderId(int $orderId): array|null
     {
-        $stmt = $this->connectToDatabase()->prepare("SELECT * FROM order_products WHERE order_id = :order_id");
+        $stmt = self::connectToDatabase()->prepare("SELECT * FROM order_products WHERE order_id = :order_id");
         $stmt->execute(['order_id' => $orderId]);
         $data = $stmt->fetchAll();
         if ($data === false) {
             return null;
         }
         foreach ($data as &$orderProduct) {
-            $orderProduct = $this->hydrate($orderProduct);
+            $orderProduct = self::hydrate($orderProduct);
         } return $data;
     }
 

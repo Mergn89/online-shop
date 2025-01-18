@@ -4,6 +4,7 @@ use DTO\CartDTO;
 use Model\Product;
 use Model\UserProduct;
 use Request\AddProductRequest;
+use Service\AuthService;
 use Service\CartService;
 
 //require_once './../Model/UserProduct.php';
@@ -13,24 +14,26 @@ class CartController
     private UserProduct $userProduct;
     private Product $product;
     private CartService $cartService;
+    private AuthService $authService;
 
     public function __construct()
     {
         $this->userProduct = new UserProduct();
         $this->product = new Product();
         $this->cartService = new CartService();
-
+        $this->authService = new AuthService();
     }
     public function getCart():void
     {
-        session_start();
-        if (!isset($_SESSION['user_id'])) {
+//        session_start();
+        if (!$this->authService->check()) {
             header("location: /login");
         } else {
 
-            $userId = $_SESSION['user_id'];
+//            $userId = $_SESSION['user_id'];
+            $userId = $this->authService->getCurrentUser()->getId();
 
-            $allUserProducts = $this->userProduct->getUserProductsByUserId($userId);
+            $allUserProducts = UserProduct::getUserProductsByUserId($userId);
             if(!empty($allUserProducts)) {
 
                 $productIds = [];
@@ -65,8 +68,8 @@ class CartController
 
     public function getAddProductForm():void
     {
-        session_start();
-        if (!isset($_SESSION['user_id'])) {
+//        session_start();
+        if (!$this->authService->check()) {
             header("location: /login");
         }
         require_once './../View/addProduct.php';
@@ -78,9 +81,10 @@ class CartController
         if (empty($errors)) {
             $productId = $request->getProductId();
             $amount = $request->getAmount();
-            session_start(); //сессия уже запущена выше
-            if (isset($_SESSION['user_id'])) {
-                $userId = $_SESSION['user_id'];
+//            session_start(); //сессия уже запущена выше
+            if (!$this->authService->check()) {
+//                $userId = $_SESSION['user_id'];
+                $userId = $this->authService->getCurrentUser()->getId();
 //                $dataUserProducts = $this->userProduct->getAmountByUserIdAndProductId($userId, $productId);
 //                //print_r($dataUserProducts); die;
 //

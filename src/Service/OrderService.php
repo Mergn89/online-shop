@@ -11,7 +11,7 @@ use mysql_xdevapi\Exception;
 
 class OrderService
 {
-    private Model $model;
+//    private Model $model;
     private Order $order;
     private OrderProduct $orderProduct;
     private UserProduct $userProduct;
@@ -24,40 +24,31 @@ class OrderService
         $this->orderProduct = new OrderProduct();
         $this->userProduct = new UserProduct();
         $this->products = new Product();
-        $this->model = new Model();
+//        $this->model = new Model();
     }
 
     public function create(CreateOrderDTO $orderDTO): void
     {
         $total = $this->getTotal($this->getAllUserProducts($orderDTO), $this->getUserProducts($this->getAllUserProducts($orderDTO)));
 
-        $this->model->connectToDatabase()->beginTransaction();
+        $pdo = Model::connectToDatabase();
+        $pdo->beginTransaction();
         try{
             $this->order->createOrder($orderDTO->getUserId(), $orderDTO->getContactName(), $orderDTO->getAddress(), $orderDTO->getPhone(), $total);
 
             $orderUser = $this->order->getOrderByUserId($orderDTO->getUserId());
-//            throw new \PDOException();
+//            throw new \PDOException('error connect to base'); //проверка транзакционности(не должен сохранять в orders;
             foreach ($this->getUserProducts($this->getAllUserProducts($orderDTO)) as $product) {
                 $this->orderProduct->addProductInOrder($orderUser->getId(), $product->getId(), $product->getAmount(), $product->getPrice());
             }
             $this->userProduct->deleteProductByUserId($orderDTO->getUserId());
 
         } catch (\PDOException $exception){
-            $this->model->connectToDatabase()->rollBack();
+            $pdo->rollBack();
             throw $exception;
-//            date_default_timezone_set('Asia/Irkutsk');
-//
-//            $path = './../Storage/log/error.txt';
-//            $message = 'error: '.$exception->getMessage();
-//            $file = 'file: '.$exception->getFile();
-//            $line = 'line: '.$exception->getLine();
-//            $data = date('d-m-Y-H-i-s');
-//
-//            file_put_contents($path, print_r($data.PHP_EOL.$message.PHP_EOL.$file.PHP_EOL.$line, true).PHP_EOL."\n", FILE_APPEND);
-//
-//            require_once './../View/500.php';
         }
-        $this->model->connectToDatabase()->commit();
+        $pdo->commit();
+
     }
 
     private function getAllUserProducts(CreateOrderDTO $orderDTO): array

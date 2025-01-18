@@ -72,7 +72,7 @@ class Product extends Model
         $this->amount = $amount;
         return $this;
     }
-public function hydrate(array $data): self
+public static function hydrate(array $data): self
 {
     $products = new self();
     $products->id = $data['id'];
@@ -84,46 +84,46 @@ public function hydrate(array $data): self
 
 }
 
-    public function getProducts(): array|null
+    public static function getProducts(): array|null
     {
-        $stmt = $this->connectToDatabase()->query("SELECT * FROM products");
+        $stmt = self::connectToDatabase()->query("SELECT * FROM products");
         $data = $stmt->fetchAll();
         if($data === false){
             return null;
         } else{
             foreach ($data as &$product){
-                $product = $this->hydrate($product);
+                $product = self::hydrate($product);
             }
         } return $data;
     }
 
-    public function getOneById(int $productId): self|null
+    public static function getOneById(int $productId): self|null
     {
-        $stmt = $this->connectToDatabase()->prepare("SELECT * FROM products WHERE id = :id");
+        $stmt = Model::connectToDatabase()->prepare("SELECT * FROM products WHERE id = :id");
         $stmt->execute(['id' => $productId]);
         $data = $stmt->fetch();
         if($data === false) {
             return null;
         }
-        return $this->hydrate($data);
+        return Product::hydrate($data);
     }
 
 
-    public function getAllByIds(array $productIds): array|null
+    public static function getAllByIds(array $productIds): array|null
     {
         //$productId = implode(',' , $productIds);
         $productId = '?' . str_repeat(', ?', count($productIds)-1); //преобразывает массив  в строку
 
 //        $sql = 'SELECT * FROM test WHERE id in ('.implode(",", $array).')';
 
-        $stmt = $this->connectToDatabase()->prepare("SELECT * FROM products WHERE id IN ($productId)");
+        $stmt = self::connectToDatabase()->prepare("SELECT * FROM products WHERE id IN ($productId)");
         $stmt->execute($productIds);
         $data = $stmt->fetchAll();
         if ($data === false) {
             return null;
         }
         foreach ($data as &$product) {
-            $product = $this->hydrate($product);
+            $product = self::hydrate($product);
         }
         return $data;
 

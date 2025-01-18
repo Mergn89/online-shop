@@ -4,14 +4,17 @@ use Model\User;
 use Request\RegistrateRequest;
 use Request\LoginRequest;
 use Request\Request;
+use Service\AuthService;
 
 class UserController
 {
     private User $user;
+    private AuthService $authService;
 
     public function __construct()
     {
         $this->user = new User();
+        $this->authService = new AuthService();
     }
 
     public function getRegistrationForm():void
@@ -39,8 +42,6 @@ class UserController
         require_once "./../View/registrate.php";
     }
 
-
-
     public function getLoginForm():void
     {
         require_once './../View/login.php';
@@ -54,25 +55,13 @@ class UserController
             $login = $request->getLogin();
             $password = $request->getPassword();
 
-            $user = $this->user->getByEmail($login);
-
-            if(!$user) {
+            if (!($this->authService->login($login, $password))) {
                 $errors['login'] = 'Пароль или логин неверный';
             } else {
-                $hashData = $user->getPassword();
-
-                if(password_verify($password, $hashData)) {
-                    //setcookie('user_id', $data['id']);
-                    session_start();
-                    $_SESSION['user_id'] = $user->getId();
-                    header("location: /catalog");
-                } else {
-                    $errors['login'] = 'Пароль или логин неверный';
-                }
+                header("location: /catalog");
             }
             require_once './../View/login.php';
         }
-        //print_r($_SESSION('user_id'));
     }
 
     public function logout():void

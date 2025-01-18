@@ -122,6 +122,7 @@ class App
 
                     file_put_contents($path, print_r($data.PHP_EOL.$message.PHP_EOL.$file.PHP_EOL.$line, true).PHP_EOL."\n", FILE_APPEND);
 
+                    http_response_code(404);
                     require_once './../View/500.php';
                 }
 

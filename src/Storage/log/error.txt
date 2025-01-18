@@ -21,3 +21,68 @@ error:
 file: /var/www/html/src/Service/OrderService.php
 line: 39
 
+16-01-2025-21-31-58
+error: error connect to base
+file: /var/www/html/src/Service/OrderService.php
+line: 39
+
+16-01-2025-21-39-39
+error: error connect to base
+file: /var/www/html/src/Service/OrderService.php
+line: 39
+
+16-01-2025-22-07-35
+error: error connect to base
+file: /var/www/html/src/Service/OrderService.php
+line: 39
+
+16-01-2025-22-08-24
+error: error connect to base
+file: /var/www/html/src/Service/OrderService.php
+line: 39
+
+18-01-2025-13-50-52
+error: error connect to base
+file: /var/www/html/src/Service/OrderService.php
+line: 39
+
+18-01-2025-16-54-09
+error: Call to a member function getPassword() on null
+file: /var/www/html/src/Controller/UserController.php
+line: 68
+
+18-01-2025-17-00-04
+error: Call to a member function getPassword() on null
+file: /var/www/html/src/Service/AuthService.php
+line: 39
+
+18-01-2025-18-08-26
+error: Call to a member function getPassword() on null
+file: /var/www/html/src/Service/AuthService.php
+line: 39
+
+18-01-2025-18-15-00
+error: Call to a member function getPassword() on null
+file: /var/www/html/src/Service/AuthService.php
+line: 39
+
+18-01-2025-18-15-42
+error: Call to a member function getPassword() on null
+file: /var/www/html/src/Service/AuthService.php
+line: 39
+
+18-01-2025-18-20-29
+error: Call to a member function getPassword() on null
+file: /var/www/html/src/Service/AuthService.php
+line: 39
+
+18-01-2025-18-20-37
+error: Call to a member function getPassword() on null
+file: /var/www/html/src/Service/AuthService.php
+line: 39
+
+18-01-2025-18-25-24
+error: Call to a member function getPassword() on null
+file: /var/www/html/src/Service/AuthService.php
+line: 39
+
