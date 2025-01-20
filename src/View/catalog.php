@@ -1,63 +1,57 @@
-<?php
-
-
-?>
-
-
 <div class="title" xmlns="http://www.w3.org/1999/html">
     <h1>Catalog </h1>
 
 
-<a href="/logout"><button class="btn" type="submit">LOGOUT</button> </a>
+    <a href="/logout"><button class="btn" type="submit">LOGOUT</button> </a>
 
-<br>
-<br>
-<a href="/cart"><button class="btn" type="submit">CART</button> </a>
+    <br>
+    <br>
+    <a href="/cart"><button class="btn" type="submit">CART</button> </a>
 
 
-<div class="body">
-    <?php foreach ($products as $product):?>
-    <div class="product_img">
-        <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
-            <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
-        </button>-->
-        <img src="<?php echo $product['image_link'];?>" alt="">
-    </div>
-    <div class="product_info">
-        <div class="seller_info">
-
-        </div>
-        <div class="product_title"><?php echo $product['name']; ?></div>
-
-        <div class="product_price"> <?php echo '$'.$product['price']; ?>
-        </div>
-        <div class="product_descr"><?php echo $product['description']; ?> </div>
-        <!--<div class="product_color">Color: Black</div>-->
-        <div class="product_color">dns@dns.com</div>
-        <!--<div class="product_color">+92 308 1234567</div>-->
-        <div class="product_quantity">Quantity:<br>
-            <input type="number">
-        </div>
-
-        <!--<div class="add_heart">
-            <i class="fa fa-heart" aria-hidden="true"></i> like
-        </div>-->
-
-        <!DOCTYPE html>
-        <html lang="ru">
-        <head>
-            <meta charset="UTF-8">
-            <title>add product</title>
-
-        </head>
-        <body>
-        <div class="form">
-            <div class="header-form">
-                <span></span>
+    <div class="body">
+        <?php foreach ($products as $product):?>
+            <div class="product_img">
+                <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
+                    <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
+                </button>-->
+                <img src="<?php echo $product->getImageLink();?>" alt="">
             </div>
-            <form action="/add_product" method="post">
+            <div class="product_info">
+            <div class="seller_info">
 
-                    <input type="hidden" placeholder="Enter product-id" value="<?php echo $product['id'] ?? '';?>" name="product_id" required>
+            </div>
+            <div class="product_title"><?php echo $product->getTitle(); ?></div>
+
+            <div class="product_price"> <?php echo '$'.$product->getPrice(); ?>
+            </div>
+            <div class="product_descr"><?php echo $product->getDescription(); ?> </div>
+            <!--<div class="product_color">Color: Black</div>-->
+            <div class="product_color">dns@dns.com</div>
+            <!--<div class="product_color">+92 308 1234567</div>-->
+            <div class="product_quantity">Quantity:<br>
+                <input type="number">
+            </div>
+
+            <!--<div class="add_heart">
+                <i class="fa fa-heart" aria-hidden="true"></i> like
+            </div>-->
+
+            <!DOCTYPE html>
+            <html lang="ru">
+            <head>
+                <meta charset="UTF-8">
+                <title>add product</title>
+
+            </head>
+            <body>
+            <div class="form">
+                <div class="header-form">
+                    <span></span>
+                </div>
+                <form action="/add-product" method="post">
+
+                    <input type="hidden" placeholder="Enter product-id" value="<?php echo $product->getId() ?? '';?>" name="product_id" required>
 
                     <label for="amount">Amount:<span1> <br><label style="color: darkred">
                                 <?php echo $errors['amount'] ?? ''; ?>
@@ -68,22 +62,22 @@
                     <div class="btn">
                         <button class="btn">add</button>
                     </div>
-            </form>
-        </div>
-        </body>
-        </html>
+                </form>
+            </div>
+            </body>
+            </html>
 
 
 
 
-        <span> <button>Add to cart</button>  <button>Delete from cart</button> </span>
-        <div class="add_to_favorites"><button>+ favorites</button> </div>
-        <br>
-        <br>
-        <br>
+            <span> <button>Add to cart</button>  <button>Delete from cart</button> </span>
+            <div class="add_to_favorites"><button>+ favorites</button> </div>
+            <br>
+            <br>
+            <br>
 
-    </div><?php endforeach;?>
-</div>
+            </div><?php endforeach;?>
+    </div>
 </div>
 <style>
     h1
@@ -166,15 +160,15 @@
     }
 
     span{
-       button{
-           white-space: nowrap;
-        width: 50%;
-        padding: 3px 0;
-        background-color: #BF9860;
-        text-align: center;
-        color: darkred;
-           cursor: pointer;
-    }
+        button{
+            white-space: nowrap;
+            width: 50%;
+            padding: 3px 0;
+            background-color: #BF9860;
+            text-align: center;
+            color: darkred;
+            cursor: pointer;
+        }
     }
     /*.add_to_cart:hover{
         background-color: #d8b88a;
@@ -226,4 +220,3 @@
 
 
 </style>
-

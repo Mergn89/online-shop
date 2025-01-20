@@ -1,9 +1,12 @@
 <?php
 namespace Controller;
+use DTO\CreateOrderDTO;
 use Model\Order;
 use Model\OrderProduct;
-use Model\UserProduct;
-use Model\Products;
+use Model\Product;
+use Request\OrderRequest;
+use Service\AuthService;
+use Service\OrderService;
 
 //require_once './../Model/Order.php';
 //require_once './../Model/UserProduct.php';
@@ -14,108 +17,95 @@ class OrderController
 {
     private Order $order;
     private OrderProduct $orderProduct;
-    private UserProduct $userProduct;
-    private CartController $cartController;
-    private Products $products;
+    private Product $products;
+    private OrderService $orderService;
+    private AuthService $authService;
 
     public function __construct()
     {
         $this->order = new Order();
         $this->orderProduct = new OrderProduct();
-        $this->userProduct = new UserProduct();
-        $this->cartController = new CartController();
-        $this->products = new Products();
+        $this->products = new Product();
+        $this->orderService = new OrderService();
+        $this->authService = new AuthService();
     }
     public function getOrderForm(): void
     {
-        session_start();
-        if (!isset($_SESSION['user_id'])) {
+//        session_start();
+        if (!$this->authService->check()) {
             header('Location: /login');
+//        } else {
+//            $userId = $_SESSION['user_id'];
+//            $res = $this->userProduct->getUserProductsByUserId($userId);
+//            //$allUserProducts = $this->userProduct->getProductsByUserId($userId);
+//            //$allPrice = $this->totalPrice();
+//            $productIds = [];
+//
+//            if(!empty($res)){
+//                foreach ($res as $userProduct) {
+//                    $productIds[] = $userProduct->getProductId();//['product_id']; // $productIds[] = [[0] => 1, [1] =>2]; собираем id продуктов пользователя
+//                }
+//                $userProducts = $this->products->getAllByIds($productIds);
+//
+//                $total = 0;
+//                foreach ($res as $userProd) {
+//                    foreach ($userProducts as &$product) {
+//                        if ($userProd->getProductId() === $product->getId()) {
+//                            $product->setAmount($userProd->getAmount());
+//                            $allPrice = $userProd->getAmount() * $product->getPrice();
+//                            $total += $allPrice;
+//                        }
+//                    }
+//                }
+//            }
         } else {
-            $userId = $_SESSION['user_id'];
-            $res = $this->userProduct->getProductsByUserId($userId);
             require_once "./../View/order.php";
         }
-
     }
 
-    public function order(): void
+    public function order(OrderRequest $request): void
     {
-        $errors = $this->validateOrder($_POST);
-
+        $errors = $request->validate();
 
         if (empty($errors)) {
-            session_start();
-            $userId = $_SESSION['user_id'];
-            $contactName = $_POST['contact_name'];
-            $address = $_POST['address'];
-            $phone = $_POST['phone'];
-            $total = $this->cartController->totalOrder();
+//            session_start();
+            $userId = $this->authService->getCurrentUser()->getId();
+            $contactName = $request->getContactName();
+            $address = $request->getAddress();
+            $phone = $request->getPhone();
 
-
-            $this->order->createOrder($userId, $contactName, $address, $phone, $total);
-
-            $orderUser = $this->order->getOrderByUserId($userId);
-
-            foreach ($this->userProduct->getProductsByUserId($userId) as $product) {
-                $this->orderProduct->addProductInOrder($orderUser['id'], $product['product_id'], $product['amount'], $product['price']);
-            }
-            $this->userProduct->deleteProductByUserId($userId);
-            header('Location: /order');
-
-        } else {
-            require_once "./../View/order.php";
+//            if (!empty($allUserProducts)) {
+//                $productIds = [];
+//
+//                foreach ($allUserProducts as $userProduct) {
+//                    $productIds[] = $userProduct->getProductId(); // $productIds[] = [[0] => 1, [1] =>2]; собираем id продуктов пользователя
+//                }
+//                $userProducts = $this->products->getAllByIds($productIds);
+//
+//                $total = $this->orderService->getTotal($allUserProducts, $userProducts);
+//            }
+            $dto = new CreateOrderDTO($userId, $contactName, $address, $phone);
+            $this->orderService->create($dto);
+//            $this->order->createOrder($userId, $contactName, $address, $phone, $total);
+//
+//            $orderUser = $this->order->getOrderByUserId($userId);
+//
+//            foreach ($userProducts as $product){
+//                $this->orderProduct->addProductInOrder($orderUser->getId(), $product->getId(), $product->getAmount(), $product->getPrice());
+//            }
+//            $this->userProduct->deleteProductByUserId($userId);
+            header('Location: /orders');
         }
-    }
-
-    private function validateOrder(array $post): array
-    {
-        $errors = [];
-
-        if (isset($post['contact_name'])) {
-            $contactName = ($post['contact_name']);
-            if (strlen($contactName) < 3 || strlen($contactName) > 20) {
-                $errors['contact_name'] = "Имя должно содержать не меньше 3 символов и не больше 20 символов";
-            } elseif (!preg_match("/^[a-zA-Zа-яА-Я]+$/u", $contactName)) {
-                $errors['contact_name'] = "Имя может содержать только буквы";
-            }
-        } else {
-            $errors ['contact_name'] = "Поле должно быть заполнено";
-        }
-
-        if (isset($post['address'])) {
-            $address = ($post['address']);
-            if (strlen($address) < 3 || strlen($address) > 100) {
-                $errors['address'] = "Адресс должен содержать не меньше 3 символов и не больше 100 символов";
-            } elseif (!preg_match("/^[a-zA-Zа-яА-Я0-9 ,.-]+$/u", $address)) {
-                $errors['address'] = "Адресс может содержать только буквы и цифры";
-            }
-        } else {
-            $errors ['address'] = "Поле address должно быть заполнено";
-        }
-
-        if (isset($post['phone'])) {
-            $phone = ($post['phone']);
-            if (!preg_match("/^[0-9]+$/u", $phone)) {
-                $errors['phone'] = "Номер телефона может содержать только цифры";
-            } elseif (strlen($phone) < 3 || strlen($phone) > 15) {
-                $errors['phone'] = "Номер телефона должен содержать не меньше 3 символов и не больше 15 символов";
-            }
-        } else {
-            $errors ['phone'] = "Поле phone должно быть заполнено";
-        }
-
-        return $errors;
+        require_once "./../View/order.php";
     }
 
     public function getOrdersForm(): void
     {
-        session_start();
-
-        if (!isset($_SESSION['user_id'])) {
+//        session_start();
+        if (!$this->authService->check()) {
             header("location: /login");
         } else {
-            $userId = $_SESSION['user_id'];
+            $userId = $this->authService->getCurrentUser()->getId();
             $orders = $this->order->getAllByUserId($userId);
 
             /*
@@ -140,7 +130,8 @@ class OrderController
             ];*/
 
             foreach ($orders as &$order) {
-                $orderProducts = $this->orderProduct->getByOrderId($order['id']);
+                $orderProducts = $this->orderProduct->getByOrderId($order->getId());
+
                 /*$orderProducts = [
                     [
                         'id' => 1,
@@ -158,40 +149,45 @@ class OrderController
                     ],
 
                 ];*/
-                $productIds = [];
-                foreach ($orderProducts as $orderProduct){
-                    $productIds[] = $orderProduct['product_id'];
-                }
 
-                if(count($productIds) > 0) {
-                    $products = $this->products->getAllByIds($productIds);
-//print_r($products);die;
+                if(!empty($orderProducts)) {
+                    $productIds = [];
                     foreach ($orderProducts as $orderProduct){
-                        foreach ($products as &$product) {
-//                        echo '<pre>';
-//                        print_r($products);
-//                        echo '</pre>';
-//                        echo '<pre>';
-//                        print_r($orderProducts);
-//                        echo '</pre>';
-//                        die;
-                            if ($product['id'] === $orderProduct['product_id']) {
-                                $product['order_amount'] = $orderProduct['amount'];
-                                $product['order_price'] = $orderProduct['order_price'];
+                        $productIds[] = $orderProduct->getProductId();
+                    }
+                    $products = $this->products->getAllByIds($productIds);
+
+                    foreach ($orderProducts as $orderProduct){
+                        foreach ($products as $product) {
+                            if ($product->getId() === $orderProduct->getProductId()) {
+                                $product->setAmount($orderProduct->getAmount());
+                                $product->setPrice($orderProduct->getOrderPrice());
                             }
                         }
-                        unset($product);
+                        //unset($product);
+
                     }
-                } else {
-                    print_r('У Вас нет заказов');
+                    $allOrders = $order->setProducts($products);
                 }
+
+                //else {
+//                    print_r('У Вас нет заказов');
+//                }
 //            $order['products'] = $products;
 //                print_r($products); die;
-                $order['products'] = $products;
+//                $order['products'] = $products;
             }
-             unset($order);
+//            unset($order);
         }
-           require_once "./../View/orders.php";
+//                        echo '<pre>';
+//                        print_r($orders);
+//                        echo '</pre>';
+//                        echo '<pre>';
+//                        print_r($order);
+//                        echo '</pre>';
+//                        die;
+//        print_r($orders); die;
+        require_once "./../View/orders.php";
     }
 
 
