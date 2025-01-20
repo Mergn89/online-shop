@@ -11,22 +11,6 @@ use mysql_xdevapi\Exception;
 
 class OrderService
 {
-//    private Model $model;
-    private Order $order;
-    private OrderProduct $orderProduct;
-    private UserProduct $userProduct;
-    private Product $products;
-
-
-    public function __construct()
-    {
-        $this->order = new Order();
-        $this->orderProduct = new OrderProduct();
-        $this->userProduct = new UserProduct();
-        $this->products = new Product();
-//        $this->model = new Model();
-    }
-
     public function create(CreateOrderDTO $orderDTO): void
     {
         $total = $this->getTotal($this->getAllUserProducts($orderDTO), $this->getUserProducts($this->getAllUserProducts($orderDTO)));
@@ -34,14 +18,14 @@ class OrderService
         $pdo = Model::connectToDatabase();
         $pdo->beginTransaction();
         try{
-            $this->order->createOrder($orderDTO->getUserId(), $orderDTO->getContactName(), $orderDTO->getAddress(), $orderDTO->getPhone(), $total);
+            Order::createOrder($orderDTO->getUserId(), $orderDTO->getContactName(), $orderDTO->getAddress(), $orderDTO->getPhone(), $total);
 
-            $orderUser = $this->order->getOrderByUserId($orderDTO->getUserId());
+            $orderUser = Order::getOrderByUserId($orderDTO->getUserId());
 //            throw new \PDOException('error connect to base'); //проверка транзакционности(не должен сохранять в orders;
             foreach ($this->getUserProducts($this->getAllUserProducts($orderDTO)) as $product) {
-                $this->orderProduct->addProductInOrder($orderUser->getId(), $product->getId(), $product->getAmount(), $product->getPrice());
+                OrderProduct::addProductInOrder($orderUser->getId(), $product->getId(), $product->getAmount(), $product->getPrice());
             }
-            $this->userProduct->deleteProductByUserId($orderDTO->getUserId());
+            UserProduct::deleteProductByUserId($orderDTO->getUserId());
 
         } catch (\PDOException $exception){
             $pdo->rollBack();
@@ -53,7 +37,7 @@ class OrderService
 
     private function getAllUserProducts(CreateOrderDTO $orderDTO): array
     {
-        $allUserProducts = $this->userProduct->getUserProductsByUserId($orderDTO->getUserId());
+        $allUserProducts = UserProduct::getUserProductsByUserId($orderDTO->getUserId());
 
         return $allUserProducts;
     }
@@ -67,7 +51,7 @@ class OrderService
             foreach ($allUserProducts as $userProduct) {
                 $productIds[] = $userProduct->getProductId(); // $productIds[] = [[0] => 1, [1] =>2]; собираем id продуктов пользователя
             }
-            $userProducts = $this->products->getAllByIds($productIds);
+            $userProducts = Product::getAllByIds($productIds);
             foreach ($allUserProducts as $userProduct) {
                 foreach ($userProducts as $product) {
                     if ($userProduct->getProductId() === $product->getId()) {

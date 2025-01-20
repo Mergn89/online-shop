@@ -74,14 +74,14 @@ class UserProduct extends Model
         return self::hydrate($data);
     }
 
-    public function addProductInUserProducts(int $userId, int $productId, int $amount): void
+    public static function addProductInUserProducts(int $userId, int $productId, int $amount): void
     {
         $stmt = self::connectToDatabase()->prepare("INSERT INTO user_products (user_id, product_id, amount) VALUES (:user_id, :product_id, :amount)");
         $stmt->execute(['user_id' => $userId, 'product_id' => $productId, 'amount' => $amount]);
 
     }
 
-    public function updateAmountInUserProducts(int $userId, int $productId, int $sumAmount): void
+    public static function updateAmountInUserProducts(int $userId, int $productId, int $sumAmount): void
     {
         $stmt = self::connectToDatabase()->prepare("UPDATE user_products SET amount = :amount WHERE user_id = :user_id AND product_id = :product_id");
         $stmt->execute(['user_id' => $userId, 'product_id' => $productId, 'amount' => $sumAmount]);
@@ -125,7 +125,7 @@ class UserProduct extends Model
         return $data;
     }
 
-    public function deleteProductByUserId(int $userId):void
+    public static function deleteProductByUserId(int $userId):void
     {
         $stmt = self::connectToDatabase()->prepare("DELETE FROM user_products WHERE user_id = :user_id");
         $stmt->execute(['user_id' => $userId]);

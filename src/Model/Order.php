@@ -86,7 +86,7 @@ class Order extends Model
         return $order;
     }
 
-    public function createOrder(int $userId, string $contactName, string $address, int $phone, int $total): void
+    public static function createOrder(int $userId, string $contactName, string $address, int $phone, int $total): void
     {
         $stmt = self::connectToDatabase()->prepare("INSERT INTO orders (user_id, contact_name, address, phone, total)
                                                  VALUES (:user_id, :contact_name, :address, :phone, :total)");

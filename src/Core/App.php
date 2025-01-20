@@ -2,10 +2,20 @@
 namespace Core;
 use Request\Request;
 use Request\RegistrateRequest;
+use Service\LoggerService;
+
 
 class App
 {
     private array $routes = [];
+    private LoggerService $loggerService;
+
+    public function __construct()
+    {
+        $this->routes = [];
+        $this->loggerService = new LoggerService();
+    }
+
 //    [
 //        '/registration' => [
 //            'GET' => [
@@ -112,16 +122,7 @@ class App
                     $objClass->$method($request);
 
                 } catch (\Throwable $exception) {
-                    date_default_timezone_set('Asia/Irkutsk');
-
-                    $path = './../Storage/log/error.txt';
-                    $message = 'error: '.$exception->getMessage();
-                    $file = 'file: '.$exception->getFile();
-                    $line = 'line: '.$exception->getLine();
-                    $data = date('d-m-Y-H-i-s');
-
-                    file_put_contents($path, print_r($data.PHP_EOL.$message.PHP_EOL.$file.PHP_EOL.$line, true).PHP_EOL."\n", FILE_APPEND);
-
+                    $this->loggerService->recordError($exception);
                     http_response_code(404);
                     require_once './../View/500.php';
                 }

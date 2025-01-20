@@ -38,7 +38,7 @@ class User extends Model
         return $user;
     }
 
-    public function create(string $name, string $email,string $password): void
+    public static function create(string $name, string $email,string $password): void
     {
         $stmt = Model::connectToDatabase()->prepare("INSERT INTO users (name, email, password) VALUES (:name, :email, :password)");
         $stmt->execute(['name' => $name, 'email' => $email, 'password' => $password]);

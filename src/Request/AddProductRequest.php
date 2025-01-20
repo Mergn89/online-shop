@@ -6,16 +6,16 @@ use Model\Product;
 
 class AddProductRequest extends Request
 {
-    private Product $product;
     public function __construct(string $uri, string $method, array $data = [])
     {
         parent::__construct($uri, $method, $data);
-        $this->product = new Product();
     }
+
     public function getProductId(): ?string
     {
         return $this->data['product_id'] ?? '';
     }
+
     public function getAmount(): ?string
     {
         return $this->data['amount'] ?? '';
@@ -42,7 +42,7 @@ class AddProductRequest extends Request
                 $errors['product_id'] = 'Неправильный id продукта';
 
             } else {
-                $product = $this->product->getOneById($productId);
+                $product = Product::getOneById($productId);
                 if (!$product) {
                     $errors['product_id'] = 'Продукт не существует';
                 }

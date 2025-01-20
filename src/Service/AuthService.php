@@ -6,11 +6,6 @@ use Model\User;
 
 class AuthService
 {
-    private User $user;
-    public function __construct()
-    {
-        $this->user = new User();
-    }
     public function check(): bool
     {
         $this->sessionStart();
@@ -56,11 +51,6 @@ class AuthService
         }
 
     }
-
-
-
-
-
 
 
 }

@@ -86,3 +86,43 @@ error: Call to a member function getPassword() on null
 file: /var/www/html/src/Service/AuthService.php
 line: 39
 
+19-01-2025-15-41-01
+error: Call to undefined method Controller\ProductController::ygetCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+
+19-01-2025-15-41-15
+error: Call to undefined method Controller\ProductController::ygetCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+
+19-01-2025-16-46-09
+error: Call to undefined method Controller\ProductController::1getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 112
+
+19-01-2025-16-46-10
+error: Call to undefined method Controller\ProductController::1getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 112
+
+19-01-2025-16-49-33
+error: Call to undefined method Controller\ProductController::1getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+
+19-01-2025-21-55-35
+error: error connect to base
+file: /var/www/html/src/Service/OrderService.php
+line: 40
+
+19-01-2025-22-11-48
+error: error connect to base
+file: /var/www/html/src/Service/OrderService.php
+line: 40
+
+19-01-2025-22-19-47
+error: error connect to base
+file: /var/www/html/src/Service/OrderService.php
+line: 40
+

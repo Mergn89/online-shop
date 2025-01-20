@@ -75,7 +75,7 @@ class OrderProduct extends Model
         return $orderProduct;
     }
 
-    public function addProductInOrder(int $orderId, int $productId, int $amount, int $orderPrice): void
+    public static function addProductInOrder(int $orderId, int $productId, int $amount, int $orderPrice): void
     {
         $stmt = Model::connectToDatabase()->prepare("INSERT INTO order_products (order_id, product_id, amount, order_price) 
                                                   VALUES (:order_id, :product_id, :amount, :order_price)");

@@ -76,47 +76,47 @@ class CartController
     }
     public function addProduct(AddProductRequest $request):void
     {
+//        При наличии отдельной страницы добавления продуктов должна быть проверка на аутентификацию пользователя;  if ($this->authService->check())
         $errors = $request->validate();
 
         if (empty($errors)) {
             $productId = $request->getProductId();
             $amount = $request->getAmount();
-//            session_start(); //сессия уже запущена выше
-            if (!$this->authService->check()) {
-//                $userId = $_SESSION['user_id'];
-                $userId = $this->authService->getCurrentUser()->getId();
-//                $dataUserProducts = $this->userProduct->getAmountByUserIdAndProductId($userId, $productId);
-//                //print_r($dataUserProducts); die;
-//
-//                if (!$dataUserProducts) {
-//                    $this->userProduct->addProductInUserProducts($userId, $productId, $amount);
-//                    $add = 'Продукт добавлен';
-//                } else {
-//                    $sumAmount = $dataUserProducts->getAmount() + $amount;
-//
-//                    $this->userProduct->updateAmountInUserProducts($userId, $productId, $sumAmount);
-//                    $add = 'Продукт обновлен';
-//                }
-                $dto = new CartDTO($userId, $productId, $amount);
-                $this->cartService->addProduct($dto);
-            }
-        }
 
-        require_once './../View/addProduct.php';
+            $userId = $this->authService->getCurrentUser()->getId();
+
+            $dto = new CartDTO($userId, $productId, $amount);
+            $this->cartService->addProduct($dto);
+        }
+//        require_once './../View/addProduct.php';
+
+//        сначала проверка на пользователя
+//        $errors = $request->validate();
+//
+//        if (empty($errors)) {
+//            $productId = $request->getProductId();
+//            $amount = $request->getAmount();
+////            session_start(); //сессия уже запущена выше
+//            if ($this->authService->check()) {
+////                $userId = $_SESSION['user_id'];
+//                $userId = $this->authService->getCurrentUser()->getId();
+////                $dataUserProducts = $this->userProduct->getAmountByUserIdAndProductId($userId, $productId);
+////                //print_r($dataUserProducts); die;
+////
+////                if (!$dataUserProducts) {
+////                    $this->userProduct->addProductInUserProducts($userId, $productId, $amount);
+////                    $add = 'Продукт добавлен';
+////                } else {
+////                    $sumAmount = $dataUserProducts->getAmount() + $amount;
+////
+////                    $this->userProduct->updateAmountInUserProducts($userId, $productId, $sumAmount);
+////                    $add = 'Продукт обновлен';
+////                }
+//                $dto = new CartDTO($userId, $productId, $amount);
+//                $this->cartService->addProduct($dto);
+//            }
     }
 
-//    public function totalPrice(): int
-//    {
-//        $userId = $_SESSION['user_id'];
-//
-//        $allUserProducts = $this->userProduct->getProductsByUserId($userId);
-//        $allPrice = 0;
-//        foreach ($userProducts as $product) {
-//            $total = $product['amount']*$product['price'];
-//
-//            $allPrice += $total;
-//        }
-//        return $allPrice;
-//    }
+
 
 }

@@ -8,11 +8,9 @@ use Model\User;
 
 class RegistrateRequest extends Request
 {
-    private User $user;
     public function __construct(string $uri, string $method, array $data = [])
     {
         parent::__construct($uri, $method, $data);
-        $this->user = new User();
     }
 
     public function getName(): ?string
@@ -61,7 +59,7 @@ class RegistrateRequest extends Request
             } elseif (!preg_match('#^([\w]+\.?)+(?<!\.)@(?!\.)[a-zа-я0-9ё\.-]+\.?[a-zа-яё]{2,}$#ui', $email)) {
                 $errors['email'] = 'Недопустимый формат email';
             } else {
-                $user = $this->user->getByEmail($email);
+                $user = User::getByEmail($email);
 
                 if ($user) {
                     $errors['email'] = 'Такой пользователь уже существует';

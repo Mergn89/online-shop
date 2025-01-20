@@ -8,12 +8,10 @@ use Service\AuthService;
 
 class UserController
 {
-    private User $user;
     private AuthService $authService;
 
     public function __construct()
     {
-        $this->user = new User();
         $this->authService = new AuthService();
     }
 
@@ -35,7 +33,7 @@ class UserController
 
             $hash = password_hash($password, PASSWORD_DEFAULT);
 
-            $this->user->create($name,$email,$hash);
+            User::create($name,$email,$hash);
             header("location: /login");
 
         }
