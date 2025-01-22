@@ -17,12 +17,14 @@ class App
     private array $routes = [];
 //    private array $services = [];
     private LoggerServiceInterface $loggerService;
+    private Container $diContainer;
 
-    public function __construct(LoggerServiceInterface $loggerService)
+    public function __construct(LoggerServiceInterface $loggerService, Container $diContainer)
     {
         $this->routes = [];
 //        $this->services = [];
         $this->loggerService = $loggerService;
+        $this->diContainer = $diContainer;
     }
 
 //    [
@@ -113,7 +115,7 @@ class App
                 $method = $handler['method'];
                 $requestClass = $handler['request'];
 
-               $objClass = $this->createObject($class);
+               $objClass = $this->diContainer->get($class);
 
                 if (!empty($requestClass)){
                     $request = new $requestClass($uri, $requestMethod, $_POST);
@@ -155,8 +157,8 @@ class App
 
     }
 
-    public function createObject(string $class): object
-    {
+//    public function createObject(string $class): object
+//    {
 //        if($class === UserController::class) {
 //            $authService = new AuthSessionService();
 //            return new $class($authService);
@@ -178,33 +180,33 @@ class App
 //        }
 //        return new $class();
 
-        $services = [
-            UserController::class => function () {
-                $authService = new AuthSessionService();
-                return new UserController($authService);
-            },
-            ProductController::class => function () {
-                $authService = new AuthSessionService();
-                return new ProductController($authService);
-            },
-            CartController::class => function () {
-                $authService = new AuthSessionService();
-                $cartService = new CartService();
-                return new CartController($cartService, $authService);
-            },
-            OrderController::class => function () {
-                $authService = new AuthSessionService();
-                $orderService = new OrderService();
-                return new OrderController($orderService, $authService);
-            }
-        ];
-//        $callback = function () {
-//        $authService = new AuthSessionService();
-//        return new UserController($authService);
-//        };
-        $callback = $services[$class];
-        return $callback($this);
-    }
+//        $services = [
+//            UserController::class => function () {
+//                $authService = new AuthSessionService();
+//                return new UserController($authService);
+//            },
+//            ProductController::class => function () {
+//                $authService = new AuthSessionService();
+//                return new ProductController($authService);
+//            },
+//            CartController::class => function () {
+//                $authService = new AuthSessionService();
+//                $cartService = new CartService();
+//                return new CartController($cartService, $authService);
+//            },
+//            OrderController::class => function () {
+//                $authService = new AuthSessionService();
+//                $orderService = new OrderService();
+//                return new OrderController($orderService, $authService);
+//            }
+//        ];
+////        $callback = function () {
+////        $authService = new AuthSessionService();
+////        return new UserController($authService);
+////        };
+//        $callback = $services[$class];
+//        return $callback($this);
+//    }
 
     public function addRoute(string $route, string $routeMethod, string $className, string $methodName, string $requestClass = null): void
     {
@@ -216,6 +218,7 @@ class App
         // $this->array routes['/registration']['GET'] = [
         //     'class'=>'Controller\UserController',
         //     'method'=>'getRegistrationForm'
+        //     'request'=>
         // ];
 
     }
