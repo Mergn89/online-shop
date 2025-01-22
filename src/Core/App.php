@@ -1,19 +1,26 @@
 <?php
 namespace Core;
+use Controller\CartController;
+use Controller\OrderController;
+use Controller\ProductController;
+use Controller\UserController;
 use Request\Request;
-use Request\RegistrateRequest;
-use Service\LoggerService;
+use Service\Auth\AuthSessionService;
+use Service\CartService;
+use Service\Logger\LoggerFileService;
+use Service\Logger\LoggerServiceInterface;
+use Service\OrderService;
 
 
 class App
 {
     private array $routes = [];
-    private LoggerService $loggerService;
+    private LoggerServiceInterface $loggerService;
 
-    public function __construct()
+    public function __construct(LoggerServiceInterface $loggerService)
     {
         $this->routes = [];
-        $this->loggerService = new LoggerService();
+        $this->loggerService = $loggerService;
     }
 
 //    [
@@ -103,7 +110,8 @@ class App
                 $class = $handler['class'];
                 $method = $handler['method'];
                 $requestClass = $handler['request'];
-                $objClass = new $class();
+
+               $objClass = $this->createObject($class);
 
                 if (!empty($requestClass)){
                     $request = new $requestClass($uri, $requestMethod, $_POST);
@@ -122,7 +130,14 @@ class App
                     $objClass->$method($request);
 
                 } catch (\Throwable $exception) {
-                    $this->loggerService->recordError($exception);
+                    date_default_timezone_set('Asia/Irkutsk');
+
+                    $this->loggerService->error("\n".'Произошла ошибка при обработке запроса', [
+                        'message' => $exception->getMessage(),
+                        'file' => $exception->getFile(),
+                        'line' => $exception->getLine(),
+                        'time' => date('d-m-Y H:i:s')
+                    ]);
                     http_response_code(404);
                     require_once './../View/500.php';
                 }
@@ -137,6 +152,31 @@ class App
         }
 
     }
+
+    private function createObject(string $class)
+    {
+        if($class === UserController::class) {
+            $authSessionService = new AuthSessionService();
+            return new $class($authSessionService);
+
+
+        } elseif ($class === ProductController::class) {
+            $authSessionService = new AuthSessionService();
+            return new $class($authSessionService);
+
+        } elseif ($class === CartController::class) {
+            $authSessionService = new AuthSessionService();
+            $cartService = new CartService();
+            return new $class($cartService, $authSessionService);
+
+        } elseif ($class === OrderController::class) {
+            $authSessionService = new AuthSessionService();
+            $orderService = new OrderService();
+            return new $class($orderService, $authSessionService);
+        }
+        return new $class();
+    }
+
     public function addRoute(string $route, string $routeMethod, string $className, string $methodName, string $requestClass = null): void
     {
         $this->routes[$route][$routeMethod] = [

@@ -3,22 +3,18 @@ namespace Controller;
 
 use Model\Product;
 use Model\UserProduct;
-use Service\AuthService;
+use Service\Auth\AuthServiceInterface;
 
-//require_once './../Model/Products.php';
-//require_once './../Model/UserProduct.php';
 
 class ProductController
 {
-    private AuthService $authService;
-    private Product $product;
-//    private UserProduct $userProduct;
+    private AuthServiceInterface $authService;
 
-    public function __construct()
+
+    public function __construct(AuthServiceInterface $authService)
     {
-        $this->authService = new AuthService();
-        $this->product = new Product();
-//        $this->userProduct = new UserProduct();
+        $this->authService = $authService;
+
     }
 
     public function getCatalog():void
@@ -27,7 +23,7 @@ class ProductController
         if (!$this->authService->check()) {
             header("location: /login");
         }
-        $products = $this->product->getProducts();
+        $products = Product::getProducts();
 
         require_once "./../View/catalog.php";
     }

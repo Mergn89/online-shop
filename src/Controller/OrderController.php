@@ -5,7 +5,7 @@ use Model\Order;
 use Model\OrderProduct;
 use Model\Product;
 use Request\OrderRequest;
-use Service\AuthService;
+use Service\Auth\AuthServiceInterface;
 use Service\OrderService;
 
 //require_once './../Model/Order.php';
@@ -15,19 +15,13 @@ use Service\OrderService;
 
 class OrderController
 {
-    private Order $order;
-    private OrderProduct $orderProduct;
-    private Product $products;
     private OrderService $orderService;
-    private AuthService $authService;
+    private AuthServiceInterface $authService;
 
-    public function __construct()
+    public function __construct(OrderService $orderService, AuthServiceInterface $authService)
     {
-        $this->order = new Order();
-        $this->orderProduct = new OrderProduct();
-        $this->products = new Product();
-        $this->orderService = new OrderService();
-        $this->authService = new AuthService();
+        $this->orderService = $orderService;
+        $this->authService = $authService;
     }
     public function getOrderForm(): void
     {
@@ -106,7 +100,7 @@ class OrderController
             header("location: /login");
         } else {
             $userId = $this->authService->getCurrentUser()->getId();
-            $orders = $this->order->getAllByUserId($userId);
+            $orders = Order::getAllByUserId($userId);
 
             /*
               $orders = [
@@ -130,7 +124,7 @@ class OrderController
             ];*/
 
             foreach ($orders as &$order) {
-                $orderProducts = $this->orderProduct->getByOrderId($order->getId());
+                $orderProducts = OrderProduct::getByOrderId($order->getId());
 
                 /*$orderProducts = [
                     [
@@ -155,7 +149,7 @@ class OrderController
                     foreach ($orderProducts as $orderProduct){
                         $productIds[] = $orderProduct->getProductId();
                     }
-                    $products = $this->products->getAllByIds($productIds);
+                    $products = Product::getAllByIds($productIds);
 
                     foreach ($orderProducts as $orderProduct){
                         foreach ($products as $product) {

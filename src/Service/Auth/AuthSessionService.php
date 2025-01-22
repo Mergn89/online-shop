@@ -1,10 +1,10 @@
 <?php
 
-namespace Service;
+namespace Service\Auth;
 
 use Model\User;
 
-class AuthService
+class AuthSessionService implements AuthServiceInterface
 {
     public function check(): bool
     {
@@ -28,20 +28,12 @@ class AuthService
     {
         $user = User::getByEmail($login);
 
-        if(!$user) {
-            //$errors['login'] = "Логин или пароль неверный";
-            return false;
-
-        } elseif (password_verify($password, $user->getPassword())) {
-            session_start();
+        if($user && password_verify($password, $user->getPassword())) {
+            $this->sessionStart();
             $_SESSION['user_id'] = $user->getId();
             return true;
-
-        } else {
-            //$errors['login'] = "Логин или пароль неверный";
-            return false;
         }
-
+        return false;
     }
 
     private function sessionStart(): void
@@ -51,6 +43,5 @@ class AuthService
         }
 
     }
-
 
 }

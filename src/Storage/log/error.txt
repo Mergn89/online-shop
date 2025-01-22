@@ -126,3 +126,145 @@ error: error connect to base
 file: /var/www/html/src/Service/OrderService.php
 line: 40
 
+20-01-2025-18-09-37
+Call to undefined method Controller\ProductController::4getCatalog()20-01-2025-18-09-37
+/var/www/html/src/Core/App.php20-01-2025-18-09-37
+12220-01-2025-18-12-51
+errorCall to undefined method Controller\ProductController::4getCatalog()20-01-2025-18-12-51
+/var/www/html/src/Core/App.php20-01-2025-18-12-51
+122error: Call to undefined method Controller\ProductController::4getCatalog()file: /var/www/html/src/Core/App.phpline: 12220-01-2025-18-20-2320-01-2025-18-42-05error: Call to undefined method Controller\ProductController::4getCatalog()file: /var/www/html/src/Core/App.phpline: 12220-01-2025 18:42:05error: Call to undefined method Controller\ProductController::4getCatalog()file: /var/www/html/src/Core/App.phpline: 12220-01-2025 18:45:25
+error: Call to undefined method Controller\ProductController::4getCatalog()
+
+file: /var/www/html/src/Core/App.php
+
+line: 122
+
+20-01-2025 18:47:14
+
+error: Call to undefined method Controller\ProductController::4getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 18:52:03
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 18:58:36
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 18:58:37
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 18:59:25
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:03:05
+
+error: Call to undefined method Controller\ProductController::8getCatalog()
+
+file: /var/www/html/src/Core/App.php
+
+line: 122
+
+20-01-2025 19:34:31
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:35:20
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:35:21
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:36:15
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:36:16Произошла ошибка при обработке запроса
+
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:39:08
+Произошла ошибка при обработке запроса
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:40:07
+Произошла ошибка при обработке запроса
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:40:07
+Произошла ошибка при обработке запроса
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:41:31
+Произошла ошибка при обработке запроса
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:41:31
+Произошла ошибка при обработке запроса
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:42:27
+Произошла ошибка при обработке запроса
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:42:28
+
+Произошла ошибка при обработке запроса
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:43:37
+
+Произошла ошибка при обработке запроса
+error: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+20-01-2025 19:43:39
+
+Произошла ошибка при обработке запроса
+.message: .Call to undefined method Controller\ProductController::8getCatalog()
+.file: ./var/www/html/src/Core/App.php
+.line: .122
+.time: .20-01-2025 19:54:35
+
+Произошла ошибка при обработке запроса
+message: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+time: 20-01-2025 19:55:54
+
+Произошла ошибка при обработке запроса
+message: Call to undefined method Controller\ProductController::8getCatalog()
+file: /var/www/html/src/Core/App.php
+line: 122
+time: 20-01-2025 21:52:58
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getCatalog() on null
+file: /var/www/html/src/Core/App.php
+line: 132
+time: 21-01-2025 17:32:45
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getOrderForm() on null
+file: /var/www/html/src/Core/App.php
+line: 143
+time: 21-01-2025 17:39:42
+
+Произошла ошибка при обработке запроса
+message: Call to undefined method Controller\ProductController::2dgetCatalog()
+file: /var/www/html/src/Core/App.php
+line: 147
+time: 21-01-2025 17:45:19

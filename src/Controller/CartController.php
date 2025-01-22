@@ -4,24 +4,23 @@ use DTO\CartDTO;
 use Model\Product;
 use Model\UserProduct;
 use Request\AddProductRequest;
-use Service\AuthService;
+use Service\Auth\AuthServiceInterface;
+use Service\Auth\AuthSessionService;
+
 use Service\CartService;
 
 //require_once './../Model/UserProduct.php';
 
 class CartController
 {
-    private UserProduct $userProduct;
-    private Product $product;
-    private CartService $cartService;
-    private AuthService $authService;
 
-    public function __construct()
+    private CartService $cartService;
+    private AuthServiceInterface $authService;
+
+    public function __construct(CartService $cartService, AuthServiceInterface $authService)
     {
-        $this->userProduct = new UserProduct();
-        $this->product = new Product();
-        $this->cartService = new CartService();
-        $this->authService = new AuthService();
+        $this->cartService = $cartService;
+        $this->authService = $authService;
     }
     public function getCart():void
     {
@@ -41,7 +40,7 @@ class CartController
                 foreach ($allUserProducts as $userProduct) {
                     $productIds[] = $userProduct->getProductId(); // $productIds[] = [[0] => 1, [1] =>2]; собираем id продуктов пользователя
                 }
-                $userProducts = $this->product->getAllByIds($productIds);
+                $userProducts = Product::getAllByIds($productIds);
 
                 $total = 0;
                 foreach ($allUserProducts as $userProd) {

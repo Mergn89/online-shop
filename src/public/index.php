@@ -1,12 +1,16 @@
 <?php
 require_once "./../Core/Autoload.php";
+
 use Core\App;
 use Core\Autoload;
 
 
 Autoload::registrate(__DIR__ . '/../'); //__DIR__ = абсолютный путь от корня   //   /var/www/html/
 
-$app = new App();
+$loggerService = new \Service\Logger\LoggerFileService();
+
+$app = new App($loggerService);
+
 $app->addRoute('/registration', 'GET', \Controller\UserController::class, 'getRegistrationForm');
 $app->addRoute('/registration', 'POST', \Controller\UserController::class, 'registrate', \Request\RegistrateRequest::class);
 $app->addRoute('/login', 'GET', \Controller\UserController::class, 'getLoginForm');
