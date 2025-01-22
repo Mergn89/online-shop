@@ -15,11 +15,13 @@ use Service\OrderService;
 class App
 {
     private array $routes = [];
+//    private array $services = [];
     private LoggerServiceInterface $loggerService;
 
     public function __construct(LoggerServiceInterface $loggerService)
     {
         $this->routes = [];
+//        $this->services = [];
         $this->loggerService = $loggerService;
     }
 
@@ -153,28 +155,55 @@ class App
 
     }
 
-    private function createObject(string $class)
+    public function createObject(string $class): object
     {
-        if($class === UserController::class) {
-            $authSessionService = new AuthSessionService();
-            return new $class($authSessionService);
+//        if($class === UserController::class) {
+//            $authService = new AuthSessionService();
+//            return new $class($authService);
+//
+//
+//        } elseif ($class === ProductController::class) {
+//            $authService = new AuthSessionService();
+//            return new $class($authService);
+//
+//        } elseif ($class === CartController::class) {
+//            $authService = new AuthSessionService();
+//            $cartService = new CartService();
+//            return new $class($cartService, $authService);
+//
+//        } elseif ($class === OrderController::class) {
+//            $authService = new AuthSessionService();
+//            $orderService = new OrderService();
+//            return new $class($orderService, $authService);
+//        }
+//        return new $class();
 
-
-        } elseif ($class === ProductController::class) {
-            $authSessionService = new AuthSessionService();
-            return new $class($authSessionService);
-
-        } elseif ($class === CartController::class) {
-            $authSessionService = new AuthSessionService();
-            $cartService = new CartService();
-            return new $class($cartService, $authSessionService);
-
-        } elseif ($class === OrderController::class) {
-            $authSessionService = new AuthSessionService();
-            $orderService = new OrderService();
-            return new $class($orderService, $authSessionService);
-        }
-        return new $class();
+        $services = [
+            UserController::class => function () {
+                $authService = new AuthSessionService();
+                return new UserController($authService);
+            },
+            ProductController::class => function () {
+                $authService = new AuthSessionService();
+                return new ProductController($authService);
+            },
+            CartController::class => function () {
+                $authService = new AuthSessionService();
+                $cartService = new CartService();
+                return new CartController($cartService, $authService);
+            },
+            OrderController::class => function () {
+                $authService = new AuthSessionService();
+                $orderService = new OrderService();
+                return new OrderController($orderService, $authService);
+            }
+        ];
+//        $callback = function () {
+//        $authService = new AuthSessionService();
+//        return new UserController($authService);
+//        };
+        $callback = $services[$class];
+        return $callback($this);
     }
 
     public function addRoute(string $route, string $routeMethod, string $className, string $methodName, string $requestClass = null): void
