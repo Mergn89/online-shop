@@ -6,17 +6,17 @@ use Model\Product;
 
 class AddProductRequest extends Request
 {
-    public function __construct(string $uri, string $method, array $data = [])
-    {
-        parent::__construct($uri, $method, $data);
-    }
+//    public function __construct(string $uri, string $method, array $data = [])
+//    {
+//        parent::__construct($uri, $method, $data);
+//    }
 
-    public function getProductId(): ?string
+    public function getProductId(): ?int
     {
         return $this->data['product_id'] ?? '';
     }
 
-    public function getAmount(): ?string
+    public function getAmount(): ?int
     {
         return $this->data['amount'] ?? '';
     }

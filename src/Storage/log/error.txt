@@ -298,3 +298,1035 @@ message: Call to undefined method Closure::getCatalog()
 file: /var/www/html/src/Core/App.php
 line: 132
 time: 22-01-2025 16:14:55
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getProductForm(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 32
+time: 23-01-2025 15:24:40
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getProductForm(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 32
+time: 23-01-2025 15:29:32
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getProductForm(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 32
+time: 23-01-2025 15:42:46
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getProductForm(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 32
+time: 23-01-2025 15:42:46
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getProductForm(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 32
+time: 23-01-2025 15:47:44
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getProductForm(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 32
+time: 23-01-2025 15:47:45
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getProductForm(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 32
+time: 23-01-2025 15:47:46
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getProductForm(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 32
+time: 23-01-2025 15:47:46
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getProductForm(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 32
+time: 23-01-2025 15:47:47
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getProductForm(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 32
+time: 23-01-2025 15:50:26
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getProductForm(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 32
+time: 23-01-2025 15:53:59
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getProductForm(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 32
+time: 23-01-2025 15:54:00
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 23-01-2025 15:56:48
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 23-01-2025 15:56:50
+
+Произошла ошибка при обработке запроса
+message: Model\Product::getOneById(): Argument #1 ($productId) must be of type int, string given, called in /var/www/html/src/Controller/ProductController.php on line 38
+file: /var/www/html/src/Model/Product.php
+line: 100
+time: 23-01-2025 15:57:36
+
+Произошла ошибка при обработке запроса
+message: Model\Product::getOneById(): Argument #1 ($productId) must be of type int, string given, called in /var/www/html/src/Controller/ProductController.php on line 38
+file: /var/www/html/src/Model/Product.php
+line: 100
+time: 23-01-2025 15:57:38
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 23-01-2025 16:06:08
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getProductForm(): Argument #1 ($addProductRequest) must be of type Request\AddProductRequest, Request\ProductRequest given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 33
+time: 24-01-2025 13:41:20
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 14:01:13
+
+Произошла ошибка при обработке запроса
+message: Model\Product::getOneById(): Argument #1 ($productId) must be of type int, string given, called in /var/www/html/src/Controller/ProductController.php on line 39
+file: /var/www/html/src/Model/Product.php
+line: 100
+time: 24-01-2025 14:02:42
+
+Произошла ошибка при обработке запроса
+message: Model\Product::getOneById(): Argument #1 ($productId) must be of type int, string given, called in /var/www/html/src/Controller/ProductController.php on line 39
+file: /var/www/html/src/Model/Product.php
+line: 100
+time: 24-01-2025 14:02:45
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 14:05:38
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 14:05:43
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getReview(): Argument #1 ($ProductRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 47
+time: 24-01-2025 15:18:39
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getReview(): Argument #1 ($ProductRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 47
+time: 24-01-2025 15:18:45
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 15:21:24
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 15:21:26
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 15:27:26
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 15:27:27
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 15:29:24
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 15:29:26
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getReview(): Argument #1 ($ProductRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 47
+time: 24-01-2025 15:32:56
+
+Произошла ошибка при обработке запроса
+message: Controller\ProductController::getReview(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\Request given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ProductController.php
+line: 47
+time: 24-01-2025 15:34:45
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 15:37:05
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 15:43:19
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 15:44:37
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getImageLink() on null
+file: /var/www/html/src/View/reviewProduct.php
+line: 25
+time: 24-01-2025 15:47:12
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 15:49:02
+
+Произошла ошибка при обработке запроса
+message: Model\Product::getOneById(): Argument #1 ($productId) must be of type int, string given, called in /var/www/html/src/Controller/ProductController.php on line 52
+file: /var/www/html/src/Model/Product.php
+line: 100
+time: 24-01-2025 15:51:41
+
+Произошла ошибка при обработке запроса
+message: Model\Product::getOneById(): Argument #1 ($productId) must be of type int, string given, called in /var/www/html/src/Controller/ProductController.php on line 52
+file: /var/www/html/src/Model/Product.php
+line: 100
+time: 24-01-2025 15:53:28
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 15:53:58
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 16:10:13
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 24-01-2025 16:12:01
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 17
+time: 24-01-2025 16:16:05
+
+Произошла ошибка при обработке запроса
+message: Typed property Model\Product::$id must not be accessed before initialization
+file: /var/www/html/src/Model/Product.php
+line: 14
+time: 24-01-2025 16:20:01
+
+Произошла ошибка при обработке запроса
+message: Typed property Model\Product::$id must not be accessed before initialization
+file: /var/www/html/src/Model/Product.php
+line: 14
+time: 24-01-2025 16:20:02
+
+Произошла ошибка при обработке запроса
+message: Cannot assign null to property Model\Product::$title of type string
+file: /var/www/html/src/Model/Product.php
+line: 79
+time: 24-01-2025 16:31:40
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42804]: Datatype mismatch: 7 ERROR:  argument of WHERE must be type boolean, not type integer
+LINE 1: SELECT id FROM products where id
+                                      ^
+file: /var/www/html/src/Model/Product.php
+line: 134
+time: 24-01-2025 16:38:26
+
+Произошла ошибка при обработке запроса
+message: Typed property Controller\ProductController::$product must not be accessed before initialization
+file: /var/www/html/src/Controller/ProductController.php
+line: 61
+time: 24-01-2025 17:00:26
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getImageLink() on null
+file: /var/www/html/src/View/reviewProduct.php
+line: 25
+time: 24-01-2025 19:14:38
+
+Произошла ошибка при обработке запроса
+message: Call to undefined method Controller\ProductController::getReview()
+file: /var/www/html/src/Core/App.php
+line: 134
+time: 25-01-2025 16:01:20
+
+Произошла ошибка при обработке запроса
+message: Call to undefined method Controller\ProductController::getReview()
+file: /var/www/html/src/Core/App.php
+line: 134
+time: 25-01-2025 16:01:21
+
+Произошла ошибка при обработке запроса
+message: Controller\ReviewController::getReview(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\ReviewRequest given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ReviewController.php
+line: 23
+time: 26-01-2025 16:32:00
+
+Произошла ошибка при обработке запроса
+message: Controller\ReviewController::getReview(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\ReviewRequest given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ReviewController.php
+line: 23
+time: 26-01-2025 16:37:47
+
+Произошла ошибка при обработке запроса
+message: Controller\ReviewController::getReview(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\ReviewRequest given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ReviewController.php
+line: 23
+time: 26-01-2025 16:41:34
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 26-01-2025 17:03:52
+
+Произошла ошибка при обработке запроса
+message: Request\ReviewRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ReviewRequest.php
+line: 9
+time: 26-01-2025 17:16:30
+
+Произошла ошибка при обработке запроса
+message: Request\ReviewRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ReviewRequest.php
+line: 9
+time: 26-01-2025 17:19:32
+
+Произошла ошибка при обработке запроса
+message: Too few arguments to function Controller\ReviewController::addReview(), 1 passed in /var/www/html/src/Core/App.php on line 134 and exactly 2 expected
+file: /var/www/html/src/Controller/ReviewController.php
+line: 38
+time: 26-01-2025 17:26:57
+
+Произошла ошибка при обработке запроса
+message: Too few arguments to function Controller\ReviewController::addReview(), 1 passed in /var/www/html/src/Core/App.php on line 134 and exactly 2 expected
+file: /var/www/html/src/Controller/ReviewController.php
+line: 38
+time: 26-01-2025 17:28:56
+
+Произошла ошибка при обработке запроса
+message: Request\ReviewRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ReviewRequest.php
+line: 9
+time: 26-01-2025 17:56:48
+
+Произошла ошибка при обработке запроса
+message: Request\ReviewRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ReviewRequest.php
+line: 9
+time: 26-01-2025 18:04:23
+
+Произошла ошибка при обработке запроса
+message: Request\ReviewRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ReviewRequest.php
+line: 9
+time: 26-01-2025 18:08:18
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[22003]: Numeric value out of range: 7 ERROR:  numeric field overflow
+DETAIL:  A field with precision 1, scale 1 must round to an absolute value less than 1.
+file: /var/www/html/src/Model/Review.php
+line: 85
+time: 26-01-2025 18:19:45
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 6:                                         FROM reviews INNER J...
+                                                ^
+file: /var/www/html/src/Model/Review.php
+line: 130
+time: 27-01-2025 14:30:54
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 6:                                         FROM reviews INNER J...
+                                                ^
+file: /var/www/html/src/Model/Review.php
+line: 130
+time: 27-01-2025 14:30:56
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 6:                                         FROM reviews INNER J...
+                                                ^
+file: /var/www/html/src/Model/Review.php
+line: 130
+time: 27-01-2025 14:30:59
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getReview() on string
+file: /var/www/html/src/Controller/ReviewController.php
+line: 63
+time: 27-01-2025 15:03:38
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getReview() on string
+file: /var/www/html/src/Controller/ReviewController.php
+line: 63
+time: 27-01-2025 15:03:43
+
+Произошла ошибка при обработке запроса
+message: Call to undefined method Model\Review::getTitle()
+file: /var/www/html/src/Controller/ReviewController.php
+line: 63
+time: 27-01-2025 15:05:13
+
+Произошла ошибка при обработке запроса
+message: Call to undefined method Model\Review::getPrice()
+file: /var/www/html/src/Controller/ReviewController.php
+line: 63
+time: 27-01-2025 15:18:05
+
+Произошла ошибка при обработке запроса
+message: Call to undefined method Model\Review::getProductId()
+file: /var/www/html/src/Controller/ReviewController.php
+line: 66
+time: 27-01-2025 16:05:37
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42P01]: Undefined table: 7 ERROR:  missing FROM-clause entry for table "r"
+LINE 6: ...                                        ON p.id = r.product_...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 157
+time: 27-01-2025 18:05:58
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42P01]: Undefined table: 7 ERROR:  missing FROM-clause entry for table "r"
+LINE 6: ...                                        ON p.id = r.product_...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 157
+time: 27-01-2025 18:07:02
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 27-01-2025 18:08:12
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 27-01-2025 18:13:14
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 27-01-2025 18:16:42
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42804]: Datatype mismatch: 7 ERROR:  argument of AND must be type boolean, not type integer
+LINE 1: SELECT * FROM reviews WHERE product_id AND rating
+                                    ^
+file: /var/www/html/src/Model/Review.php
+line: 157
+time: 27-01-2025 18:24:42
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[08P01]: <<Unknown error>>: 7 ERROR:  bind message supplies 0 parameters, but prepared statement "pdo_stmt_00000002" requires 1
+file: /var/www/html/src/Model/Review.php
+line: 157
+time: 27-01-2025 18:25:38
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setTitle(): Argument #1 ($title) must be of type string, null given, called in /var/www/html/src/Model/Review.php on line 112
+file: /var/www/html/src/Model/Product.php
+line: 47
+time: 27-01-2025 18:28:19
+
+Произошла ошибка при обработке запроса
+message: Request\ReviewRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ReviewRequest.php
+line: 9
+time: 27-01-2025 18:43:21
+
+Произошла ошибка при обработке запроса
+message: Request\ReviewRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ReviewRequest.php
+line: 9
+time: 27-01-2025 18:44:03
+
+Произошла ошибка при обработке запроса
+message: Request\ReviewRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ReviewRequest.php
+line: 9
+time: 27-01-2025 18:44:27
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 27-01-2025 18:44:51
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 27-01-2025 18:52:09
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 27-01-2025 18:52:21
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 27-01-2025 19:04:36
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[08P01]: <<Unknown error>>: 7 ERROR:  bind message supplies 0 parameters, but prepared statement "pdo_stmt_00000002" requires 1
+file: /var/www/html/src/Model/Review.php
+line: 157
+time: 27-01-2025 20:52:00
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 27-01-2025 20:53:01
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 27-01-2025 20:56:10
+
+Произошла ошибка при обработке запроса
+message: Too few arguments to function Model\Product::getProducts(), 0 passed in /var/www/html/src/Controller/ProductController.php on line 29 and exactly 1 expected
+file: /var/www/html/src/Model/Product.php
+line: 87
+time: 27-01-2025 21:08:44
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "user_id" does not exist
+LINE 1: SELECT * FROM products WHERE user_id = $1
+                                     ^
+file: /var/www/html/src/Model/Product.php
+line: 90
+time: 27-01-2025 21:09:42
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42703]: Undefined column: 7 ERROR:  column "user_id" does not exist
+LINE 1: SELECT * FROM products WHERE user_id = $1
+                                     ^
+file: /var/www/html/src/Model/Product.php
+line: 90
+time: 27-01-2025 21:09:44
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setTitle(): Argument #1 ($title) must be of type string, null given, called in /var/www/html/src/Model/Review.php on line 112
+file: /var/www/html/src/Model/Product.php
+line: 47
+time: 27-01-2025 22:08:50
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setTitle(): Argument #1 ($title) must be of type string, null given, called in /var/www/html/src/Model/Review.php on line 112
+file: /var/www/html/src/Model/Product.php
+line: 47
+time: 27-01-2025 22:23:42
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setTitle(): Argument #1 ($title) must be of type string, null given, called in /var/www/html/src/Model/Review.php on line 112
+file: /var/www/html/src/Model/Product.php
+line: 47
+time: 27-01-2025 22:25:21
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setTitle(): Argument #1 ($title) must be of type string, null given, called in /var/www/html/src/Model/Review.php on line 112
+file: /var/www/html/src/Model/Product.php
+line: 47
+time: 27-01-2025 22:29:06
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setTitle(): Argument #1 ($title) must be of type string, null given, called in /var/www/html/src/Model/Review.php on line 112
+file: /var/www/html/src/Model/Product.php
+line: 47
+time: 27-01-2025 22:42:42
+
+Произошла ошибка при обработке запроса
+message: Cannot assign null to property Model\Review::$id of type int
+file: /var/www/html/src/Model/Review.php
+line: 118
+time: 27-01-2025 23:14:34
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "*"
+LINE 1: SELECT reviews.id as review_id * FROM reviews r INNER JOIN p...
+                                       ^
+file: /var/www/html/src/Model/Review.php
+line: 152
+time: 27-01-2025 23:18:25
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42P01]: Undefined table: 7 ERROR:  invalid reference to FROM-clause entry for table "reviews"
+LINE 1: SELECT reviews.id as review_id  FROM reviews r INNER JOIN pr...
+               ^
+HINT:  Perhaps you meant to reference the table alias "r".
+file: /var/www/html/src/Model/Review.php
+line: 152
+time: 27-01-2025 23:19:27
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 27-01-2025 23:21:09
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42804]: Datatype mismatch: 7 ERROR:  argument of WHERE must be type boolean, not type integer
+LINE 1: SELECT * FROM reviews where id
+                                    ^
+file: /var/www/html/src/Model/Review.php
+line: 168
+time: 27-01-2025 23:42:34
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "r"
+LINE 2: ...                                                  r.product_...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 158
+time: 28-01-2025 01:15:28
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "review"
+LINE 2: ...                                                  review.pro...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 158
+time: 28-01-2025 01:16:47
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "reviews"
+LINE 2: ...                                                  reviews.pr...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 158
+time: 28-01-2025 01:17:50
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "reviews"
+LINE 2: ...                                                  reviews.pr...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 158
+time: 28-01-2025 01:19:57
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "reviews"
+LINE 2: ...                                                  reviews.pr...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 158
+time: 28-01-2025 01:24:52
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "reviews"
+LINE 2: ...                                                  reviews.pr...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 158
+time: 28-01-2025 01:26:37
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42P01]: Undefined table: 7 ERROR:  invalid reference to FROM-clause entry for table "reviews"
+LINE 1: SELECT * FROM reviews r INNER JOIN products p ON reviews.pro...
+                                                         ^
+HINT:  Perhaps you meant to reference the table alias "r".
+file: /var/www/html/src/Model/Review.php
+line: 152
+time: 28-01-2025 01:28:20
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42712]: Duplicate alias: 7 ERROR:  table name "reviews" specified more than once
+file: /var/www/html/src/Model/Review.php
+line: 160
+time: 28-01-2025 01:42:05
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42712]: Duplicate alias: 7 ERROR:  table name "reviews" specified more than once
+file: /var/www/html/src/Model/Review.php
+line: 160
+time: 28-01-2025 01:44:06
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42712]: Duplicate alias: 7 ERROR:  table name "reviews" specified more than once
+file: /var/www/html/src/Model/Review.php
+line: 160
+time: 28-01-2025 01:45:22
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42712]: Duplicate alias: 7 ERROR:  table name "reviews" specified more than once
+file: /var/www/html/src/Model/Review.php
+line: 150
+time: 28-01-2025 01:49:17
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42712]: Duplicate alias: 7 ERROR:  table name "reviews" specified more than once
+file: /var/www/html/src/Model/Review.php
+line: 160
+time: 28-01-2025 01:51:25
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 28-01-2025 01:53:00
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 28-01-2025 01:53:46
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 28-01-2025 01:55:43
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: <! character varying
+LINE 3: <!--            reviews.product_id as review_product_id,
+        ^
+HINT:  No operator matches the given name and argument type. You might need to add an explicit type cast.
+file: /var/www/html/src/Model/Review.php
+line: 160
+time: 28-01-2025 01:56:51
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42883]: Undefined function: 7 ERROR:  operator does not exist: <! character varying
+LINE 3: <!--            reviews.product_id as review_product_id,-->
+        ^
+HINT:  No operator matches the given name and argument type. You might need to add an explicit type cast.
+file: /var/www/html/src/Model/Review.php
+line: 160
+time: 28-01-2025 01:57:28
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 28-01-2025 02:00:38
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 28-01-2025 02:02:21
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setTitle(): Argument #1 ($title) must be of type string, null given, called in /var/www/html/src/Model/Review.php on line 112
+file: /var/www/html/src/Model/Product.php
+line: 47
+time: 28-01-2025 02:09:40
+
+Произошла ошибка при обработке запроса
+message: Cannot use [] for reading
+file: /var/www/html/src/Model/Review.php
+line: 111
+time: 28-01-2025 02:10:52
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 28-01-2025 02:12:27
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 28-01-2025 02:16:42
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 28-01-2025 02:19:56
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 28-01-2025 02:20:55
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setId(): Argument #1 ($id) must be of type int, null given, called in /var/www/html/src/Model/Review.php on line 111
+file: /var/www/html/src/Model/Product.php
+line: 41
+time: 28-01-2025 02:21:05
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 13:             FROM reviews JOIN products ON products.id = revi...
+                     ^
+file: /var/www/html/src/Model/Review.php
+line: 163
+time: 28-01-2025 02:22:33
+
+Произошла ошибка при обработке запроса
+message: Cannot assign null to property Model\Review::$id of type int
+file: /var/www/html/src/Model/Review.php
+line: 118
+time: 28-01-2025 02:23:08
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 3: ...                                                  FROM produ...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 181
+time: 28-01-2025 16:43:00
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 4: ...                                                  FROM produ...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 182
+time: 28-01-2025 16:48:25
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 4: ...                                                  FROM review...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 182
+time: 28-01-2025 16:50:25
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 4: ...                                                  FROM revie...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 182
+time: 28-01-2025 16:53:04
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 14: ...                                                  FROM revie...
+                                                              ^
+file: /var/www/html/src/Model/Review.php
+line: 194
+time: 28-01-2025 16:57:10
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 14: ...                                                  FROM revie...
+                                                              ^
+file: /var/www/html/src/Model/Review.php
+line: 194
+time: 28-01-2025 16:58:15
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 14: ...                                                  FROM revie...
+                                                              ^
+file: /var/www/html/src/Model/Review.php
+line: 194
+time: 28-01-2025 16:59:31
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 14: ...                                                  FROM revie...
+                                                              ^
+file: /var/www/html/src/Model/Review.php
+line: 194
+time: 28-01-2025 17:02:29
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 14: ...                                                  FROM produ...
+                                                              ^
+file: /var/www/html/src/Model/Review.php
+line: 194
+time: 28-01-2025 17:03:50
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 14: ...                                                  FROM revie...
+                                                              ^
+file: /var/www/html/src/Model/Review.php
+line: 194
+time: 28-01-2025 17:09:38
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42803]: Grouping error: 7 ERROR:  column "r.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 2: ...                                                  r.id as re...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 194
+time: 28-01-2025 17:12:55
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "FROM"
+LINE 14: ...                                                  FROM revie...
+                                                              ^
+file: /var/www/html/src/Model/Review.php
+line: 194
+time: 28-01-2025 17:14:00
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42803]: Grouping error: 7 ERROR:  column "r.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 2: ...                                                  r.id as re...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 194
+time: 28-01-2025 17:14:20
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42601]: Syntax error: 7 ERROR:  syntax error at or near "AVG"
+LINE 13: ...                                                  AVG(r.rati...
+                                                              ^
+file: /var/www/html/src/Model/Review.php
+line: 194
+time: 28-01-2025 17:14:32
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42803]: Grouping error: 7 ERROR:  column "r.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 2: ...                                                  r.id as re...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 194
+time: 28-01-2025 17:15:06
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42P01]: Undefined table: 7 ERROR:  invalid reference to FROM-clause entry for table "reviews"
+LINE 2: ...                                                  reviews.id...
+                                                             ^
+HINT:  Perhaps you meant to reference the table alias "r".
+file: /var/www/html/src/Model/Review.php
+line: 194
+time: 28-01-2025 17:16:44
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42P01]: Undefined table: 7 ERROR:  missing FROM-clause entry for table "r"
+LINE 13: ...                                              AVG(r.rating) ...
+                                                              ^
+file: /var/www/html/src/Model/Review.php
+line: 195
+time: 28-01-2025 17:18:50
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42803]: Grouping error: 7 ERROR:  column "reviews.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 2: ...                                                  reviews.id...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 195
+time: 28-01-2025 17:19:19
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42803]: Grouping error: 7 ERROR:  column "products.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 2: ...                                                  products.i...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 199
+time: 28-01-2025 17:21:57
+
+Произошла ошибка при обработке запроса
+message: Model\Product::setDescription(): Argument #1 ($description) must be of type string, null given, called in /var/www/html/src/Model/Review.php on line 113
+file: /var/www/html/src/Model/Product.php
+line: 53
+time: 28-01-2025 17:22:46
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42803]: Grouping error: 7 ERROR:  column "reviews.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 7: ...                                                  reviews.id...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 198
+time: 28-01-2025 17:24:21
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42803]: Grouping error: 7 ERROR:  column "reviews.product_id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 8: ...                                                  reviews.pr...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 198
+time: 28-01-2025 17:25:11
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42803]: Grouping error: 7 ERROR:  column "reviews.user_name" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 9: ...                                                  reviews.us...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 198
+time: 28-01-2025 17:25:40
+
+Произошла ошибка при обработке запроса
+message: Cannot assign null to property Model\Review::$id of type int
+file: /var/www/html/src/Model/Review.php
+line: 118
+time: 28-01-2025 17:26:40
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42803]: Grouping error: 7 ERROR:  column "products.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 2: ...                                                  products.i...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 197
+time: 28-01-2025 17:28:08

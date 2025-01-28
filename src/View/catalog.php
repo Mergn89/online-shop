@@ -37,13 +37,13 @@
                 <i class="fa fa-heart" aria-hidden="true"></i> like
             </div>-->
 
-            <!DOCTYPE html>
+            <!--<!DOCTYPE html>
             <html lang="ru">
             <head>
                 <meta charset="UTF-8">
                 <title>add product</title>
 
-            </head>
+            </head>-->
             <body>
             <div class="form">
                 <div class="header-form">
@@ -68,9 +68,28 @@
             </html>
 
 
+            <!--<form action="/product" method="POST">
+                <input type="hidden" id="product_id" name="product_id" value="<?= $product->getId();?>" required>
+                <button type="submit">Информация о товаре</button>
+            </form>-->
+
+            <!--<span> <a href="/product"> <button class="btn" type="submit"> details</button> </a>  <button>Delete from cart</button>-->
+            <div class="form">
+                <div class="header-form">
+                    <span></span>
+                </div>
+                <form action="/product" method="post">
+
+                    <input type="hidden" id="product-id" name="product_id" value="<?php echo $product->getId() ?? '';?>"  required>
+
+                    <div class="btn">
+                        <span><button class="btn">details</button></span>
+                    </div>
+                </form>
+            </div>
 
 
-            <span> <button>Add to cart</button>  <button>Delete from cart</button> </span>
+
             <div class="add_to_favorites"><button>+ favorites</button> </div>
             <br>
             <br>

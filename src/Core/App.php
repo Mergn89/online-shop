@@ -17,14 +17,14 @@ class App
     private array $routes = [];
 //    private array $services = [];
     private LoggerServiceInterface $loggerService;
-    private Container $diContainer;
+    private Container $container;
 
-    public function __construct(LoggerServiceInterface $loggerService, Container $diContainer)
+    public function __construct(LoggerServiceInterface $loggerService, Container $container)
     {
         $this->routes = [];
 //        $this->services = [];
         $this->loggerService = $loggerService;
-        $this->diContainer = $diContainer;
+        $this->container = $container;
     }
 
 //    [
@@ -115,7 +115,7 @@ class App
                 $method = $handler['method'];
                 $requestClass = $handler['request'];
 
-               $objClass = $this->diContainer->get($class);
+               $objClass = $this->container->get($class);
 
                 if (!empty($requestClass)){
                     $request = new $requestClass($uri, $requestMethod, $_POST);

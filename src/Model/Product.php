@@ -6,7 +6,7 @@ class Product extends Model
     private string $title;
     private string $description;
     private string $price;
-    private string $image_link;
+    private string $imageLink;
     private ?int $amount = null;
 
     public function getId(): int
@@ -31,7 +31,7 @@ class Product extends Model
 
     public function getImageLink(): string
     {
-        return $this->image_link;
+        return $this->imageLink;
     }
     public function getAmount(): int
     {
@@ -62,9 +62,9 @@ class Product extends Model
         return $this;
     }
 
-    public function setImageLink(string $image_link): Product
+    public function setImageLink(string $imageLink): Product
     {
-        $this->image_link = $image_link;
+        $this->imageLink = $imageLink;
         return $this;
     }
     public function setAmount(int $amount): Product
@@ -79,7 +79,7 @@ public static function hydrate(array $data): self
     $products->title = $data['title'];
     $products->description = $data['description'];
     $products->price = $data['price'];
-    $products->image_link = $data['image_link'];
+    $products->imageLink = $data['image_link'];
     return $products;
 
 }
@@ -87,6 +87,7 @@ public static function hydrate(array $data): self
     public static function getProducts(): array|null
     {
         $stmt = self::connectToDatabase()->query("SELECT * FROM products");
+
         $data = $stmt->fetchAll();
         if($data === false){
             return null;
@@ -128,6 +129,10 @@ public static function hydrate(array $data): self
         return $data;
 
     }
+
+
+
+
 
 
 }
