@@ -55,7 +55,7 @@
                         <td><?php echo $review->getProduct()->getTitle();?></td>
                         <td>$<?php echo $review->getProduct()->getPrice();?></td>
                         <td><?php echo $review->getCreated();?></td>
-                        <td><?php echo $review->getUserId();?></td>
+                        <td><?php echo $review->getUser()->getName();?></td>
                         <td><?php echo $review->getRating();?></td>
                         <td><?php echo $review->getProductId();?></td>
 

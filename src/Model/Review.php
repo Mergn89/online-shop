@@ -11,12 +11,12 @@ class Review extends Model
     private int $rating;
     private string $date;
     private Product $product;
-//    private User $user;
+    private User $user;
 
-//    public function getUser(): User
-//    {
-//        return $this->user;
-//    }
+    public function getUser(): User
+    {
+        return $this->user;
+    }
 
     public function setProductId(int $productId): Review
     {
@@ -24,11 +24,11 @@ class Review extends Model
         return $this;
     }
 
-//    public function setUser(User $user): Review
-//    {
-//        $this->user = $user;
-//        return $this;
-//    }
+    public function setUser(User $user): Review
+    {
+        $this->user = $user;
+        return $this;
+    }
 
 
     public function getProductId(): int
@@ -132,6 +132,11 @@ class Review extends Model
         $product->setPrice($data['product_price']);
         $product->setImageLink($data['product_image_link']);
 
+        $user = new User();
+        $user->setId($data['u_id']);
+        $user->setName($data['u_name']);
+        $user->setEmail($data['u_email']);
+
         $obj = new Review();
         $obj->id = $data['review_id'];
         $obj->productId = $data['review_product_id'];
@@ -140,6 +145,7 @@ class Review extends Model
         $obj->rating = $data['review_rating'];
         $obj->date = $data['review_created_at'];
         $obj->product = $product;
+        $obj->user = $user;
         return $obj;
     }
 
@@ -177,8 +183,13 @@ class Review extends Model
                                                             products.title as product_title,
                                                             products.price as product_price,
                                                             products.description as product_description,
-                                                            products.image_link as product_image_link            
-                                                            FROM reviews JOIN products ON products.id = reviews.product_id ");
+                                                            products.image_link as product_image_link,
+                                                            users.id as u_id,
+                                                            users.name as u_name,
+                                                            users.email as u_email
+                                                            FROM reviews 
+                                                                JOIN products ON products.id = reviews.product_id
+                                                                JOIN users ON users.id = reviews.user_id");
         $stmt->execute();
         $data = $stmt->fetchAll();
         if($data === false){

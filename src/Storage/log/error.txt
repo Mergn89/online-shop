@@ -1416,3 +1416,9 @@ message: Cannot assign int to property Model\Review::$user of type Model\User
 file: /var/www/html/src/Model/Review.php
 line: 138
 time: 29-01-2025 18:51:27
+
+Произошла ошибка при обработке запроса
+message: Call to undefined method Model\User::getUserName()
+file: /var/www/html/src/View/reviews.php
+line: 58
+time: 29-01-2025 19:31:33

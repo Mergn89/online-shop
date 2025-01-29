@@ -8,6 +8,30 @@ class User extends Model
     private string $email;
     private string $password;
 
+    public function setId(int $id): User
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function setName(string $name): User
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function setEmail(string $email): User
+    {
+        $this->email = $email;
+        return $this;
+    }
+
+    public function setPassword(string $password): User
+    {
+        $this->password = $password;
+        return $this;
+    }
+
     public function getId(): int
     {
         return $this->id;
