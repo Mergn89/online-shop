@@ -1330,3 +1330,89 @@ LINE 2: ...                                                  products.i...
 file: /var/www/html/src/Model/Review.php
 line: 197
 time: 28-01-2025 17:28:08
+
+Произошла ошибка при обработке запроса
+message: Call to undefined method Controller\ReviewController::getReviews()
+file: /var/www/html/src/Core/App.php
+line: 134
+time: 28-01-2025 22:02:21
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42703]: Undefined column: 7 ERROR:  column reviews.user_name does not exist
+LINE 4: ...                                                  reviews.us...
+                                                             ^
+file: /var/www/html/src/Model/Review.php
+line: 163
+time: 29-01-2025 13:23:36
+
+Произошла ошибка при обработке запроса
+message: round(): Argument #1 ($num) must be of type int|float, string given
+file: /var/www/html/src/View/product.php
+line: 67
+time: 29-01-2025 13:58:22
+
+Произошла ошибка при обработке запроса
+message: round(): Argument #1 ($num) must be of type int|float, string given
+file: /var/www/html/src/View/product.php
+line: 67
+time: 29-01-2025 13:59:25
+
+Произошла ошибка при обработке запроса
+message: round(): Argument #1 ($num) must be of type int|float, string given
+file: /var/www/html/src/View/product.php
+line: 67
+time: 29-01-2025 14:09:36
+
+Произошла ошибка при обработке запроса
+message: round(): Argument #1 ($num) must be of type int|float, string given
+file: /var/www/html/src/View/product.php
+line: 67
+time: 29-01-2025 14:31:07
+
+Произошла ошибка при обработке запроса
+message: Cannot assign Model\Product to property Model\Review::$productId of type ?string
+file: /var/www/html/src/Model/Review.php
+line: 153
+time: 29-01-2025 18:21:30
+
+Произошла ошибка при обработке запроса
+message: Cannot assign Model\Product to property Model\Review::$productId of type int
+file: /var/www/html/src/Model/Review.php
+line: 153
+time: 29-01-2025 18:22:25
+
+Произошла ошибка при обработке запроса
+message: Cannot assign Model\Product to property Model\Review::$productId of type int
+file: /var/www/html/src/Model/Review.php
+line: 153
+time: 29-01-2025 18:23:17
+
+Произошла ошибка при обработке запроса
+message: Cannot assign Model\Product to property Model\Review::$productId of type ?int
+file: /var/www/html/src/Model/Review.php
+line: 153
+time: 29-01-2025 18:24:28
+
+Произошла ошибка при обработке запроса
+message: Call to undefined method Model\Review::getProductId()
+file: /var/www/html/src/Controller/ProductController.php
+line: 61
+time: 29-01-2025 18:28:29
+
+Произошла ошибка при обработке запроса
+message: Call to undefined method Model\Review::getUserId()
+file: /var/www/html/src/View/productAverage.php
+line: 146
+time: 29-01-2025 18:30:42
+
+Произошла ошибка при обработке запроса
+message: Call to undefined method Model\Review::getUserId()
+file: /var/www/html/src/View/productAverage.php
+line: 146
+time: 29-01-2025 18:31:06
+
+Произошла ошибка при обработке запроса
+message: Cannot assign int to property Model\Review::$user of type Model\User
+file: /var/www/html/src/Model/Review.php
+line: 138
+time: 29-01-2025 18:51:27

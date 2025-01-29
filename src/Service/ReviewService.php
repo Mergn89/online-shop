@@ -7,9 +7,9 @@ use Model\Review;
 
 class ReviewService
 {
-    public function createReview(int $productId, string $userName, string $review, int $rating, string $date): void
+    public function createReview(int $productId, int $userId, string $review, int $rating, string $date): void
     {
-        Review::createReview($productId, $userName, $review, $rating, $date);
+        Review::createReview($productId, $userId, $review, $rating, $date);
 
     }
 

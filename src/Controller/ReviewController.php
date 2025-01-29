@@ -7,6 +7,7 @@ use Model\Review;
 use Request\ProductRequest;
 use Request\ReviewRequest;
 use Service\Auth\AuthServiceInterface;
+use Service\Auth\AuthSessionService;
 use Service\ReviewService;
 
 class ReviewController
@@ -14,11 +15,10 @@ class ReviewController
     private AuthServiceInterface $authService;
     private ReviewService $reviewService;
 
-    public function __construct(AuthServiceInterface $authService)
+    public function __construct(ReviewService $reviewService, AuthServiceInterface $authService)
     {
         $this->authService = $authService;
-        $this->reviewService = new ReviewService();
-
+        $this->reviewService = $reviewService;
 
     }
     public function getReview(ProductRequest $productRequest): void // попробовать добавить getReviewProduct
@@ -40,14 +40,14 @@ class ReviewController
 
         if (empty($errors)) {
             $productId = $reviewRequest->getProductId();
-            $userName = $reviewRequest->getUserName();
+
+            $userId = $this->authService->getCurrentUser()->getId();
             $review = $reviewRequest->getReview();
             $rating = $reviewRequest->getRating();
             date_default_timezone_set('Asia/Irkutsk');
             $date = date('d-m-Y H:i:s');
 
-
-            $this->reviewService->createReview($productId, $userName, $review, $rating, $date);
+            $this->reviewService->createReview($productId, $userId, $review, $rating, $date);
             header("location: /reviews");
         }
     }

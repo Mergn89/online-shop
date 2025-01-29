@@ -106,7 +106,7 @@ public static function hydrate(array $data): self
         if($data === false) {
             return null;
         }
-        return Product::hydrate($data);
+        return self::hydrate($data);
     }
 
 

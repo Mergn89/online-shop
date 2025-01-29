@@ -81,14 +81,14 @@
             <textarea name="review" id="review"></textarea>
             <span class="error"></span>
         </div>
-        <div class="pro-pop-input">
+        <!--<div class="pro-pop-input">
             <label>Your Name</label>
             <input type="text" name="user_name">
             <span class="error"></span>
         </div>
-        <!--<div class="pro-pop-input">
+        <div class="pro-pop-input">
             <label>Product-Id</label>
-            <input type="radio" name="product_id" value="<?php echo $product->getId() ?? '';?>">
+            <input type="radio" name="product_id" value="<?php //echo $product->getId() ?? '';?>">
             <span class="error"></span>
         </div>-->
         <div id="buttons">

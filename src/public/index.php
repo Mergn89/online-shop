@@ -31,7 +31,8 @@ $container->set(\Controller\OrderController::class, function (\Core\Container $c
 });
 $container->set(\Controller\ReviewController::class, function (\Core\Container $container) {
     $authService = $container->get(\Service\Auth\AuthServiceInterface::class);
-    return new \Controller\ReviewController($authService);
+    $reviewService =new \Service\ReviewService();
+    return new \Controller\ReviewController($reviewService, $authService);
 });
 
 $container->set(\Service\Logger\LoggerServiceInterface::class, function () {
@@ -50,7 +51,7 @@ $app->addRoute('/login', 'POST', \Controller\UserController::class, 'login', \Re
 $app->addRoute('/logout', 'GET', \Controller\UserController::class, 'logout');
 
 $app->addRoute('/catalog', 'GET', \Controller\ProductController::class, 'getCatalog');
-$app->addRoute('/product', 'POST', \Controller\ProductController::class, 'getAverageProduct', \Request\ProductRequest::class);
+$app->addRoute('/product', 'POST', \Controller\ProductController::class, 'getProductAverage', \Request\ProductRequest::class);
 
 //$app->addRoute('/review', 'GET', \Controller\ReviewController::class, 'getReview');
 $app->addRoute('/rev', 'POST', \Controller\ReviewController::class, 'getReview', \Request\ProductRequest::class);

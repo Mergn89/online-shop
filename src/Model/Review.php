@@ -6,11 +6,29 @@ class Review extends Model
 {
     private int $id;
     private int $productId;
-    private string $userName;
+    private int $userId;
     private string $review;
     private int $rating;
     private string $date;
     private Product $product;
+//    private User $user;
+
+//    public function getUser(): User
+//    {
+//        return $this->user;
+//    }
+
+    public function setProductId(int $productId): Review
+    {
+        $this->productId = $productId;
+        return $this;
+    }
+
+//    public function setUser(User $user): Review
+//    {
+//        $this->user = $user;
+//        return $this;
+//    }
 
 
     public function getProductId(): int
@@ -55,9 +73,9 @@ class Review extends Model
     }
 
 
-    public function getUserName(): string
+    public function getUserId(): string
     {
-        return $this->userName;
+        return $this->userId;
     }
 
     public function getReview(): string
@@ -81,9 +99,9 @@ class Review extends Model
         return $this;
     }
 
-    public function setUserName(string $userName): Review
+    public function setUserId(string $userId): Review
     {
-        $this->userName = $userName;
+        $this->userId = $userId;
         return $this;
     }
 
@@ -117,7 +135,7 @@ class Review extends Model
         $obj = new Review();
         $obj->id = $data['review_id'];
         $obj->productId = $data['review_product_id'];
-        $obj->userName = $data['review_user_name'];
+        $obj->userId = $data['review_user_id'];
         $obj->review = $data['review_review'];
         $obj->rating = $data['review_rating'];
         $obj->date = $data['review_created_at'];
@@ -125,23 +143,24 @@ class Review extends Model
         return $obj;
     }
 
-    public static function hydrate(array $data): self    {
-
+    public static function hydrate(array $data): self
+    {
+//        $userDb = User::getById()
         $review = new self();
         $review->id = $data['id'];
         $review->productId = $data['product_id'];
-        $review->userName = $data['user_name'];
+        $review->userId = $data['user_id'];
         $review->review = $data['review'];
         $review->rating = $data['rating'];
         $review->date = $data['created_at'];
         return $review;
     }
 
-    public static function createReview(int $productId, string $userName, string $review, int $rating, string $date): void
+    public static function createReview(int $productId, int $userId, string $review, int $rating, string $date): void
     {
-        $stmt = self::connectToDatabase()->prepare("INSERT INTO reviews (product_id, user_name, review, rating, created_at)
-                                                 VALUES (:product_id, :user_name, :review, :rating, :created_at)");
-        $stmt->execute(['product_id' => $productId, 'user_name' => $userName, 'review' => $review, 'rating' => $rating, 'created_at' => $date]);
+        $stmt = self::connectToDatabase()->prepare("INSERT INTO reviews (product_id, user_id, review, rating, created_at)
+                                                 VALUES (:product_id, :user_id, :review, :rating, :created_at)");
+        $stmt->execute(['product_id' => $productId, 'user_id' => $userId, 'review' => $review, 'rating' => $rating, 'created_at' => $date]);
     }
 
 
@@ -150,7 +169,7 @@ class Review extends Model
         $stmt = self::connectToDatabase()->prepare("SELECT 
                                                             reviews.id as review_id,
                                                             reviews.product_id as review_product_id,
-                                                            reviews.user_name as review_user_name,
+                                                            reviews.user_id as review_user_id,
                                                             reviews.review as review_review,
                                                             reviews.rating as review_rating,
                                                             reviews.created_at as review_created_at,

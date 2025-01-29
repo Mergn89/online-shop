@@ -52,7 +52,7 @@
                     <img style="width: 140px; height: 140px;" class ="mr-4" src="<?php echo $product->getImageLink();?>" alt="">
                     <div class="media-body flex-grow-1">
                         <h3><?php echo $product->getTitle(); ?></h3>
-                        <span>BDS, MDS - Oral & maxillofacial Surgery </span>
+                        <span>CATALOG - Computers & Components </span>
 
                         <div class="dent-img d-flex">
 
@@ -64,7 +64,11 @@
                             <li><i class="fa fa-star" aria-hidden="true"></i></li>
                             <li><i class="fa fa-star" aria-hidden="true"></i></li>
                             <li> <span><i class="fa fa-star" aria-hidden="true"></i></span></li>
-                            <li class="rating">(<?php echo $averageRatings[$product->getId()] ?? ''; ?>)
+                            <li class="rating">(
+                                <?php if(isset($averageRatings[$product->getId()])): ?>
+                                <?php echo round($averageRatings[$product->getId()], 1); ?>
+                                <?php endif;?>
+                                )
                             </li>
                         </ul>
                         <p> <h3> Price: <?php echo '$'.$product->getPrice(); ?></h3></p>
@@ -130,52 +134,6 @@
 
 
 
-
-                        <div class="tab-pane fade" id="pills-Hospital" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            <div class="col-lg-12 col-sm-12">
-                                <div class="hospital-info">
-                                    <div class="hospital-name">
-                                        <h3>Smile Cute Dental Care Center</h3>
-                                        <span>MDS - Periodontology and Oral Implantology, BDS</span>
-
-                                        <ul>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li> <span><i class="fa fa-star" aria-hidden="true"></i></span></li>
-                                            <li class="rating">(4)</li>
-                                        </ul>
-                                        <p> <i class="fas fa-map-marker-alt"></i>   2286 Sundown Lane, Austin, Texas 78749, USA </p>
-                                        <a class="d-block" href="tel:+15143125678">+88 (185) 512-3834</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-12 col-sm-12">
-                                <div class="hospital-info">
-                                    <div class="hospital-name">
-                                        <h3>The Family Dentistry Clinic</h3>
-                                        <span>MDS - Periodontology and Oral Implantology, BDS</span>
-
-                                        <ul>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li> <span><i class="fa fa-star" aria-hidden="true"></i></span></li>
-                                            <li class="rating">(4)</li>
-                                        </ul>
-                                        <p> <i class="fas fa-map-marker-alt"></i>   2883 University Street, Seattle, Texas Washington, 98155
-                                            Get Directions </p>
-                                        <a class="d-block" href="tel:+15143125678">+88 (185) 512-3834</a>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
                         <div class="tab-pane fade" id="pills-Reviews" role="tabpanel" aria-labelledby="pills-contact-tab">
                             <div class="widget review-listing pl-3">
                                 <ul class="comment-list">
@@ -184,30 +142,15 @@
                                             <img class="avatar avatar-sm rounded-circle" src="./img/patient.9116742.jpg" alt="User Image">
                                             <div class="comment-body">
                                                 <div class="meta-data">
-                                                    <span class="comment-author">Richard Wilson</span>
-                                                    <span class="comment-date">Reviewed 2 days ago</span>
-                                                    <div class="review-count-rating">
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                    </div>
+                                                    <span class="comment-author"><?php foreach($allReviews as $review): ?>Richard Wilson</span>
+                                                                                 <?php echo $review->getUserId()."\n";?>
+                                                                                 <?php endforeach;?>
                                                 </div>
                                                 <p class="recommended">
-                                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i> I recommend the doctor
+                                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i> I recommend the product
                                                 </p>
                                                 <p class="recommend-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Curabitur non nulla sit amet nisl tempus </p>
-                                                <div class="comment-reply">
-                                                    <a class="comment-btn" href="#">
-                                                        <i class="fa fa-reply"></i> Reply
-                                                    </a>
-                                                    <p class="recommend-btn">
-                                                        <span>Recommend?</span>
-                                                        <a class="like-btn" href="#"> <i class="fa fa-thumbs-up"></i>Yes</a>
-                                                        <a class="dislike-btn" href="#"><i class="fa fa-thumbs-down"></i>No</a>
-                                                    </p>
-                                                </div>
+
                                             </div>
                                         </div>
                                     </li>

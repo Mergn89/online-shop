@@ -9,7 +9,7 @@ class ReviewRequest extends Request
         return $this->data['product_id'] ?? '';
     }
 
-    public function getUserName(): ?string
+    public function getUserId(): ?int
     {
         return $this->data['user_name'] ?? '';
     }
@@ -29,18 +29,18 @@ class ReviewRequest extends Request
         $data = $this->data;
         $errors = [];
 
-        if (isset($data['user_name'])) {
-            $userName = $data['user_name'];
-            if (empty($userName)) {
-                $errors['user_name'] = 'Имя не должно быть пустым';
-            } elseif (strlen($userName) < 4) {
-                $errors['user_name'] = 'Имя должно содержать не менее 4 символов';
-            } elseif (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/", $userName)) {
-                $errors['user_name'] = 'В имени недопустимый символ';
-            }
-        } else {
-            $errors['user_name'] = 'Поле name должно быть заполнено';
-        }
+//        if (isset($data['user_name'])) {
+//            $userName = $data['user_name'];
+//            if (empty($userName)) {
+//                $errors['user_name'] = 'Имя не должно быть пустым';
+//            } elseif (strlen($userName) < 4) {
+//                $errors['user_name'] = 'Имя должно содержать не менее 4 символов';
+//            } elseif (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/", $userName)) {
+//                $errors['user_name'] = 'В имени недопустимый символ';
+//            }
+//        } else {
+//            $errors['user_name'] = 'Поле name должно быть заполнено';
+//        }
 
         if (isset($data['review'])) {
             $review = $data['review'];
