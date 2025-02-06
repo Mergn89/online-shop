@@ -5,6 +5,7 @@
     <p>We love to hear from our customers.
         <br>Share your success story with us.</p>
     <form action="/review" method="post" >
+        <?php echo $errors['rating'] ?? '';?>
         <input type="hidden" name="rating" value="" id="rating">
         <div class="pro-pop-input">
             <label>Rating</label>

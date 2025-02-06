@@ -27,6 +27,16 @@ class ReviewController
         $this->orderService = $orderService;
     }
 
+//    public function getRev(): void
+//    {
+//        if (!$this->authService->check()) {
+//            header("location: /login");        }
+//
+////        $product = Product::getOneById($productRequest->getProductId());
+//
+//        require_once "./../View/review.php";
+//
+//    }
 
     public function getReview(ProductRequest $productRequest): void // попробовать добавить getReviewProduct
     {
@@ -44,12 +54,11 @@ class ReviewController
         $userId = $this->authService->getCurrentUser()->getId();
         $productId = $reviewRequest->getProductId();
 
-        $errors = $reviewRequest->validate($userId, $this->orderService);
+        $errors = $reviewRequest->validate($userId, $this->orderService, $this->authService);
 
         $product = Product::getOneById($productId);
 
         if (empty($errors)) {
-
 
             $review = $reviewRequest->getReview();
             $rating = $reviewRequest->getRating();
@@ -59,9 +68,13 @@ class ReviewController
             $this->reviewService->createReview($productId, $userId, $review, $rating, $date);
 
             header("location: /reviews");
-        }
 
+        }
         require_once "./../View/review.php";
+
+
+
+//        require_once "./../View/productAverage.php";
     }
 
 //    function addRev()
@@ -96,7 +109,13 @@ class ReviewController
 //        print_r($averageRatings);
 //        echo '</pre>'; die;
 //        print_r($avg);die;
-
+//        $userId = $this->authService->getCurrentUser()->getId();
+//        $rev = Review::getReviewsByUserId($userId);
+//        foreach ($rev as $value){
+//            echo "\n".$value->getUserId();
+//        }
+//
+//        die;
         require_once "./../View/reviews.php";
     }
 

@@ -40,7 +40,11 @@ class ProductController
             header("location: /login");
         }
 
+//        $userId = $this->authService->getCurrentUser()->getId();
+
         $product = Product::getOneById($productRequest->getProductId());
+
+//        $reviewUser = Review::getReviewsByUserId($userId);
 
         $reviews = Review::getReviewsJoinProducts();
 //        echo '<pre>';

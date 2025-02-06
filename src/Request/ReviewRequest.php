@@ -5,6 +5,8 @@ namespace Request;
 use Model\Order;
 use Model\OrderProduct;
 use Model\Product;
+use Model\Review;
+use Service\Auth\AuthServiceInterface;
 use Service\OrderService;
 
 class ReviewRequest extends Request
@@ -25,7 +27,7 @@ class ReviewRequest extends Request
     }
 
 
-    public function validate(int $userId, OrderService $orderService): array
+    public function validate(int $userId, OrderService $orderService, AuthServiceInterface $authService): array
     {
         $data = $this->data;
         $errors = [];
@@ -57,6 +59,7 @@ class ReviewRequest extends Request
 
         if (isset($data['product_id'])) {
             $productId = $data['product_id'];
+
             $orders = $orderService->getOrders($userId);
 
             $flag = false;
@@ -70,8 +73,14 @@ class ReviewRequest extends Request
             if ($flag) {
                 $errors['product_id'] = 'чтобы оставить отзыв, закажите продукт';
             }
-        }
 
+            $userId = $authService->getCurrentUser()->getId();
+            $rev = Review::getReviewsByUserId($userId);
+            if(!$flag && $rev) {
+                $errors['product_id'] = 'Вы уже оставляли отзыв по такому товару';
+            }
+
+        }
         return $errors;
 
     }

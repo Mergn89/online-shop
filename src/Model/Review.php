@@ -252,5 +252,20 @@ class Review extends Model
 
     }
 
+    public static function getReviewsByUserId(int $userId): array|null
+    {
+        $stmt = self::connectToDatabase()->prepare("SELECT * FROM reviews WHERE user_id = :user_id");
+        $stmt->execute(['user_id' => $userId]);
+        $data = $stmt->fetchAll();
+        if($data === false){
+            return null;
+        } else{
+            foreach ($data as &$datum){
+                $datum = self::hydrate($datum);
+            }
+        } return $data;
+
+    }
+
 
 }

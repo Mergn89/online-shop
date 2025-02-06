@@ -1631,3 +1631,119 @@ DETAIL:  Key (product_id, user_id)=(1, 1) already exists.
 file: /var/www/html/src/Model/Review.php
 line: 169
 time: 02-02-2025 19:51:56
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint "review_unique"
+DETAIL:  Key (product_id, user_id)=(1, 1) already exists.
+file: /var/www/html/src/Model/Review.php
+line: 169
+time: 06-02-2025 11:23:37
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint "review_unique"
+DETAIL:  Key (product_id, user_id)=(1, 1) already exists.
+file: /var/www/html/src/Model/Review.php
+line: 169
+time: 06-02-2025 11:27:38
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint "review_unique"
+DETAIL:  Key (product_id, user_id)=(1, 1) already exists.
+file: /var/www/html/src/Model/Review.php
+line: 169
+time: 06-02-2025 11:30:10
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint "review_unique"
+DETAIL:  Key (product_id, user_id)=(1, 1) already exists.
+file: /var/www/html/src/Model/Review.php
+line: 169
+time: 06-02-2025 11:36:59
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint "review_unique"
+DETAIL:  Key (product_id, user_id)=(1, 1) already exists.
+file: /var/www/html/src/Model/Review.php
+line: 169
+time: 06-02-2025 11:40:50
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint "review_unique"
+DETAIL:  Key (product_id, user_id)=(1, 1) already exists.
+file: /var/www/html/src/Model/Review.php
+line: 169
+time: 06-02-2025 11:42:08
+
+Произошла ошибка при обработке запроса
+message: Controller\ReviewController::getReview(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\ReviewRequest given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ReviewController.php
+line: 31
+time: 06-02-2025 11:47:16
+
+Произошла ошибка при обработке запроса
+message: Controller\ReviewController::getReview(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\ReviewRequest given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ReviewController.php
+line: 31
+time: 06-02-2025 11:47:18
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 06-02-2025 11:47:59
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 06-02-2025 11:48:00
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 06-02-2025 11:49:55
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 06-02-2025 11:49:57
+
+Произошла ошибка при обработке запроса
+message: Request\ProductRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ProductRequest.php
+line: 12
+time: 06-02-2025 11:50:55
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint "review_unique"
+DETAIL:  Key (product_id, user_id)=(1, 1) already exists.
+file: /var/www/html/src/Model/Review.php
+line: 169
+time: 06-02-2025 11:51:39
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[23505]: Unique violation: 7 ERROR:  duplicate key value violates unique constraint "review_unique"
+DETAIL:  Key (product_id, user_id)=(1, 1) already exists.
+file: /var/www/html/src/Model/Review.php
+line: 169
+time: 06-02-2025 12:01:17
+
+Произошла ошибка при обработке запроса
+message: Controller\ReviewController::getRev(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\ReviewRequest given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ReviewController.php
+line: 30
+time: 06-02-2025 12:01:23
+
+Произошла ошибка при обработке запроса
+message: Controller\ReviewController::getRev(): Argument #1 ($productRequest) must be of type Request\ProductRequest, Request\ReviewRequest given, called in /var/www/html/src/Core/App.php on line 134
+file: /var/www/html/src/Controller/ReviewController.php
+line: 30
+time: 06-02-2025 12:01:25
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getTitle() on null
+file: /var/www/html/src/View/review.php
+line: 4
+time: 06-02-2025 12:02:49
