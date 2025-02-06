@@ -100,89 +100,93 @@ class OrderController
             header("location: /login");
         } else {
             $userId = $this->authService->getCurrentUser()->getId();
-            $orders = Order::getAllByUserId($userId);
 
-            /*
-              $orders = [
-                [
-                    'id' => 1,
-                    'user_id' => 23,
-                    'contact_name' => 'Alex',
-                    'address' => 'Moscow',
-                    'total' => 2300
+            $orders = $this->orderService->getOrders($userId);
 
-                ],
-                [
-                    'id' => 2,
-                    'user_id' => 23,
-                    'contact_name' => 'Alex',
-                    'address' => 'Moscow'
-                    'total' => 1200
-                    ....
-                ]
 
-            ];*/
-
-            foreach ($orders as &$order) {
-                $orderProducts = OrderProduct::getByOrderId($order->getId());
-
-                /*$orderProducts = [
-                    [
-                        'id' => 1,
-                        'order_id' => 1,
-                        'product_id' => 2,
-                        'amount' => 5,
-                        'order_price' => 120
-                    ],
-                    [
-                        'id' => 2,
-                        'order_id' => 3,
-                        'product_id' => 1,
-                        'amount' => 3,
-                        'order_price' => 200
-                    ],
-
-                ];*/
-
-                if(!empty($orderProducts)) {
-                    $productIds = [];
-                    foreach ($orderProducts as $orderProduct){
-                        $productIds[] = $orderProduct->getProductId();
-                    }
-                    $products = Product::getAllByIds($productIds);
-
-                    foreach ($orderProducts as $orderProduct){
-                        foreach ($products as $product) {
-                            if ($product->getId() === $orderProduct->getProductId()) {
-                                $product->setAmount($orderProduct->getAmount());
-                                $product->setPrice($orderProduct->getOrderPrice());
-                            }
-                        }
-                        //unset($product);
-
-                    }
-                    $allOrders = $order->setProducts($products);
-                }
-
-                //else {
-//                    print_r('У Вас нет заказов');
+//            $orders = Order::getAllByUserId($userId);
+//
+//            /*
+//              $orders = [
+//                [
+//                    'id' => 1,
+//                    'user_id' => 23,
+//                    'contact_name' => 'Alex',
+//                    'address' => 'Moscow',
+//                    'total' => 2300
+//
+//                ],
+//                [
+//                    'id' => 2,
+//                    'user_id' => 23,
+//                    'contact_name' => 'Alex',
+//                    'address' => 'Moscow'
+//                    'total' => 1200
+//                    ....
+//                ]
+//
+//            ];*/
+//
+//            foreach ($orders as &$order) {
+//                $orderProducts = OrderProduct::getByOrderId($order->getId());
+//
+//                /*$orderProducts = [
+//                    [
+//                        'id' => 1,
+//                        'order_id' => 1,
+//                        'product_id' => 2,
+//                        'amount' => 5,
+//                        'order_price' => 120
+//                    ],
+//                    [
+//                        'id' => 2,
+//                        'order_id' => 3,
+//                        'product_id' => 1,
+//                        'amount' => 3,
+//                        'order_price' => 200
+//                    ],
+//
+//                ];*/
+//
+//                if(!empty($orderProducts)) {
+//                    $productIds = [];
+//                    foreach ($orderProducts as $orderProduct){
+//                        $productIds[] = $orderProduct->getProductId();
+//                    }
+//                    $products = Product::getAllByIds($productIds);
+//
+//                    foreach ($orderProducts as $orderProduct){
+//                        foreach ($products as $product) {
+//                            if ($product->getId() === $orderProduct->getProductId()) {
+//                                $product->setAmount($orderProduct->getAmount());
+//                                $product->setPrice($orderProduct->getOrderPrice());
+//                            }
+//                        }
+//                        //unset($product);
+//
+//                    }
+//                    $order->setProducts($products);//=> $allOrders;
 //                }
-//            $order['products'] = $products;
-//                print_r($products); die;
-//                $order['products'] = $products;
-            }
-//            unset($order);
+//
+//                //else {
+////                    print_r('У Вас нет заказов');
+////                }
+////            $order['products'] = $products;
+////                print_r($products); die;
+////                $order['products'] = $products;
+//            }
+////            unset($order);
+//        }
+////                        echo '<pre>';
+////                        print_r($orders);
+////                        echo '</pre>';
+////                        echo '<pre>';
+////                        print_r($order);
+////                        echo '</pre>';
+////                        die;
+////        print_r($orders); die;
+            require_once "./../View/orders.php";
         }
-//                        echo '<pre>';
-//                        print_r($orders);
-//                        echo '</pre>';
-//                        echo '<pre>';
-//                        print_r($order);
-//                        echo '</pre>';
-//                        die;
-//        print_r($orders); die;
-        require_once "./../View/orders.php";
     }
-
 
 }

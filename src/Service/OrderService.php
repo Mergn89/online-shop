@@ -35,6 +35,57 @@ class OrderService
 
     }
 
+    public function getOrders(int $userId): array
+    {
+        $orders = Order::getAllByUserId($userId);
+
+        /*
+          $orders = [
+            [
+                'id' => 1,
+                'user_id' => 23,
+                'contact_name' => 'Alex',
+                'address' => 'Moscow',
+                'total' => 2300
+
+            ],
+            [
+                'id' => 2,
+                'user_id' => 23,
+                'contact_name' => 'Alex',
+                'address' => 'Moscow'
+                'total' => 1200
+                ....
+            ]
+
+        ];*/
+
+        foreach ($orders as &$order) {
+            $orderProducts = OrderProduct::getByOrderId($order->getId());
+
+            if(!empty($orderProducts)) {
+                $productIds = [];
+                foreach ($orderProducts as $orderProduct){
+                    $productIds[] = $orderProduct->getProductId();
+                }
+                $products = Product::getAllByIds($productIds);
+
+                foreach ($orderProducts as $orderProduct){
+                    foreach ($products as $product) {
+                        if ($product->getId() === $orderProduct->getProductId()) {
+                            $product->setAmount($orderProduct->getAmount());
+                            $product->setPrice($orderProduct->getOrderPrice());
+                        }
+                    }
+
+                }
+                $order->setProducts($products);
+            }
+
+        } return $orders;
+    }
+
+
     private function getAllUserProducts(CreateOrderDTO $orderDTO): array
     {
         $allUserProducts = UserProduct::getUserProductsByUserId($orderDTO->getUserId());

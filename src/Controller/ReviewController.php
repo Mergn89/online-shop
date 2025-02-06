@@ -4,53 +4,82 @@ namespace Controller;
 
 use Model\Product;
 use Model\Review;
+use Request\OrderRequest;
 use Request\ProductRequest;
 use Request\ReviewRequest;
 use Service\Auth\AuthServiceInterface;
 use Service\Auth\AuthSessionService;
+use Service\OrderService;
 use Service\ReviewService;
 
 class ReviewController
 {
     private AuthServiceInterface $authService;
     private ReviewService $reviewService;
+    private OrderService $orderService;
 
-    public function __construct(ReviewService $reviewService, AuthServiceInterface $authService)
+
+
+    public function __construct(ReviewService $reviewService, AuthServiceInterface $authService, OrderService $orderService)
     {
         $this->authService = $authService;
         $this->reviewService = $reviewService;
-
+        $this->orderService = $orderService;
     }
+
+
     public function getReview(ProductRequest $productRequest): void // попробовать добавить getReviewProduct
     {
         if (!$this->authService->check()) {
-            header("location: /login");
-        }
+            header("location: /login");        }
 
         $product = Product::getOneById($productRequest->getProductId());
 
-//
         require_once "./../View/review.php";
 
     }
 
     public function addReview(ReviewRequest $reviewRequest): void
     {
-        $errors = $reviewRequest->validate();
+        $userId = $this->authService->getCurrentUser()->getId();
+        $productId = $reviewRequest->getProductId();
+
+        $errors = $reviewRequest->validate($userId, $this->orderService);
+
+        $product = Product::getOneById($productId);
 
         if (empty($errors)) {
-            $productId = $reviewRequest->getProductId();
 
-            $userId = $this->authService->getCurrentUser()->getId();
+
             $review = $reviewRequest->getReview();
             $rating = $reviewRequest->getRating();
             date_default_timezone_set('Asia/Irkutsk');
             $date = date('d-m-Y H:i:s');
 
             $this->reviewService->createReview($productId, $userId, $review, $rating, $date);
+
             header("location: /reviews");
         }
+
+        require_once "./../View/review.php";
     }
+
+//    function addRev()
+//    {
+//        $userId = getOrders();
+//        if (isset($userId)) {
+//            $productId = getOrderProducts();
+//            $review = getReviews();
+//            if(isset($productId) && !isset($review)) {
+//                $this->addReview();
+//            } else {
+//                echo 'чтобы оставить отзыв, необходимо заказать продукт';
+//            }
+//        } else {
+//            echo 'чтобы оставить отзыв, необходимо заказать продукт';
+//        }
+//    }
+
 
     public function getReviews(): void
     {

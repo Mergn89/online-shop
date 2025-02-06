@@ -31,15 +31,17 @@ $container->set(\Controller\OrderController::class, function (\Core\Container $c
 });
 $container->set(\Controller\ReviewController::class, function (\Core\Container $container) {
     $authService = $container->get(\Service\Auth\AuthServiceInterface::class);
-    $reviewService =new \Service\ReviewService();
-    return new \Controller\ReviewController($reviewService, $authService);
+    $reviewService = new \Service\ReviewService();
+    $orderService = new \Service\OrderService();
+
+    return new \Controller\ReviewController($reviewService, $authService, $orderService);
 });
 
 $container->set(\Service\Logger\LoggerServiceInterface::class, function () {
     return new \Service\Logger\LoggerFileService();
 });
 $container->set(\Service\Auth\AuthServiceInterface::class, function () {
-    return new \Service\Auth\AuthSessionService();
+    return new \Service\Auth\AuthCookieService();
 });
 
 $app = new App($loggerService, $container);
@@ -53,7 +55,7 @@ $app->addRoute('/logout', 'GET', \Controller\UserController::class, 'logout');
 $app->addRoute('/catalog', 'GET', \Controller\ProductController::class, 'getCatalog');
 $app->addRoute('/product', 'POST', \Controller\ProductController::class, 'getProductAverage', \Request\ProductRequest::class);
 
-//$app->addRoute('/review', 'GET', \Controller\ReviewController::class, 'getReview');
+//$app->addRoute('/revis', 'GET', \Controller\ReviewController::class, 'addReviews',\Request\ReviewRequest::class);
 $app->addRoute('/rev', 'POST', \Controller\ReviewController::class, 'getReview', \Request\ProductRequest::class);
 $app->addRoute('/review', 'POST', \Controller\ReviewController::class, 'addReview', \Request\ReviewRequest::class);
 $app->addRoute('/reviews', 'GET', \Controller\ReviewController::class, 'getReviews', \Request\ReviewRequest::class);

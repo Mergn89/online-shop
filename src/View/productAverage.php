@@ -77,14 +77,14 @@
 
                     </div>
 
-                    <form action="/rev" method="post">
+                   <!-- <form action="/rev" method="post">
 
-                        <input type="hidden" id="product_id" name="product_id" value="<?php echo $product->getId() ?? '';?>"  required>
+                        <input type="hidden" id="product_id" name="product_id" value="<?php //echo $product->getId() ?? '';?>"  required>
 
                         <div class="btn">
                             <span><button style="color: #710e12"  class="btn">Write Review</button></span>
                         </div>
-                    </form>
+                    </form> -->
 
                     <!--<a style="color: darkred" href="/review"><button class="btn" type="submit">Write review </a>-->
                 </div>
@@ -156,36 +156,7 @@
                                     </li>
 
                                     <li>
-                                        <div class="comment pl-5 mb-3 ">
-                                            <img class="avatar avatar-sm rounded-circle" src="./img/patient1.f11f2b3.jpg" alt="User Image">
-                                            <div class="comment-body">
-                                                <div class="meta-data">
-                                                    <span class="comment-author">Charlene Reed</span>
-                                                    <span class="comment-date">Reviewed 3 days ago</span>
-                                                    <div class="review-count-rating">
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                    </div>
-                                                </div>
-                                                <p class="recommended">
-                                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i> I recommend the doctor
-                                                </p>
-                                                <p class="recommend-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Curabitur non nulla sit amet nisl tempus </p>
-                                                <div class="comment-reply">
-                                                    <a class="comment-btn" href="#">
-                                                        <i class="fa fa-reply"></i> Reply
-                                                    </a>
-                                                    <p class="recommend-btn">
-                                                        <span>Recommend?</span>
-                                                        <a class="like-btn" href="#"> <i class="fa fa-thumbs-up"></i>Yes</a>
-                                                        <a class="dislike-btn" href="#"><i class="fa fa-thumbs-down"></i>No</a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </li>
                                     <li>
                                         <div class="comment">
@@ -225,35 +196,68 @@
                                 </div>
 
                             </div>
+
+                            <form action="/rev" method="post">
                             <div class="review-form">
-                                <h4>Write a review for Dr. darren Elder</h4>
-                                <span>Review</span>
-                                <div class="star">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
+                                <h4>Write a review for product</h4>
+                                <span>Rating</span>
+
+                                <div class="pro-pop-input">
+                                    <label> </label>
+
+                                    <section class="rating-widget rating">
+                                        <label>
+                                            <input type="radio" name="rating" value="1" />
+                                            <span class="icon">★</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="rating" value="2" />
+                                            <span class="icon">★</span>
+                                            <span class="icon">★</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="rating" value="3" />
+                                            <span class="icon">★</span>
+                                            <span class="icon">★</span>
+                                            <span class="icon">★</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="rating" value="4" />
+                                            <span class="icon">★</span>
+                                            <span class="icon">★</span>
+                                            <span class="icon">★</span>
+                                            <span class="icon">★</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="rating" value="5" />
+                                            <span class="icon">★</span>
+                                            <span class="icon">★</span>
+                                            <span class="icon">★</span>
+                                            <span class="icon">★</span>
+                                            <span class="icon">★</span>
+                                        </label>
+                                    </section>
+                                    <span class="star-rating-error"></span>
                                 </div>
+
                                 <div class="form-style">
-                                    <form action="#">
-                                        <label for="fname">Title of your review</label><br>
-                                        <input type="text" id="fname" name="firstname" placeholder="If you could say it in one sentence, what would you say?"><br>
-                                        <label for="Yrev">Your review</label><br>
-                                        <textarea name="" id="Yrev" cols="30" rows="10"></textarea>
+
+                                        <label for="review">Your review</label><br>
+                                        <textarea placeholder="enter review" name="review" id="review"></textarea>
                                         <p>100 caracters remaining</p> <br>
 
-                                        <div class="custom-checkbox">
-                                            <input type="checkbox" id="Tcondition">
-                                            <label for="Tcondition"> I have read and accept <a>Terms & Conditions</a></label>
+                                            <input type="hidden" id="product_id" name="product_id" value="<?php echo $product->getId() ?? '';?>"  required>
 
-                                        </div>
-
-                                        <button class="form-btn">Write Review</button>
+                                            <div class="btn">
+                                                <span><button style="color: #710e12"  class="btn">Write Review</button></span>
+                                            </div>
 
                                     </form>
                                 </div>
                             </div>
+
+
+
                         </div>
                     </div>
                 </div>
@@ -278,6 +282,73 @@
 </html>
 
 <style>
+
+    .rating {
+        display: inline-block;
+        position: relative;
+        height: 50px;
+        line-height: 50px;
+        font-size: 50px;
+    }
+
+    .rating label {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .rating label:last-child {
+        position: static;
+    }
+
+    .rating label:nth-child(1) {
+        z-index: 5;
+    }
+
+    .rating label:nth-child(2) {
+        z-index: 4;
+    }
+
+    .rating label:nth-child(3) {
+        z-index: 3;
+    }
+
+    .rating label:nth-child(4) {
+        z-index: 2;
+    }
+
+    .rating label:nth-child(5) {
+        z-index: 1;
+    }
+
+    .rating label input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+
+    .rating label .icon {
+        float: left;
+        color: transparent;
+    }
+
+    .rating label:last-child .icon {
+        color: #000;
+    }
+
+    .rating:not(:hover) label input:checked ~ .icon,
+    .rating:hover label:hover input ~ .icon {
+        color: #09f;
+    }
+
+    .rating label input:focus:not(:checked) ~ .icon:last-child {
+        color: #000;
+        text-shadow: 0 0 5px #09f;
+    }
+
     .btn{
         background: #BF9860;
     }

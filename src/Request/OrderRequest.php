@@ -2,6 +2,11 @@
 
 namespace Request;
 
+use Model\Model;
+use Model\Order;
+use Model\OrderProduct;
+use Model\Product;
+
 class OrderRequest extends Request
 {
     public function getContactName(): ?string
@@ -56,5 +61,7 @@ class OrderRequest extends Request
 
         return $errors;
     }
+
+
 
 }

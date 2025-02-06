@@ -1,39 +1,11 @@
-<!--<div class="row">
-    <div class="col-75">
-        <div class="container">
-            <form action="/review" method="POST">
-
-                <div class="row">
-                    <div class="col-50">
-                        <h3>Write review</h3>
-                        <label for="contact_name"><i class="fa fa-user"></i> Name</label>
-                        <label style="color: darkred"><?php //echo $errors['contact_name'] ?? ''; ?></label>
-                        <input type="text" id="contact_name" name="contact_name" placeholder="">
-                        <label for="phone"><i class="fa fa-user"></i> Phone</label>
-                        <label style="color: darkred"><?php //echo $errors['phone'] ?? ''; ?></label>
-                        <input type="text" id="phone" name="phone" placeholder="">
-                        <label for="address"><i class="fa fa-address-card-o"></i> Address</label>
-                        <label style="color: darkred"><?php //echo $errors['address'] ?? ''; ?></label>
-                        <input type="text" id="address" name="address" placeholder="">
-                    </div>
-
-                </div>
-
-                <input type="submit" value="Оформить заказ" class="btn">
-            </form>
-        </div>
-    </div>-->
-
-
-
 
 <div class="products-form-popup">
-    <h3>Write A Review</h3>
-    <h3><?php echo $product->getTitle(); ?></h3>
+    <h3>Write Review</h3>
+    <h3><?php echo $product->getTitle() ?? ''; ?></h3>
     <p>We love to hear from our customers.
         <br>Share your success story with us.</p>
     <form action="/review" method="post" >
-        <input type="hidden" name="rating" value="5" id="rating">
+        <input type="hidden" name="rating" value="" id="rating">
         <div class="pro-pop-input">
             <label>Rating</label>
 
@@ -77,10 +49,21 @@
             <span class="error"></span>
         </div>-->
         <div class="pro-pop-input">
-            <label>Review</label>
-            <textarea name="review" id="review"></textarea>
+            <label for="review"> <b>Review</b></label><br>
+            <label style="color: brown">
+                <?php if(isset($errors['review'])): ?>
+                    <?php print_r($errors['review']);?>
+                <?php endif?></label>
+            <textarea placeholder="enter review" name="review" id="review"></textarea>
             <span class="error"></span>
         </div>
+
+        <!--<label for="email"><b>Email</b></label> <br>
+        <label style="color: brown">
+            <?php //if(isset($errors['email'])): ?>
+                <?php //print_r($errors['email']);?>
+            <?php //endif?></label>
+        <input type="text" placeholder="Enter email" name="email" id="email" required>-->
         <!--<div class="pro-pop-input">
             <label>Your Name</label>
             <input type="text" name="user_name">
@@ -99,6 +82,7 @@
             <div class="pro-pop-btn">
 
                 <!--<input type="hidden" id="product_id" name="product_id" value="" required>-->
+                <?php echo $errors['product_id'] ?? '';?>
                 <button><input type="submit" name="product_id" value="<?php echo $product->getId() ?? '';?>"></button>
                 <a href="javascript:void(0);" class="no-thanks">No Thanks</a>
             </div>

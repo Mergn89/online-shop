@@ -2,16 +2,16 @@
 
 namespace Request;
 
+use Model\Order;
+use Model\OrderProduct;
+use Model\Product;
+use Service\OrderService;
+
 class ReviewRequest extends Request
 {
     public function getProductId(): ?int
     {
         return $this->data['product_id'] ?? '';
-    }
-
-    public function getUserId(): ?int
-    {
-        return $this->data['user_name'] ?? '';
     }
 
     public function getReview(): ?string
@@ -24,28 +24,17 @@ class ReviewRequest extends Request
         return $this->data['rating'] ?? '';
     }
 
-    public function validate(): array
+
+    public function validate(int $userId, OrderService $orderService): array
     {
         $data = $this->data;
         $errors = [];
 
-//        if (isset($data['user_name'])) {
-//            $userName = $data['user_name'];
-//            if (empty($userName)) {
-//                $errors['user_name'] = 'Имя не должно быть пустым';
-//            } elseif (strlen($userName) < 4) {
-//                $errors['user_name'] = 'Имя должно содержать не менее 4 символов';
-//            } elseif (preg_match("/[^(\w)|(\x7F-\xFF)|(\s)]/", $userName)) {
-//                $errors['user_name'] = 'В имени недопустимый символ';
-//            }
-//        } else {
-//            $errors['user_name'] = 'Поле name должно быть заполнено';
-//        }
-
         if (isset($data['review'])) {
             $review = $data['review'];
             if (empty($review)) {
-                $errors['review'] = 'Поле  не должно быть пустым или 0';
+                $errors['review'] = 'Поле не должно быть пустым';
+
             }
         } else {
             $errors['review'] = 'Поле должно быть заполнено';
@@ -55,7 +44,7 @@ class ReviewRequest extends Request
         if (isset($data['rating'])) {
             $rating = $data['rating'];
             if (empty($rating)) {
-                $errors['rating'] = 'Поле  не должно быть пустым или 0';
+                $errors['rating'] = 'оцените товар, пожалуйста';
             } elseif ($rating < 1 || $rating > 5) {
                 $errors['rating'] = "Некорректное значение";
             } elseif (!preg_match("/^[0-9 ,.-]+$/u", $rating)) {
@@ -64,6 +53,23 @@ class ReviewRequest extends Request
 
         } else {
             $errors['rating'] = 'Поле должно быть заполнено';
+        }
+
+        if (isset($data['product_id'])) {
+            $productId = $data['product_id'];
+            $orders = $orderService->getOrders($userId);
+
+            $flag = false;
+            foreach ($orders as $order) {
+                foreach ($order->getProducts() as $product){
+                    if($product->getId() === $productId) {
+                        $flag = true;
+                    }
+                }
+            }
+            if ($flag) {
+                $errors['product_id'] = 'чтобы оставить отзыв, закажите продукт';
+            }
         }
 
         return $errors;

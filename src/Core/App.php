@@ -142,7 +142,7 @@ class App
                         'line' => $exception->getLine(),
                         'time' => date('d-m-Y H:i:s')
                     ]);
-                    http_response_code(404);
+                    http_response_code(500);
                     require_once './../View/500.php';
                 }
 

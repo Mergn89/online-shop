@@ -72,17 +72,17 @@ class Product extends Model
         $this->amount = $amount;
         return $this;
     }
-public static function hydrate(array $data): self
-{
-    $products = new self();
-    $products->id = $data['id'];
-    $products->title = $data['title'];
-    $products->description = $data['description'];
-    $products->price = $data['price'];
-    $products->imageLink = $data['image_link'];
-    return $products;
+    public static function hydrate(array $data): self
+    {
+        $products = new self();
+        $products->id = $data['id'];
+        $products->title = $data['title'];
+        $products->description = $data['description'];
+        $products->price = $data['price'];
+        $products->imageLink = $data['image_link'];
+        return $products;
 
-}
+    }
 
     public static function getProducts(): array|null
     {
