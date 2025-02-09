@@ -1747,3 +1747,281 @@ message: Call to a member function getTitle() on null
 file: /var/www/html/src/View/review.php
 line: 4
 time: 06-02-2025 12:02:49
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42803]: Grouping error: 7 ERROR:  column "user_products.user_id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT user_id, SUM(amount) AS total_amount FROM user_produc...
+               ^
+file: /var/www/html/src/Model/UserProduct.php
+line: 80
+time: 08-02-2025 16:59:17
+
+Произошла ошибка при обработке запроса
+message: Cannot assign null to property Model\UserProduct::$id of type int
+file: /var/www/html/src/Model/UserProduct.php
+line: 59
+time: 08-02-2025 17:00:26
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42803]: Grouping error: 7 ERROR:  column "user_products.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT *, SUM(amount) AS total_amount FROM user_products WHE...
+               ^
+file: /var/www/html/src/Model/UserProduct.php
+line: 80
+time: 08-02-2025 17:03:17
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42803]: Grouping error: 7 ERROR:  column "user_products.id" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT *, SUM(amount) AS total_amount FROM user_products WHE...
+               ^
+file: /var/www/html/src/Model/UserProduct.php
+line: 80
+time: 08-02-2025 17:03:50
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[42803]: Grouping error: 7 ERROR:  aggregate functions are not allowed in functions in FROM
+LINE 1: SELECT * FROM user_products, SUM(amount) AS total_amount  WH...
+                                     ^
+file: /var/www/html/src/Model/UserProduct.php
+line: 80
+time: 08-02-2025 17:04:56
+
+Произошла ошибка при обработке запроса
+message: Cannot assign null to property Model\UserProduct::$id of type int
+file: /var/www/html/src/Model/UserProduct.php
+line: 59
+time: 08-02-2025 17:06:23
+
+Произошла ошибка при обработке запроса
+message: Cannot assign null to property Model\UserProduct::$id of type int
+file: /var/www/html/src/Model/UserProduct.php
+line: 59
+time: 08-02-2025 17:06:59
+
+Произошла ошибка при обработке запроса
+message: Cannot assign null to property Model\UserProduct::$id of type int
+file: /var/www/html/src/Model/UserProduct.php
+line: 59
+time: 08-02-2025 17:12:37
+
+Произошла ошибка при обработке запроса
+message: Cannot assign null to property Model\UserProduct::$id of type int
+file: /var/www/html/src/Model/UserProduct.php
+line: 59
+time: 08-02-2025 17:18:29
+
+Произошла ошибка при обработке запроса
+message: SQLSTATE[HY093]: Invalid parameter number: :user_id
+file: /var/www/html/src/Model/UserProduct.php
+line: 80
+time: 08-02-2025 17:26:59
+
+Произошла ошибка при обработке запроса
+message: Cannot assign null to property Model\UserProduct::$id of type int
+file: /var/www/html/src/Model/UserProduct.php
+line: 59
+time: 08-02-2025 17:27:50
+
+Произошла ошибка при обработке запроса
+message: Cannot assign null to property Model\UserProduct::$id of type int
+file: /var/www/html/src/Model/UserProduct.php
+line: 59
+time: 08-02-2025 17:38:00
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getAmountByUserId(): Return value must be of type ?Model\UserProduct, array returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 85
+time: 08-02-2025 17:42:51
+
+Произошла ошибка при обработке запроса
+message: Cannot assign null to property Model\UserProduct::$id of type int
+file: /var/www/html/src/Model/UserProduct.php
+line: 59
+time: 08-02-2025 18:06:59
+
+Произошла ошибка при обработке запроса
+message: Cannot assign null to property Model\UserProduct::$id of type int
+file: /var/www/html/src/Model/UserProduct.php
+line: 59
+time: 08-02-2025 18:10:43
+
+Произошла ошибка при обработке запроса
+message: Object of class Model\UserProduct could not be converted to string
+file: /var/www/html/src/View/catalog.php
+line: 18
+time: 08-02-2025 18:39:16
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:12:33
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:14:00
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:14:03
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:15:19
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:15:50
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:49:15
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:49:29
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:50:14
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:50:18
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:53:08
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:53:09
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:53:40
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:56:20
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 08-02-2025 20:56:58
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:10:02
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:10:07
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:11:58
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:11:59
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:12:02
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:12:03
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:12:04
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:14:13
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:14:15
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:17:20
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:18:34
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:28:44
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:29:24
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:29:25
+
+Произошла ошибка при обработке запроса
+message: Model\UserProduct::getTotalAmount(): Return value must be of type int, null returned
+file: /var/www/html/src/Model/UserProduct.php
+line: 16
+time: 09-02-2025 16:35:54

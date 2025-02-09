@@ -9,3 +9,4 @@ function test(int &$a)
 
 }
 test($a);
+

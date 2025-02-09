@@ -22,14 +22,37 @@ class LoggerFileService implements LoggerServiceInterface
 
     }
 
+//    public function __construct() {
+//        // Устанавливаем обработчик ошибок
+//        set_error_handler([$this, 'handleError']);
+//    }
+//
+//    public function handleError(int $errno, string $errstr, string $errfile, int $errline): void
+//    {
+//        if ($errno === E_WARNING) {
+//            $this->warning($errstr, [
+//                'file' => $errfile,
+//                'line' => $errline
+//            ]);
+//        }
+//    }
+
     public function info(string $message, array $data = []): void
     {
         $path = './../Storage/log/info.txt';
+
     }
 
     public function warning(string $message, array $data = []): void
     {
         $path = './../Storage/log/warning.txt';
+
+        $time = date('d-m-Y-H-i-s');
+
+        file_put_contents($path, "\n WARNING: ".$message, FILE_APPEND);
+        foreach ($data as $key => $warning) {
+            file_put_contents($path, "\n$key: $warning", FILE_APPEND);
+        }
     }
 
 

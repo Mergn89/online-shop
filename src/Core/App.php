@@ -130,16 +130,16 @@ class App
 //
 //                } elseif ($uri === '/login') {
 //                    $request = new LoginRequest($uri, $requestMethod, $_POST);
-                try{
+                try {
                     $objClass->$method($request);
 
-                } catch (\Throwable $exception) {
+                } catch (\Throwable $errorException) {
                     date_default_timezone_set('Asia/Irkutsk');
 
                     $this->loggerService->error("\n".'Произошла ошибка при обработке запроса', [
-                        'message' => $exception->getMessage(),
-                        'file' => $exception->getFile(),
-                        'line' => $exception->getLine(),
+                        'message' => $errorException->getMessage(),
+                        'file' => $errorException->getFile(),
+                        'line' => $errorException->getLine(),
                         'time' => date('d-m-Y H:i:s')
                     ]);
                     http_response_code(500);

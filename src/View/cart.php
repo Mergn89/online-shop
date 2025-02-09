@@ -8,7 +8,6 @@
 </div>
 <div style="color: limegreen" class="total">
     <h2>  <?php if (isset($total)): ?>
-
         <?php echo 'Total cart: ' . '$' . $total;?>
         <?php endif;?>
         <?php //echo 'Total cart: ' . '$' . $allPrice;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h2>
@@ -16,24 +15,11 @@
 </div>
 
 
-<!--<form class="d-flex">
-    <button class="btn btn-outline-dark" type="submit">
-        <i class="bi-cart-fill me-1"></i>
-        Корзина
-        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-    </button>
-</form>-->
-<?php //if(isset($errors['psw'])): ?>
-    <?php //print_r($errors['psw']);?>
-<?php //endif?>
-
 <div class="body">
     <?php if(isset($userProducts)): ?>
      <?php foreach ($userProducts as $product):?>
         <div class="product_img">
-            <!--<button type="button" class="btn btn-default btn-lg" v-on:click="showCheckout">
-                <span class="glyphicon glyphicon-shopping-cart">{{ cartItemCount}}</span> Корзина
-            </button>-->
+
             <img src="<?php echo $product->getImageLink();?>" alt="">
         </div>
         <div class="product_info">
@@ -49,17 +35,20 @@
         <div class="product_color">dns@dns.com</div>
         <!--<div class="product_color">+92 308 1234567</div>-->
         <div class="product_quantity">Quantity: <?php echo ' '.$product->getAmount();?>
-            || Total &nbsp; <?php //$total = $product['amount']*$product['price']; echo '$'.$total; ?><br>
+          | Total &nbsp; <?php //$total = $product['amount']*$product['price']; echo '$'.$total; ?><br>
             <input type="number">
         </div>
-
-        <!--<div class="add_heart">
-            <i class="fa fa-heart" aria-hidden="true"></i> like
-        </div>-->
-
-        <!--<div class="add_to_cart"><button>Add to cart</button> </div>-->
-        <!--<div class="add_to_favorites"><button>+ favorites</button> </div>-->
-
+            <div class="form">
+                <div class="header-form">
+                    <span></span>
+                </div>
+                <form action="/delete-product" method="post">
+                    <input type="hidden" id="product-id" name="product_id" value="<?php echo $product->getId() ?? '';?>"  required>
+                    <div class="btn">
+                        <span><button class="btn">delete</button></span>
+                    </div>
+                </form>
+            </div>
         <br>
         <br>
         <br>

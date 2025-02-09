@@ -1,0 +1,13 @@
+
+[06-02-2025-15-26-41] WARNING: 
+Предупреждение при обработке запроса
+message: 
+file: /var/www/html/src/Controller/ProductController.php
+line: 30
+time: 06-02-2025 15:26:41
+[06-02-2025-15-29-58] WARNING: 
+Предупреждение при обработке запроса
+message: Division by zero
+file: /var/www/html/src/Controller/ProductController.php
+line: 31
+time: 06-02-2025 15:29:58

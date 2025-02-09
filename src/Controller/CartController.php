@@ -1,9 +1,11 @@
 <?php
 namespace Controller;
 use DTO\CartDTO;
+use Model\Model;
 use Model\Product;
 use Model\UserProduct;
 use Request\AddProductRequest;
+use Request\ProductRequest;
 use Service\Auth\AuthServiceInterface;
 use Service\Auth\AuthSessionService;
 
@@ -60,6 +62,8 @@ class CartController
 //                }
                 //}
             }
+
+
         }
         require_once './../View/cart.php';
     }
@@ -86,6 +90,9 @@ class CartController
 
             $dto = new CartDTO($userId, $productId, $amount);
             $this->cartService->addProduct($dto);
+            $totalAmount = UserProduct::getAmountByUserId($userId);
+            $response = ['success' => true, 'totalAmount' => $totalAmount->getTotalAmount()];
+            echo json_encode($response);exit;
         }
 //        require_once './../View/addProduct.php';
 
@@ -114,6 +121,14 @@ class CartController
 //                $dto = new CartDTO($userId, $productId, $amount);
 //                $this->cartService->addProduct($dto);
 //            }
+    }
+
+    public function deleteProduct(ProductRequest $productRequest): void
+    {
+        $userId = $this->authService->getCurrentUser()->getId();
+        $productId = $productRequest->getProductId();
+        UserProduct::deleteByUserIdAndProductId($userId, $productId);
+        header('Location: /cart');
     }
 
 

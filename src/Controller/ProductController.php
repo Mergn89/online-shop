@@ -18,7 +18,6 @@ class ProductController
     {
         $this->authService = $authService;
 
-
     }
 
     public function getCatalog():void
@@ -26,12 +25,15 @@ class ProductController
 //        session_start();
         if (!$this->authService->check()) {
             header("location: /login");
+        } else {$userId = $this->authService->getCurrentUser()->getId();
+            $products = Product::getProducts();
+            $sumAmount = UserProduct::getAmountByUserId($userId);
+            if (!$sumAmount->getTotalAmount()) {
+                $totalAmount = '0';
+            }
+            require_once "./../View/catalog.php";
         }
 
-
-        $products = Product::getProducts();
-
-        require_once "./../View/catalog.php";
     }
 
     public function getProductAverage(ProductRequest $productRequest): void

@@ -1,13 +1,26 @@
 <?php
 namespace Model;
 
-class UserProduct extends Model
+use AllowDynamicProperties;
+
+ class UserProduct extends Model
 {
     private int $id;
     private int $user_id;
     private int $product_id;
     private int $amount;
+    private ?int $totalAmount = null;
 
+     public function getTotalAmount(): ?int
+     {
+         return $this->totalAmount;
+     }
+
+     public function setTotalAmount(int $totalAmount): UserProduct
+     {
+         $this->totalAmount = $totalAmount;
+         return $this;
+     }
 
     public function getId(): int
     {
@@ -74,6 +87,19 @@ class UserProduct extends Model
         return self::hydrate($data);
     }
 
+    public static function getAmountByUserId(int $userId): ?self
+    {
+        $stmt = Model::connectToDatabase()->prepare("SELECT SUM(amount) AS total_amount FROM user_products  WHERE user_id = :user_id");
+        $stmt->execute(['user_id' => $userId]);
+        $data = $stmt->fetch();
+        if($data === false){
+            return null;
+        }
+        $obj = new UserProduct();
+        $obj->totalAmount = $data['total_amount'];
+        return $obj;
+    }
+
     public static function addProductInUserProducts(int $userId, int $productId, int $amount): void
     {
         $stmt = self::connectToDatabase()->prepare("INSERT INTO user_products (user_id, product_id, amount) VALUES (:user_id, :product_id, :amount)");
@@ -132,6 +158,11 @@ class UserProduct extends Model
 
     }
 
+    public static function deleteByUserIdAndProductId(int $userId, int $productId):void
+    {
+        $stmt = self::connectToDatabase()->prepare("DELETE FROM user_products WHERE user_id = :user_id and product_id = :product_id");
+        $stmt->execute(['user_id' => $userId, 'product_id' => $productId]);
 
+    }
 
 }

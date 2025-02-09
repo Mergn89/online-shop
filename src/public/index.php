@@ -65,6 +65,7 @@ $app->addRoute('/reviews', 'GET', \Controller\ReviewController::class, 'getRevie
 $app->addRoute('/cart', 'GET', \Controller\CartController::class, 'getCart');
 $app->addRoute('/add-product', 'GET', \Controller\CartController::class, 'getAddProductForm');
 $app->addRoute('/add-product', 'POST', \Controller\CartController::class, 'addProduct', \Request\AddProductRequest::class);
+$app->addRoute('/delete-product', 'POST', \Controller\CartController::class, 'deleteProduct', \Request\ProductRequest::class);
 
 $app->addRoute('/order', 'GET', \Controller\OrderController::class, 'getOrderForm');
 $app->addRoute('/order', 'POST', \Controller\OrderController::class, 'order', \Request\OrderRequest::class);
