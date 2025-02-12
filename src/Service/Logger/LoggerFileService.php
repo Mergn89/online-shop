@@ -3,6 +3,8 @@
 namespace Service\Logger;
 
 
+use Core\LoggerServiceInterface;
+
 class LoggerFileService implements LoggerServiceInterface
 {
     public function error(string $message, array $data = []): void

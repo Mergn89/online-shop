@@ -18,7 +18,9 @@
 
     <!--MDB Tables-->
     <div class="container mt-4">
-
+        <br>
+        <br>
+        <a href="/catalog"><button class="btn" style="background: brown" type="submit">CATALOG</button> </a>
         <div class="text-center darken-grey-text mb-4">
             <h1 class="font-bold mt-4 mb-3 h1"><b>Reviews ! </b></h1>
             <br>

@@ -2,6 +2,7 @@
 
 namespace Service\Auth;
 
+use Core\AuthServiceInterface;
 use Model\User;
 
 class AuthCookieService implements AuthServiceInterface

@@ -2025,3 +2025,27 @@ message: Model\UserProduct::getTotalAmount(): Return value must be of type int, 
 file: /var/www/html/src/Model/UserProduct.php
 line: 16
 time: 09-02-2025 16:35:54
+
+Произошла ошибка при обработке запроса
+message: Request\ReviewRequest::getProductId(): Return value must be of type ?int, string returned
+file: /var/www/html/src/Request/ReviewRequest.php
+line: 16
+time: 09-02-2025 19:52:50
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getTotalAmount() on null
+file: /var/www/html/src/View/catalog.php
+line: 21
+time: 10-02-2025 14:04:28
+
+Произошла ошибка при обработке запроса
+message: Object of class Model\UserProduct could not be converted to string
+file: /var/www/html/src/View/catalog.php
+line: 19
+time: 10-02-2025 14:24:55
+
+Произошла ошибка при обработке запроса
+message: Call to a member function getId() on null
+file: /var/www/html/src/Controller/ReviewController.php
+line: 54
+time: 11-02-2025 22:22:17

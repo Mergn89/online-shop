@@ -2,13 +2,10 @@
 
 namespace Controller;
 
+use Core\AuthServiceInterface;
 use Model\Product;
 use Model\Review;
-use Request\OrderRequest;
-use Request\ProductRequest;
 use Request\ReviewRequest;
-use Service\Auth\AuthServiceInterface;
-use Service\Auth\AuthSessionService;
 use Service\OrderService;
 use Service\ReviewService;
 
@@ -38,16 +35,16 @@ class ReviewController
 //
 //    }
 
-    public function getReview(ProductRequest $productRequest): void // попробовать добавить getReviewProduct
-    {
-        if (!$this->authService->check()) {
-            header("location: /login");        }
-
-        $product = Product::getOneById($productRequest->getProductId());
-
-        require_once "./../View/review.php";
-
-    }
+//    public function getReview(ProductRequest $productRequest): void // попробовать добавить getReviewProduct
+//    {
+//        if (!$this->authService->check()) {
+//            header("location: /login");        }
+//
+//        $product = Product::getOneById($productRequest->getProductId());
+//
+//        require_once "./../View/review.php";
+//
+//    }
 
     public function addReview(ReviewRequest $reviewRequest): void
     {
@@ -70,7 +67,7 @@ class ReviewController
             header("location: /reviews");
 
         }
-        require_once "./../View/review.php";
+        require_once "./../View/productAverage.php";
 
 
 

@@ -1,14 +1,11 @@
 <?php
 namespace Controller;
+use Core\AuthServiceInterface;
 use DTO\CartDTO;
-use Model\Model;
 use Model\Product;
 use Model\UserProduct;
 use Request\AddProductRequest;
 use Request\ProductRequest;
-use Service\Auth\AuthServiceInterface;
-use Service\Auth\AuthSessionService;
-
 use Service\CartService;
 
 //require_once './../Model/UserProduct.php';
@@ -77,6 +74,7 @@ class CartController
         }
         require_once './../View/addProduct.php';
     }
+
     public function addProduct(AddProductRequest $request):void
     {
 //        При наличии отдельной страницы добавления продуктов должна быть проверка на аутентификацию пользователя;  if ($this->authService->check())
@@ -91,8 +89,10 @@ class CartController
             $dto = new CartDTO($userId, $productId, $amount);
             $this->cartService->addProduct($dto);
             $totalAmount = UserProduct::getAmountByUserId($userId);
+
             $response = ['success' => true, 'totalAmount' => $totalAmount->getTotalAmount()];
-            echo json_encode($response);exit;
+            echo json_encode($response);
+            exit;
         }
 //        require_once './../View/addProduct.php';
 

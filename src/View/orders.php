@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="./style.css">
 
 </head>
+
 <body class="hm-gradient">
 
 <main>
@@ -22,9 +23,8 @@
         <div class="text-center darken-grey-text mb-4">
             <h1 class="font-bold mt-4 mb-3 h1"><b>My Orders ! </b></h1>
             <br>
-            <a class="btn btn-danger btn-md" href=""
-               target="_blank">New Order   <i class="fa fa-cart-plus"></i></a>
-            <a class="btn btn-danger" href="" target="_blank">Log OUT</a>
+            <a class="btn btn-danger btn-md" href="/catalog">Catalog   </a>
+<!--            <a class="btn btn-danger" href="" target="_blank">Log OUT</a>-->
         </div>
 
         <?php //$count = 0;?>
@@ -138,5 +138,6 @@
     .table.table-bordered th {
         text-align: center;
     }
+
 
 </style>

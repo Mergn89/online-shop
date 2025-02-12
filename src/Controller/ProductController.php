@@ -1,12 +1,11 @@
 <?php
 namespace Controller;
 
+use Core\AuthServiceInterface;
 use Model\Product;
 use Model\Review;
 use Model\UserProduct;
-use Request\AddProductRequest;
 use Request\ProductRequest;
-use Service\Auth\AuthServiceInterface;
 
 
 class ProductController
@@ -17,7 +16,6 @@ class ProductController
     public function __construct(AuthServiceInterface $authService)
     {
         $this->authService = $authService;
-
     }
 
     public function getCatalog():void
@@ -28,9 +26,9 @@ class ProductController
         } else {$userId = $this->authService->getCurrentUser()->getId();
             $products = Product::getProducts();
             $sumAmount = UserProduct::getAmountByUserId($userId);
-            if (!$sumAmount->getTotalAmount()) {
-                $totalAmount = '0';
-            }
+//            if (!$sumAmount->getTotalAmount()) {
+//                $totalAmount = '0';
+//            }
             require_once "./../View/catalog.php";
         }
 

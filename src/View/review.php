@@ -4,7 +4,7 @@
     <h3><?php echo $product->getTitle() ?? ''; ?></h3>
     <p>We love to hear from our customers.
         <br>Share your success story with us.</p>
-    <form action="/review" method="post" >
+<!--    <form action="/review" method="post" >-->
         <?php echo $errors['rating'] ?? '';?>
         <input type="hidden" name="rating" value="" id="rating">
         <div class="pro-pop-input">
@@ -59,22 +59,7 @@
             <span class="error"></span>
         </div>
 
-        <!--<label for="email"><b>Email</b></label> <br>
-        <label style="color: brown">
-            <?php //if(isset($errors['email'])): ?>
-                <?php //print_r($errors['email']);?>
-            <?php //endif?></label>
-        <input type="text" placeholder="Enter email" name="email" id="email" required>-->
-        <!--<div class="pro-pop-input">
-            <label>Your Name</label>
-            <input type="text" name="user_name">
-            <span class="error"></span>
-        </div>
-        <div class="pro-pop-input">
-            <label>Product-Id</label>
-            <input type="radio" name="product_id" value="<?php //echo $product->getId() ?? '';?>">
-            <span class="error"></span>
-        </div>-->
+
         <div id="buttons">
             <div class="pro-pop-input pro-pop-checkout">
                 <input type="checkbox" name="real" value="yes"><span>Are you a real person? Check box to confirm.</span>
@@ -83,8 +68,9 @@
             <div class="pro-pop-btn">
 
                 <!--<input type="hidden" id="product_id" name="product_id" value="" required>-->
-                <?php echo $errors['product_id'] ?? '';?>
+
                 <button><input type="submit" name="product_id" value="<?php echo $product->getId() ?? '';?>"></button>
+                <?php echo $errors['product_id'] ?? '';?>
                 <a href="javascript:void(0);" class="no-thanks">No Thanks</a>
             </div>
         </div>

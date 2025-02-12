@@ -1,15 +1,6 @@
 <?php
 namespace Core;
-use Controller\CartController;
-use Controller\OrderController;
-use Controller\ProductController;
-use Controller\UserController;
 use Request\Request;
-use Service\Auth\AuthSessionService;
-use Service\CartService;
-use Service\Logger\LoggerFileService;
-use Service\Logger\LoggerServiceInterface;
-use Service\OrderService;
 
 
 class App

@@ -1,17 +1,9 @@
 <?php
 namespace Controller;
+use Core\AuthServiceInterface;
 use DTO\CreateOrderDTO;
-use Model\Order;
-use Model\OrderProduct;
-use Model\Product;
 use Request\OrderRequest;
-use Service\Auth\AuthServiceInterface;
 use Service\OrderService;
-
-//require_once './../Model/Order.php';
-//require_once './../Model/UserProduct.php';
-//require_once './../Model/OrderProduct.php';
-//require_once './../Controller/CartController.php';
 
 class OrderController
 {

@@ -1,10 +1,9 @@
 <?php
 namespace Controller;
+use Core\AuthServiceInterface;
 use Model\User;
-use Request\RegistrateRequest;
 use Request\LoginRequest;
-use Request\Request;
-use Service\Auth\AuthServiceInterface;
+use Request\RegistrateRequest;
 
 
 class UserController

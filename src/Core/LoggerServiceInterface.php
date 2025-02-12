@@ -1,6 +1,6 @@
 <?php
 
-namespace Service\Logger;
+namespace Core;
 
 interface LoggerServiceInterface
 {

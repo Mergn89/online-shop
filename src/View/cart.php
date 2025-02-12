@@ -2,6 +2,9 @@
 <br>
 <br>
 <a href="/logout"><button class="btn" type="submit">LOGOUT</button> </a>
+<br>
+<br>
+<a href="/catalog"><button class="btn" type="submit">CATALOG</button> </a>
 <div  class="title" >
     <h1>Cart </h1>
 

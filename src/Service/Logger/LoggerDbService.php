@@ -2,6 +2,7 @@
 
 namespace Service\Logger;
 
+use Core\LoggerServiceInterface;
 use Model\Log;
 
 class LoggerDbService implements LoggerServiceInterface

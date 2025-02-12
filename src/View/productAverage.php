@@ -16,6 +16,9 @@
     <link rel="stylesheet" href="style.css">
 
     <title>Product</title>
+    <br>
+    <br>
+    <a href="/catalog"><button class="btn" type="submit">CATALOG</button> </a>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light main-menu">
@@ -139,71 +142,110 @@
                                 <ul class="comment-list">
                                     <li>
                                         <div class="comment mb-4">
-                                            <img class="avatar avatar-sm rounded-circle" src="./img/patient.9116742.jpg" alt="User Image">
+<!--                                            <img class="avatar avatar-sm rounded-circle" src="./img/patient.9116742.jpg" alt="User Image">-->
                                             <div class="comment-body">
                                                 <div class="meta-data">
-                                                    <span class="comment-author"><?php foreach($allReviews as $review): ?>Richard Wilson</span>
-                                                                                 <?php echo $review->getUserId()."\n";?>
+                                                    <span class="comment-author"><?php if (isset($reviews)): ?>
+                                                                                 <?php foreach($reviews as $review): ?></span>
+                                                                                 <?php echo $review->getUser()->getName().": ".$review->getReview(). "<br>";?>
                                                                                  <?php endforeach;?>
+                                                                                 <?php endif; ?>
                                                 </div>
-                                                <p class="recommended">
-                                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i> I recommend the product
-                                                </p>
-                                                <p class="recommend-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Curabitur non nulla sit amet nisl tempus </p>
+<!--                                                <p class="recommended">-->
+<!--                                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i> I recommend the product-->
+<!--                                                </p>-->
+<!--                                                <p class="recommend-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Curabitur non nulla sit amet nisl tempus </p>-->
 
                                             </div>
                                         </div>
-                                    </li>
 
-                                    <li>
-
-                                    </li>
-                                    <li>
                                         <div class="comment">
-                                            <img class="avatar avatar-sm rounded-circle" src="./img/patient2.536fd49.jpg" alt="User Image">
+<!--                                            <img class="avatar avatar-sm rounded-circle" src="./img/patient2.536fd49.jpg" alt="User Image">-->
                                             <div class="comment-body">
                                                 <div class="meta-data">
-                                                    <span class="comment-author">Richard Wilson</span>
-                                                    <span class="comment-date">Reviewed 2 days ago</span>
-                                                    <div class="review-count-rating">
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                        <i class="fa fa-star filled" aria-hidden="true"></i>
-                                                    </div>
+<!--                                                    <span class="comment-author">Richard Wilson</span>-->
+<!--                                                    <span class="comment-date">Reviewed 2 days ago</span>-->
+<!--                                                    <div class="review-count-rating">-->
+<!--                                                        <i class="fa fa-star filled" aria-hidden="true"></i>-->
+<!--                                                        <i class="fa fa-star filled" aria-hidden="true"></i>-->
+<!--                                                        <i class="fa fa-star filled" aria-hidden="true"></i>-->
+<!--                                                        <i class="fa fa-star filled" aria-hidden="true"></i>-->
+<!--                                                        <i class="fa fa-star filled" aria-hidden="true"></i>-->
+<!--                                                    </div>-->
                                                 </div>
-                                                <p class="recommended">
-                                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i> I recommend the doctor
-                                                </p>
-                                                <p class="recommend-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Curabitur non nulla sit amet nisl tempus </p>
+<!--                                                <p class="recommended">-->
+<!--                                                    <i class="fa fa-thumbs-up" aria-hidden="true"></i> I recommend the doctor-->
+<!--                                                </p>-->
+<!--                                                <p class="recommend-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. Curabitur non nulla sit amet nisl tempus </p>-->
                                                 <div class="comment-reply">
-                                                    <a class="comment-btn" href="#">
-                                                        <i class="fa fa-reply"></i> Reply
-                                                    </a>
-                                                    <p class="recommend-btn">
-                                                        <span>Recommend?</span>
-                                                        <a class="like-btn" href="#"> <i class="fa fa-thumbs-up"></i>Yes</a>
-                                                        <a class="dislike-btn" href="#"><i class="fa fa-thumbs-down"></i>No</a>
-                                                    </p>
+<!--                                                    <a class="comment-btn" href="#">-->
+<!--                                                        <i class="fa fa-reply"></i> Reply-->
+<!--                                                    </a>-->
+<!--                                                    <p class="recommend-btn">-->
+<!--                                                        <span>Recommend?</span>-->
+<!--                                                        <a class="like-btn" href="#"> <i class="fa fa-thumbs-up"></i>Yes</a>-->
+<!--                                                        <a class="dislike-btn" href="#"><i class="fa fa-thumbs-down"></i>No</a>-->
+<!--                                                    </p>-->
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
                                 </ul>
-                                <div class="feedback-btn text-center">
-                                    <button class="feedback-btn-style">show all feedback (167)</button>
-                                </div>
+<!--                                <div class="feedback-btn text-center">-->
+<!--                                    <button class="feedback-btn-style">show all feedback (167)</button>-->
+<!--                                </div>-->
 
                             </div>
 
-                            <form action="/rev" method="post">
-                            <div class="review-form">
-                                <h4>Write a review for product</h4>
-                                <span>Rating</span>
+<!--                            <form action="/rev" method="post">-->
+<!--                            <div class="review-form">-->
+<!--                                <h4>Write a review for product</h4>-->
+<!--                                <span>Rating</span>-->
+<!---->
+<!--                                <div class="pro-pop-input">-->
+<!--                                    <label> </label>-->
+<!---->
+<!--                                    <section class="rating-widget rating">-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="rating" value="1" />-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                        </label>-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="rating" value="2" />-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                        </label>-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="rating" value="3" />-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                        </label>-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="rating" value="4" />-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                        </label>-->
+<!--                                        <label>-->
+<!--                                            <input type="radio" name="rating" value="5" />-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                            <span class="icon">★</span>-->
+<!--                                        </label>-->
+<!--                                    </section>-->
+<!--                                    <span class="star-rating-error"></span>-->
+<!--                                </div>-->
 
+
+                            <form action="/review" method="post" >
+                                <?php echo $errors['rating'] ?? '';?>
+                                <input type="hidden" name="rating" value="" id="rating">
                                 <div class="pro-pop-input">
-                                    <label> </label>
+                                    <label>Rating</label>
 
                                     <section class="rating-widget rating">
                                         <label>
@@ -239,17 +281,24 @@
                                     </section>
                                     <span class="star-rating-error"></span>
                                 </div>
-
                                 <div class="form-style">
 
                                         <label for="review">Your review</label><br>
+                                    <label style="color: brown">
+                                        <?php if(isset($errors['review'])): ?>
+                                            <?php print_r($errors['review']);?>
+                                        <?php endif?></label>
+
+
                                         <textarea placeholder="enter review" name="review" id="review"></textarea>
+                                    <span class="error"></span>
                                         <p>100 caracters remaining</p> <br>
 
-                                            <input type="hidden" id="product_id" name="product_id" value="<?php echo $product->getId() ?? '';?>"  required>
-
-                                            <div class="btn">
-                                                <span><button style="color: #710e12"  class="btn">Write Review</button></span>
+<!--                                            <input type="hidden" id="product_id" name="product_id" value="--><?php //echo $product->getId() ?? '';?><!--"  required>-->
+                                    <div class="btn"><button style="color: #710e12"  class="btn">Write Review <input type="hidden" name="product_id" value="<?php echo $product->getId() ?? '';?>"></button>
+                                    <?php echo $errors['product_id'] ?? '';?>
+<!--                                            <div class="btn">-->
+<!--                                                <span><button style="color: #710e12"  class="btn">Write Review</button></span>-->
                                             </div>
 
                                     </form>

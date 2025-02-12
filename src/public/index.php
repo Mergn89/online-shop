@@ -12,35 +12,35 @@ $loggerService = new \Service\Logger\LoggerFileService();
 $container = new \Core\Container();
 
 $container->set(\Controller\UserController::class, function (\Core\Container $container) {
-    $authService = $container->get(\Service\Auth\AuthServiceInterface::class);
+    $authService = $container->get(Core\AuthServiceInterface::class);
     return new \Controller\UserController($authService);
 });
 $container->set(\Controller\ProductController::class, function (\Core\Container $container) {
-    $authService = $container->get(\Service\Auth\AuthServiceInterface::class);
+    $authService = $container->get(Core\AuthServiceInterface::class);
     return new \Controller\ProductController($authService);
 });
 $container->set(\Controller\CartController::class, function (\Core\Container $container) {
-    $authService = $container->get(\Service\Auth\AuthServiceInterface::class);
+    $authService = $container->get(Core\AuthServiceInterface::class);
     $cartService = new \Service\CartService();
     return new \Controller\CartController($cartService, $authService);
 });
 $container->set(\Controller\OrderController::class, function (\Core\Container $container) {
-    $authService = $container->get(\Service\Auth\AuthServiceInterface::class);
+    $authService = $container->get(Core\AuthServiceInterface::class);
     $orderService = new \Service\OrderService();
     return new \Controller\OrderController($orderService, $authService);
 });
 $container->set(\Controller\ReviewController::class, function (\Core\Container $container) {
-    $authService = $container->get(\Service\Auth\AuthServiceInterface::class);
+    $authService = $container->get(Core\AuthServiceInterface::class);
     $reviewService = new \Service\ReviewService();
     $orderService = new \Service\OrderService();
 
     return new \Controller\ReviewController($reviewService, $authService, $orderService);
 });
 
-$container->set(\Service\Logger\LoggerServiceInterface::class, function () {
+$container->set(Core\LoggerServiceInterface::class, function () {
     return new \Service\Logger\LoggerFileService();
 });
-$container->set(\Service\Auth\AuthServiceInterface::class, function () {
+$container->set(Core\AuthServiceInterface::class, function () {
     return new \Service\Auth\AuthSessionService();
 });
 
@@ -56,7 +56,7 @@ $app->addRoute('/catalog', 'GET', \Controller\ProductController::class, 'getCata
 $app->addRoute('/product', 'POST', \Controller\ProductController::class, 'getProductAverage', \Request\ProductRequest::class);
 
 //$app->addRoute('/review', 'GET', \Controller\ReviewController::class, 'getRev',\Request\ReviewRequest::class);
-$app->addRoute('/rev', 'POST', \Controller\ReviewController::class, 'getReview', \Request\ProductRequest::class);
+//$app->addRoute('/rev', 'POST', \Controller\ReviewController::class, 'getReview', \Request\ProductRequest::class);
 $app->addRoute('/review', 'POST', \Controller\ReviewController::class, 'addReview', \Request\ReviewRequest::class);
 $app->addRoute('/reviews', 'GET', \Controller\ReviewController::class, 'getReviews', \Request\ReviewRequest::class);
 
