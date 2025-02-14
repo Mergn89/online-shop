@@ -1,46 +1,47 @@
 <?php
-require_once "./../Core/Autoload.php";
 
-use Core\App;
-use Core\Autoload;
+require_once "./../../vendor/autoload.php";
 
+use Mergen\Core\AuthServiceInterface;
+use Mergen\Core\Autoload;
+use Mergen\Core\App;
 
 Autoload::registrate(__DIR__ . '/../'); //__DIR__ = абсолютный путь от корня   //   /var/www/html/
 
 $loggerService = new \Service\Logger\LoggerFileService();
 
-$container = new \Core\Container();
+$container = new Mergen\Core\Container();
 
-$container->set(\Controller\UserController::class, function (\Core\Container $container) {
-    $authService = $container->get(Core\AuthServiceInterface::class);
+$container->set(\Controller\UserController::class, function (\Mergen\Core\Container $container) {
+    $authService = $container->get(AuthServiceInterface::class);
     return new \Controller\UserController($authService);
 });
-$container->set(\Controller\ProductController::class, function (\Core\Container $container) {
-    $authService = $container->get(Core\AuthServiceInterface::class);
+$container->set(\Controller\ProductController::class, function (\Mergen\Core\Container $container) {
+    $authService = $container->get(AuthServiceInterface::class);
     return new \Controller\ProductController($authService);
 });
-$container->set(\Controller\CartController::class, function (\Core\Container $container) {
-    $authService = $container->get(Core\AuthServiceInterface::class);
+$container->set(\Controller\CartController::class, function (\Mergen\Core\Container $container) {
+    $authService = $container->get(AuthServiceInterface::class);
     $cartService = new \Service\CartService();
     return new \Controller\CartController($cartService, $authService);
 });
-$container->set(\Controller\OrderController::class, function (\Core\Container $container) {
-    $authService = $container->get(Core\AuthServiceInterface::class);
+$container->set(\Controller\OrderController::class, function (\Mergen\Core\Container $container) {
+    $authService = $container->get(AuthServiceInterface::class);
     $orderService = new \Service\OrderService();
     return new \Controller\OrderController($orderService, $authService);
 });
-$container->set(\Controller\ReviewController::class, function (\Core\Container $container) {
-    $authService = $container->get(Core\AuthServiceInterface::class);
+$container->set(\Controller\ReviewController::class, function (\Mergen\Core\Container $container) {
+    $authService = $container->get(\Mergen\Core\AuthServiceInterface::class);
     $reviewService = new \Service\ReviewService();
     $orderService = new \Service\OrderService();
 
     return new \Controller\ReviewController($reviewService, $authService, $orderService);
 });
 
-$container->set(Core\LoggerServiceInterface::class, function () {
+$container->set(Mergen\Core\LoggerServiceInterface::class, function () {
     return new \Service\Logger\LoggerFileService();
 });
-$container->set(Core\AuthServiceInterface::class, function () {
+$container->set(Mergen\Core\AuthServiceInterface::class, function () {
     return new \Service\Auth\AuthSessionService();
 });
 
@@ -70,7 +71,6 @@ $app->addRoute('/delete-product', 'POST', \Controller\CartController::class, 'de
 $app->addRoute('/order', 'GET', \Controller\OrderController::class, 'getOrderForm');
 $app->addRoute('/order', 'POST', \Controller\OrderController::class, 'order', \Request\OrderRequest::class);
 $app->addRoute('/orders', 'GET', \Controller\OrderController::class, 'getOrdersForm');
-
 
 $app->run();
 

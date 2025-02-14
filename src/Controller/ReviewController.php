@@ -2,7 +2,7 @@
 
 namespace Controller;
 
-use Core\AuthServiceInterface;
+use Mergen\Core\AuthServiceInterface;
 use Model\Product;
 use Model\Review;
 use Request\ReviewRequest;
@@ -16,7 +16,6 @@ class ReviewController
     private OrderService $orderService;
 
 
-
     public function __construct(ReviewService $reviewService, AuthServiceInterface $authService, OrderService $orderService)
     {
         $this->authService = $authService;
@@ -24,27 +23,6 @@ class ReviewController
         $this->orderService = $orderService;
     }
 
-//    public function getRev(): void
-//    {
-//        if (!$this->authService->check()) {
-//            header("location: /login");        }
-//
-////        $product = Product::getOneById($productRequest->getProductId());
-//
-//        require_once "./../View/review.php";
-//
-//    }
-
-//    public function getReview(ProductRequest $productRequest): void // попробовать добавить getReviewProduct
-//    {
-//        if (!$this->authService->check()) {
-//            header("location: /login");        }
-//
-//        $product = Product::getOneById($productRequest->getProductId());
-//
-//        require_once "./../View/review.php";
-//
-//    }
 
     public function addReview(ReviewRequest $reviewRequest): void
     {
@@ -68,27 +46,7 @@ class ReviewController
 
         }
         require_once "./../View/productAverage.php";
-
-
-
-//        require_once "./../View/productAverage.php";
     }
-
-//    function addRev()
-//    {
-//        $userId = getOrders();
-//        if (isset($userId)) {
-//            $productId = getOrderProducts();
-//            $review = getReviews();
-//            if(isset($productId) && !isset($review)) {
-//                $this->addReview();
-//            } else {
-//                echo 'чтобы оставить отзыв, необходимо заказать продукт';
-//            }
-//        } else {
-//            echo 'чтобы оставить отзыв, необходимо заказать продукт';
-//        }
-//    }
 
 
     public function getReviews(): void
@@ -97,22 +55,7 @@ class ReviewController
             header("location: /login");
         }
         $reviews = Review::getReviewsJoinProducts();
-//        $average = Review::getAverageRating();
-//
-//        print_r($average); die;
-//
-//
-//        echo '<pre>';
-//        print_r($averageRatings);
-//        echo '</pre>'; die;
-//        print_r($avg);die;
-//        $userId = $this->authService->getCurrentUser()->getId();
-//        $rev = Review::getReviewsByUserId($userId);
-//        foreach ($rev as $value){
-//            echo "\n".$value->getUserId();
-//        }
-//
-//        die;
+
         require_once "./../View/reviews.php";
     }
 

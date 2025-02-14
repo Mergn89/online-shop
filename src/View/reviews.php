@@ -69,13 +69,8 @@
 
                     <?php endforeach;?>
                     <?php endif;?>
-
-
-
                     <!--Table body-->
                 </table>
-
-
                 <!--Table-->
             </div>
         </div>

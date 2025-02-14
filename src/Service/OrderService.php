@@ -39,27 +39,6 @@ class OrderService
     {
         $orders = Order::getAllByUserId($userId);
 
-        /*
-          $orders = [
-            [
-                'id' => 1,
-                'user_id' => 23,
-                'contact_name' => 'Alex',
-                'address' => 'Moscow',
-                'total' => 2300
-
-            ],
-            [
-                'id' => 2,
-                'user_id' => 23,
-                'contact_name' => 'Alex',
-                'address' => 'Moscow'
-                'total' => 1200
-                ....
-            ]
-
-        ];*/
-
         foreach ($orders as &$order) {
             $orderProducts = OrderProduct::getByOrderId($order->getId());
 

@@ -2,8 +2,8 @@
 
 namespace Service\Logger;
 
+use Mergen\Core\LoggerServiceInterface;
 
-use Core\LoggerServiceInterface;
 
 class LoggerFileService implements LoggerServiceInterface
 {
@@ -17,27 +17,8 @@ class LoggerFileService implements LoggerServiceInterface
             file_put_contents($path, "\n$key: $error", FILE_APPEND);
         }
 
-//        $message = 'error: '.$exception->getMessage();
-//        $file = 'file: '.$exception->getFile();
-//        $line = 'line: '.$exception->getLine();
-//        file_put_contents($path, print_r($date.PHP_EOL.$message.PHP_EOL.$file.PHP_EOL.$line, true).PHP_EOL."\n", FILE_APPEND);
-
     }
 
-//    public function __construct() {
-//        // Устанавливаем обработчик ошибок
-//        set_error_handler([$this, 'handleError']);
-//    }
-//
-//    public function handleError(int $errno, string $errstr, string $errfile, int $errline): void
-//    {
-//        if ($errno === E_WARNING) {
-//            $this->warning($errstr, [
-//                'file' => $errfile,
-//                'line' => $errline
-//            ]);
-//        }
-//    }
 
     public function info(string $message, array $data = []): void
     {

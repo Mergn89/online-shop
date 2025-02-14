@@ -2,7 +2,7 @@
 
 namespace Service\Logger;
 
-use Core\LoggerServiceInterface;
+use Mergen\Core\LoggerServiceInterface;
 use Model\Log;
 
 class LoggerDbService implements LoggerServiceInterface
@@ -30,7 +30,6 @@ class LoggerDbService implements LoggerServiceInterface
         $time = $data['time'];
         Log::createLog($warning, $file, $line, $time);
     }
-
 
 
 }

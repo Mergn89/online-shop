@@ -112,10 +112,8 @@ class Product extends Model
 
     public static function getAllByIds(array $productIds): array|null
     {
-        //$productId = implode(',' , $productIds);
-        $productId = '?' . str_repeat(', ?', count($productIds)-1); //преобразывает массив  в строку
 
-//        $sql = 'SELECT * FROM test WHERE id in ('.implode(",", $array).')';
+        $productId = '?' . str_repeat(', ?', count($productIds)-1); //преобразывает массив  в строку
 
         $stmt = self::connectToDatabase()->prepare("SELECT * FROM products WHERE id IN ($productId)");
         $stmt->execute($productIds);

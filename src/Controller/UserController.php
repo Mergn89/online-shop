@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
-use Core\AuthServiceInterface;
+
+use Mergen\Core\AuthServiceInterface;
 use Model\User;
 use Request\LoginRequest;
 use Request\RegistrateRequest;

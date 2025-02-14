@@ -60,13 +60,6 @@ class Review extends Model
     }
 
 
-//    public function __construct()
-//    {
-////        $this->product = new Product();
-//    }
-
-
-
     public function getId(): int
     {
         return $this->id;
@@ -201,39 +194,6 @@ class Review extends Model
         } return $data;
 
     }
-
-
-//    public static function getAverageRating(): array|null
-//    {
-//        $stmt = self::connectToDatabase()->prepare("SELECT
-//                                                            products.id as product_id,
-//                                                            products.title as product_title,
-//                                                            products.price as product_price,
-//                                                            products.description as product_description,
-//                                                            products.image_link as product_image_link,
-//                                                            reviews.id as review_id,
-//                                                            reviews.product_id as review_product_id,
-//                                                            reviews.user_name as review_user_name,
-//                                                            reviews.review as review_review,
-//                                                            reviews.rating as review_rating,
-//                                                            reviews.created_at as review_created_at,
-//
-//                                                            AVG(reviews.rating) as average_rating
-//                                                            FROM reviews  INNER JOIN products  ON products.id = reviews.product_id
-//                                                            GROUP BY products.id, products.title
-//                                                            ");
-//
-//
-//        $stmt->execute();
-//        $data = $stmt->fetchAll();
-//        if ($data === false) {
-//            return null;
-//        }
-//        foreach ($data as &$datum) {
-//            $datum = self::hydrateJoin($datum);
-//        }
-//        return $data;
-//    }
 
 
     public static function getReviews(): array|null

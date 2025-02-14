@@ -2,6 +2,8 @@
 
 namespace Request;
 
+use Mergen\Core\Request;
+
 class LoginRequest extends Request
 {
     public function getLogin(): ?string

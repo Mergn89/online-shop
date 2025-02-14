@@ -2,7 +2,8 @@
 
 namespace Request;
 
-use Core\AuthServiceInterface;
+use Mergen\Core\AuthServiceInterface;
+use Mergen\Core\Request;
 use Model\Review;
 use Service\OrderService;
 
@@ -67,7 +68,7 @@ class ReviewRequest extends Request
                     }
                 }
             }
-//            var_dump($flag);
+
             if (!$flag) {
                 $errors['product_id'] = 'чтобы оставить отзыв, закажите продукт';
             }

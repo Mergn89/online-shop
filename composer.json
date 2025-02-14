@@ -1,0 +1,17 @@
+{
+    "name": "mergen/online-shop",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Mergn89",
+            "email": "mergen.olegov@yandex.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "mergen/my-core": "dev-main",
+      "ext-pdo": "*",
+      "ext-ctype": "*"
+    }
+}

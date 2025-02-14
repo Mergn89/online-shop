@@ -2,10 +2,7 @@
 
 namespace Request;
 
-use Model\Model;
-use Model\Order;
-use Model\OrderProduct;
-use Model\Product;
+use Mergen\Core\Request;
 
 class OrderRequest extends Request
 {

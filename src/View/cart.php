@@ -111,12 +111,7 @@
         padding: 10px;
         text-align: center;
     }
-    /*.product_model{
-        padding: 10px;
-        color: #878686;
-        font-size: .8rem;
 
-    }*/
     .product_price{
         padding: 8px;
         color: #615F5F;

@@ -114,29 +114,7 @@ use AllowDynamicProperties;
 
     }
 
-    /*    public function getUserProductsByUserId(int $userId): array|false
-        {
 
-            $stmt = $this->pdo->connectToDatabase()->prepare("SELECT products.id AS product_id,
-                                        products.name AS product_name,
-                                        products.description AS product_description,
-                                        products.price AS product_price,
-                                        products.image_link AS product_image_link,
-                                        user_products.amount AS user_products_amount
-                                        FROM user_products INNER JOIN products ON products.id = user_products.product_id WHERE user_id = :user_id"
-            );
-            $stmt->execute(['user_id' => $userId]);
-            return $stmt->fetchAll();
-        }
-    */
-//    public function getProductsByUserId(int $userId): array
-//    {
-//        $stmt = $this->connectToDatabase()->prepare("SELECT * FROM user_products
-//                                                           JOIN products ON user_products.product_id = products.id WHERE user_id = :user_id");
-//        $stmt->execute(['user_id' => $userId]);
-//        return $stmt->fetchAll();
-//
-//
     public static function getUserProductsByUserId(int $userId): array|null
     {
         $stmt = self::connectToDatabase()->prepare("SELECT * FROM user_products WHERE user_id = :user_id");

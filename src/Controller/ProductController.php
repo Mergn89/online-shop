@@ -1,7 +1,7 @@
 <?php
 namespace Controller;
 
-use Core\AuthServiceInterface;
+use Mergen\Core\AuthServiceInterface;
 use Model\Product;
 use Model\Review;
 use Model\UserProduct;
@@ -20,19 +20,16 @@ class ProductController
 
     public function getCatalog():void
     {
-//        session_start();
         if (!$this->authService->check()) {
             header("location: /login");
         } else {$userId = $this->authService->getCurrentUser()->getId();
             $products = Product::getProducts();
             $sumAmount = UserProduct::getAmountByUserId($userId);
-//            if (!$sumAmount->getTotalAmount()) {
-//                $totalAmount = '0';
-//            }
+
             require_once "./../View/catalog.php";
         }
-
     }
+
 
     public function getProductAverage(ProductRequest $productRequest): void
     {
@@ -40,26 +37,12 @@ class ProductController
             header("location: /login");
         }
 
-//        $userId = $this->authService->getCurrentUser()->getId();
-
         $product = Product::getOneById($productRequest->getProductId());
 
-//        $reviewUser = Review::getReviewsByUserId($userId);
-
         $reviews = Review::getReviewsJoinProducts();
-//        echo '<pre>';
-//        print_r($reviews); die;
 
-            $ratings = [];//
-//        ['1' = 0, +4, +3..
-//         '2' = 0,
-//         '3' = 0
-//        ];
-            $counts = [];//
-//        ['1' = 0, +1, +1...
-//         '2' = 0,....
-//         '3' = 0.....
-//        ];
+        $ratings = [];
+        $counts = [];
 
         foreach ($reviews as $row) {
                 $productId = $row->getProductId();
@@ -76,24 +59,10 @@ class ProductController
             $averageRatings[$productId] = $totalRating / $counts[$productId];
         }
 
-//        echo '<pre>';
-//        print_r($averageRatings[$product->getId()]);
-//        echo '</pre>'; die;
         $allReviews = Review::getReviews();
 
         require_once "./../View/productAverage.php";
-//        if (!$this->authService->check()) {
-//            header("location: /login");
-//        }
-//
-//        $product = Product::getOneById($productRequest->getProductId());
-//
-////        print_r($product);die;
 
     }
-
-
-
-
 
 }

@@ -2,17 +2,13 @@
 
 namespace Request;
 
-//use http\Client\Curl\User;
-
+use Mergen\Core\Request;
 use Model\User;
+
+
 
 class RegistrateRequest extends Request
 {
-//    public function __construct(string $uri, string $method, array $data = [])
-//    {
-//        parent::__construct($uri, $method, $data);
-//    }
-
     public function getName(): ?string
     {
         return $this->data['name'] ?? '';
@@ -29,7 +25,6 @@ class RegistrateRequest extends Request
     {
         return $this->data['psw-repeat'] ?? '';
     }
-
 
 
     public function validate(): array
