@@ -1,18 +1,20 @@
 <?php
 namespace Controller;
+
+use Mergen\Core\AuthServiceInterface;
 use Model\User;
-use Request\RegistrateRequest;
 use Request\LoginRequest;
-use Request\Request;
-use Service\AuthService;
+use Request\RegistrateRequest;
+
 
 class UserController
 {
-    private AuthService $authService;
+    private AuthServiceInterface $authService;
 
-    public function __construct()
+
+    public function __construct(AuthServiceInterface $authService)
     {
-        $this->authService = new AuthService();
+        $this->authService = $authService;
     }
 
     public function getRegistrationForm():void

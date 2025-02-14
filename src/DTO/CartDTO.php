@@ -6,7 +6,8 @@ class CartDTO
 {
     public function __construct(private int $userId,
                                 private int $productId,
-                                private int $amount) {
+                                private int $amount)
+    {
 
     }
 

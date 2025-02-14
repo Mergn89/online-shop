@@ -6,7 +6,7 @@ class Product extends Model
     private string $title;
     private string $description;
     private string $price;
-    private string $image_link;
+    private string $imageLink;
     private ?int $amount = null;
 
     public function getId(): int
@@ -31,7 +31,7 @@ class Product extends Model
 
     public function getImageLink(): string
     {
-        return $this->image_link;
+        return $this->imageLink;
     }
     public function getAmount(): int
     {
@@ -62,9 +62,9 @@ class Product extends Model
         return $this;
     }
 
-    public function setImageLink(string $image_link): Product
+    public function setImageLink(string $imageLink): Product
     {
-        $this->image_link = $image_link;
+        $this->imageLink = $imageLink;
         return $this;
     }
     public function setAmount(int $amount): Product
@@ -72,21 +72,22 @@ class Product extends Model
         $this->amount = $amount;
         return $this;
     }
-public static function hydrate(array $data): self
-{
-    $products = new self();
-    $products->id = $data['id'];
-    $products->title = $data['title'];
-    $products->description = $data['description'];
-    $products->price = $data['price'];
-    $products->image_link = $data['image_link'];
-    return $products;
+    public static function hydrate(array $data): self
+    {
+        $products = new self();
+        $products->id = $data['id'];
+        $products->title = $data['title'];
+        $products->description = $data['description'];
+        $products->price = $data['price'];
+        $products->imageLink = $data['image_link'];
+        return $products;
 
-}
+    }
 
     public static function getProducts(): array|null
     {
         $stmt = self::connectToDatabase()->query("SELECT * FROM products");
+
         $data = $stmt->fetchAll();
         if($data === false){
             return null;
@@ -105,16 +106,14 @@ public static function hydrate(array $data): self
         if($data === false) {
             return null;
         }
-        return Product::hydrate($data);
+        return self::hydrate($data);
     }
 
 
     public static function getAllByIds(array $productIds): array|null
     {
-        //$productId = implode(',' , $productIds);
-        $productId = '?' . str_repeat(', ?', count($productIds)-1); //преобразывает массив  в строку
 
-//        $sql = 'SELECT * FROM test WHERE id in ('.implode(",", $array).')';
+        $productId = '?' . str_repeat(', ?', count($productIds)-1); //преобразывает массив  в строку
 
         $stmt = self::connectToDatabase()->prepare("SELECT * FROM products WHERE id IN ($productId)");
         $stmt->execute($productIds);
@@ -128,6 +127,10 @@ public static function hydrate(array $data): self
         return $data;
 
     }
+
+
+
+
 
 
 }

@@ -7,7 +7,7 @@ use Model\OrderProduct;
 use Model\Product;
 use Model\UserProduct;
 use DTO\CreateOrderDTO;
-use mysql_xdevapi\Exception;
+
 
 class OrderService
 {
@@ -34,6 +34,36 @@ class OrderService
         $pdo->commit();
 
     }
+
+    public function getOrders(int $userId): array
+    {
+        $orders = Order::getAllByUserId($userId);
+
+        foreach ($orders as &$order) {
+            $orderProducts = OrderProduct::getByOrderId($order->getId());
+
+            if(!empty($orderProducts)) {
+                $productIds = [];
+                foreach ($orderProducts as $orderProduct){
+                    $productIds[] = $orderProduct->getProductId();
+                }
+                $products = Product::getAllByIds($productIds);
+
+                foreach ($orderProducts as $orderProduct){
+                    foreach ($products as $product) {
+                        if ($product->getId() === $orderProduct->getProductId()) {
+                            $product->setAmount($orderProduct->getAmount());
+                            $product->setPrice($orderProduct->getOrderPrice());
+                        }
+                    }
+
+                }
+                $order->setProducts($products);
+            }
+
+        } return $orders;
+    }
+
 
     private function getAllUserProducts(CreateOrderDTO $orderDTO): array
     {

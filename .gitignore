@@ -1,3 +1,5 @@
 .idea/
 /docker/postgres/
-/src/public/cart_test.php
+./../View/test.php
+./Storage
+/vendor/

@@ -96,5 +96,4 @@ class OrderProduct extends Model
     }
 
 
-
 }

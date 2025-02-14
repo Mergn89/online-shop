@@ -12,24 +12,24 @@
     <link rel="stylesheet" href="./style.css">
 
 </head>
-
 <body class="hm-gradient">
 
 <main>
 
     <!--MDB Tables-->
     <div class="container mt-4">
-
+        <br>
+        <br>
+        <a href="/catalog"><button class="btn" style="background: brown" type="submit">CATALOG</button> </a>
         <div class="text-center darken-grey-text mb-4">
-            <h1 class="font-bold mt-4 mb-3 h1"><b>My Orders ! </b></h1>
+            <h1 class="font-bold mt-4 mb-3 h1"><b>Reviews ! </b></h1>
             <br>
-            <a class="btn btn-danger btn-md" href="/catalog">Catalog   </a>
-<!--            <a class="btn btn-danger" href="" target="_blank">Log OUT</a>-->
+
         </div>
 
         <?php //$count = 0;?>
-        <?php if (isset($orders)): ?>
-        <?php foreach ($orders as $orderProduct): ?>
+        <?php if (isset($reviews)): ?>
+        <?php foreach ($reviews as $review): ?>
 
         <div class="card mb-3">
             <div class="card-body">
@@ -39,39 +39,35 @@
                     <thead class="mdb-color darken-3">
                     <tr class="text-white">
                         <th>#</th>
-                        <th>Full Name</th>
+                        <th>Product</th>
                         <th>Pricing</th>
                         <th>Date</th>
                         <th>Customer</th>
-                        <th>Amount</th>
-                        <th>Drop Location</th>
-                        <th>Extra Messages</th>
+                        <th>Rating</th>
+                        <th>ProductId</th>
+
                     </tr>
                     </thead>
                     <!--Table head-->
                     <!--Table body-->
                     <tbody>
 
-
                     <tr>
+                        <th scope="row"><?php //echo $orderProduct->getId();?></th>
+                        <td><?php echo $review->getProduct()->getTitle();?></td>
+                        <td>$<?php echo $review->getProduct()->getPrice();?></td>
+                        <td><?php echo $review->getCreated();?></td>
+                        <td><?php echo $review->getUser()->getName();?></td>
+                        <td><?php echo $review->getRating();?></td>
+                        <td><?php echo $review->getProductId();?></td>
 
-
-                        <?php foreach ($orderProduct->getProducts() as $product): ?>
-                        <th scope="row"><?php echo $orderProduct->getId();?></th>
-                        <td><?php echo $product->getTitle(); ?></td>
-                        <td>$<?php echo $product->getPrice();?></td>
-                        <td>**</td>
-                        <td><?php echo $orderProduct->getContactName();?></td>
-                        <td><?php echo $product->getAmount(); ?></td>
-                        <td> </td>
-                        <td> </td>
                     </tr>
-                    <?php endforeach;?>
+                    <?php //endforeach;?>
+
                     </tbody>
-                    Total: <?php echo '$'.$orderProduct->getTotal(); ?>
+                    Review: <?php echo $review->getReview();?>
 
                     <?php endforeach;?>
-
                     <?php endif;?>
                     <!--Table body-->
                 </table>
@@ -138,6 +134,5 @@
     .table.table-bordered th {
         text-align: center;
     }
-
 
 </style>

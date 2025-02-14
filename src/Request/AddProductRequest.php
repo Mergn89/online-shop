@@ -2,21 +2,18 @@
 
 namespace Request;
 
+use Mergen\Core\Request;
 use Model\Product;
+
 
 class AddProductRequest extends Request
 {
-    public function __construct(string $uri, string $method, array $data = [])
-    {
-        parent::__construct($uri, $method, $data);
-    }
-
-    public function getProductId(): ?string
+    public function getProductId(): ?int
     {
         return $this->data['product_id'] ?? '';
     }
 
-    public function getAmount(): ?string
+    public function getAmount(): ?int
     {
         return $this->data['amount'] ?? '';
     }
@@ -25,15 +22,7 @@ class AddProductRequest extends Request
     {
         $data = $this->data;
         $errors = [];
-//        session_start();
-//        if (isset($_SESSION['user_id'])) {
-//            $userId = $_SESSION['user_id'];
-//            if (empty($userId)) {
-//                $errors['user_id'] = 'Пожалуйста, авторизируйтесь';
-//            }
-//        } else {
-//            $errors['user_id'] = 'Пожалуйста, авторизируйтесь';
-//        }
+
         if (isset($data['product_id'])) {
             $productId = $data['product_id'];
             if (empty($productId)) {

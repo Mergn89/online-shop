@@ -10,7 +10,6 @@ class CartService
     public function addProduct(CartDTO $cartDTO): void
     {
         $dataUserProducts = UserProduct::getAmountByUserIdAndProductId($cartDTO->getUserId(), $cartDTO->getProductId());
-        //print_r($dataUserProducts); die;
 
         if (!$dataUserProducts) {
             UserProduct::addProductInUserProducts($cartDTO->getUserId(), $cartDTO->getProductId(), $cartDTO->getAmount());

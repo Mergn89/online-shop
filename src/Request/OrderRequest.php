@@ -2,6 +2,8 @@
 
 namespace Request;
 
+use Mergen\Core\Request;
+
 class OrderRequest extends Request
 {
     public function getContactName(): ?string
@@ -56,5 +58,7 @@ class OrderRequest extends Request
 
         return $errors;
     }
+
+
 
 }
